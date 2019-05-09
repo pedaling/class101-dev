@@ -1,12 +1,9 @@
-import './layout.css';
-
 import React from 'react';
-
 import Header from './header';
 
 class Layout extends React.Component {
   render() {
-    const { location, title, children } = this.props
+    const { children } = this.props
     
     return (
       <div className="root">

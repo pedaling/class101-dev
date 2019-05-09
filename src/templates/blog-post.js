@@ -82,6 +82,7 @@ export const pageQuery = graphql`
 `
 
 const MarkdownDiv = styled.div`
+  padding-top: 32px;
   h1 {
     ${headline1}
   }
