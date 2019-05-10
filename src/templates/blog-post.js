@@ -7,13 +7,11 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import styled from 'styled-components';
 
-const { headline1, headline2, headline3, subtitle1, body1 } = TextStyles
-
 class BlogPostTemplate extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
-    const { previous, next } = this.props.pageContext
+    const post = this.props.data.markdownRemark;
+    const siteTitle = this.props.data.site.siteMetadata.title;
+    const { previous, next } = this.props.pageContext;
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -21,14 +19,14 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <Headline1 style={{ marginBottom: '32px' }}>{post.frontmatter.title}</Headline1>
-        <Body1>
-          {post.frontmatter.date}
-        </Body1>
-        <MarkdownDiv dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr/>
-        <Bio />
-
+        <ContentDiv>
+          <Headline1 style={{ marginBottom: '32px' }}>
+            {post.frontmatter.title}
+          </Headline1>
+          <Body1>{post.frontmatter.date}</Body1>
+          <MarkdownDiv dangerouslySetInnerHTML={{ __html: post.html }} />
+        </ContentDiv>
+        <Bio userName={post.frontmatter.user} />
         <ul
           style={{
             display: `flex`,
@@ -54,11 +52,11 @@ class BlogPostTemplate extends React.Component {
           </li>
         </ul>
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogPostTemplate
+export default BlogPostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
@@ -76,34 +74,14 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        user
       }
     }
   }
-`
-
-const MarkdownDiv = styled.div`
-  padding-top: 32px;
-  h1 {
-    ${headline1}
-  }
-  h2 {
-    ${headline2}
-  }
-  h3 {
-    ${headline3}
-  }
-  h4 {
-    ${subtitle1}
-  }
-  h5 {
-    ${body1}
-    font-weight: 800;
-  }
-  h6 {
-    ${body1}
-  }
-  p {
-    ${body1}
-  }
-
-`
+`;
+const ContentDiv = styled.div`
+  padding: 16px;
+  border: #333 solid 1px;
+  box-sizing: border-box;
+`;
+const MarkdownDiv = styled.div``;

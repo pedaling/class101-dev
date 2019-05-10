@@ -1,15 +1,16 @@
-import { Body1, Body2, Section, Headline3 } from '@class101/ui';
+import { Body1, Body2, Headline3 } from '@class101/ui';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
+import styled from 'styled-components';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 class BlogIndex extends React.Component {
   render() {
-    const { data } = this.props
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+    const { data } = this.props;
+    const siteTitle = data.site.siteMetadata.title;
+    const posts = data.allMarkdownRemark.edges;
 
     return (
       <Layout location={this.props.location} title={siteTitle}>
@@ -17,31 +18,32 @@ class BlogIndex extends React.Component {
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
-        {/* <Bio /> */}
         {posts.map(({ node }) => {
-          const title = node.frontmatter.title || node.fields.slug
+          const title = node.frontmatter.title || node.fields.slug;
           return (
-            <Section key={node.fields.slug}>
-              <Headline3 style={{marginBottom: '8px'}}>
+            <PostContainer key={node.fields.slug}>
+              <Headline3 style={{ marginBottom: '8px' }}>
                 <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
                   {title}
                 </Link>
               </Headline3>
-              <Body2 style={{marginBottom: '8px'}}>{node.frontmatter.date}</Body2>
+              <Body2 style={{ marginBottom: '8px' }}>
+                {node.frontmatter.date}
+              </Body2>
               <Body1
                 dangerouslySetInnerHTML={{
                   __html: node.frontmatter.description || node.excerpt,
                 }}
               />
-            </Section>
-          )
+            </PostContainer>
+          );
         })}
       </Layout>
-    )
+    );
   }
 }
 
-export default BlogIndex
+export default BlogIndex;
 
 export const pageQuery = graphql`
   query {
@@ -66,4 +68,11 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
+
+const PostContainer = styled.div`
+  padding: 16px;
+  margin-bottom: 32px;
+  border: #333 solid 1px;
+  box-sizing: border-box;
+`;

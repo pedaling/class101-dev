@@ -13,9 +13,7 @@ export default class Header extends React.Component {
         <Spacer />
         <ul>
           <li>
-            <NavLink to="/">
-              블로그
-            </NavLink>
+            <NavLink to="/">블로그</NavLink>
           </li>
         </ul>
       </NavConatiner>

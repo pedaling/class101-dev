@@ -3,11 +3,11 @@ import Header from './header';
 
 class Layout extends React.Component {
   render() {
-    const { children } = this.props
-    
+    const { children } = this.props;
+
     return (
       <div className="root">
-        <Header></Header>
+        <Header />
         <div
           style={{
             marginLeft: `auto`,
@@ -16,11 +16,11 @@ class Layout extends React.Component {
             padding: `16px 32px`,
           }}
         >
-          <div style={{textAlign: 'center', marginBottom: '32px'}}>
+          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <h1>Class101 기술 블로그</h1>
           </div>
-          
-          <main style={{ paddingBottom: '32px'} }>{children}</main>
+
+          <main style={{ paddingBottom: '32px' }}>{children}</main>
           <footer>
             © {new Date().getFullYear()}, Built with
             {` `}
@@ -28,8 +28,8 @@ class Layout extends React.Component {
           </footer>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Layout
+export default Layout;

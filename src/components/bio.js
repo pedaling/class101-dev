@@ -5,68 +5,52 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import Image from "gatsby-image"
+import React from 'react';
+import styled from 'styled-components';
+import users from '../utils/users';
 
+const Bio = ({ userName }) => {
+  const { name, profileImage, github, description } = users.find(
+    user => user.name === userName
+  );
 
-function Bio() {
   return (
-    <StaticQuery
-      query={bioQuery}
-      render={data => {
-        const { author, social } = data.site.siteMetadata
-        return (
-          <div
-            style={{
-              display: `flex`
-            }}
-          >
-            <Image
-              fixed={data.avatar.childImageSharp.fixed}
-              alt={author}
-              style={{
-                marginBottom: 0,
-                minWidth: 50,
-                borderRadius: `100%`,
-              }}
-              imgStyle={{
-                borderRadius: `50%`,
-              }}
-            />
-            <p>
-              Written by <strong>{author}</strong> who lives and works in San
-              Francisco building useful things.
-              {` `}
-              <a href={`https://twitter.com/${social.twitter}`}>
-                You should follow him on Twitter
-              </a>
-            </p>
-          </div>
-        )
-      }}
-    />
-  )
-}
+    <BioContainer>
+      <img
+        src={profileImage}
+        style={{ width: '100px', height: '100px', borderRadius: '100px' }}
+      />
+      <h3>{name}</h3>
+      <p>{description}</p>
+      <a href={github} target="_blank">
+        Github
+      </a>
+    </BioContainer>
+  );
+};
 
-const bioQuery = graphql`
-  query BioQuery {
-    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
-      childImageSharp {
-        fixed(width: 50, height: 50) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
-    site {
-      siteMetadata {
-        author
-        social {
-          twitter
-        }
-      }
-    }
-  }
-`
+const BioContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+  border: #333 solid 1px;
+  padding: 16px;
+  box-sizing: border-box;
+`;
 
-export default Bio
+// const bioQuery = graphql`
+//   query BioQuery {
+//     site {
+//       siteMetadata {
+//         author
+//         social {
+//           twitter
+//         }
+//       }
+//     }
+//   }
+// `
+
+export default Bio;
