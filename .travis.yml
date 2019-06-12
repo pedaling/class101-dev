@@ -17,4 +17,3 @@ deploy:
   local_dir: public
   on:
     branch: release
-  target_branch: master
