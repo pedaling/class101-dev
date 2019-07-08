@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import Layout from '../components/Layout';
 import Img from '../components/Img';
-import SEO from '../components/seo';
+import SEO from '../components/SEO';
 import { Frontmatter, Site } from '../graphql-types';
 
 interface Props {

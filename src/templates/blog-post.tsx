@@ -8,9 +8,9 @@ import {
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 
-import Bio from '../components/bio';
+import Bio from '../components/Bio';
 import Layout from '../components/layout';
-import SEO from '../components/seo';
+import SEO from '../components/SEO';
 import styled, { css } from 'styled-components';
 import Img from '../components/Img';
 
