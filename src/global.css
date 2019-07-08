@@ -50,8 +50,14 @@ html {
 }
 
 body {
-  color: #182026;
+  background: #f4f8fb;
   font-size: 1rem;
-  line-height: 1.8rem;
+  line-height: 1.6em;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-family: -apple-system, 'SpoqaHanSans', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 }

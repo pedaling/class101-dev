@@ -9,7 +9,7 @@ import React from 'react';
 import styled from 'styled-components';
 import users from '../utils/users';
 
-const Bio = ({ userName }) => {
+const Bio = ({ userName }: any) => {
   const { name, profileImage, github, description } = users.find(
     user => user.name === userName
   );

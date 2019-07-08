@@ -1,6 +1,7 @@
 ---
 title: My Second Post!
 date: "2015-05-06T23:46:37.121Z"
+thumbnail: "/images/thumbnail.jpg"
 user: "김요한"
 ---
 
@@ -12,3 +13,4 @@ egg yolk will be less rich."?
 ([Wikipedia Link](http://en.wikipedia.org/wiki/Salted_duck_egg))
 
 Yeah, I didn't either.
+ 

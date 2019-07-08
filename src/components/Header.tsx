@@ -1,4 +1,4 @@
-import { Colors } from '@class101/ui';
+import { Colors, ElevationStyles, Headline3 } from '@class101/ui';
 import React from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
@@ -10,6 +10,8 @@ export default class Header extends React.Component {
         <NoHoverLink to="/">
           <LogoIcon src="/images/ic-logo-black.png" alt="class101" />
         </NoHoverLink>
+        <Spacer />
+        <Headline3>Class101.dev</Headline3>
         <Spacer />
         <ul>
           <li>
@@ -27,6 +29,7 @@ const NavConatiner = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${ElevationStyles.elevation2}
   ul {
     padding: 0;
     margin: 0;

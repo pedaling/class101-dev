@@ -1,6 +1,7 @@
 ---
 title: Hello World
 date: "2015-05-01T22:12:03.284Z"
+thumbnail: "/images/thumbnail.jpg"
 user: "김요한"
 ---
 

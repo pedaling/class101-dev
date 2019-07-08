@@ -1,6 +1,7 @@
 ---
 title: 클래스 101이란?
 date: "2019-05-03T22:12:03.284Z"
+thumbnail: "/images/thumbnail.jpg"
 user: "김요한"
 ---
 

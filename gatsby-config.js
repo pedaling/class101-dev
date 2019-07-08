@@ -24,6 +24,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/assets/images`,
+        name: `images`,
+      },
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         // CommonMark mode (default: true)
@@ -58,7 +65,7 @@ module.exports = {
               // you may use this to prevent Prism from re-processing syntax.
               // This is an uncommon use-case though;
               // If you're unsure, it's best to use the default value.
-              classPrefix: "language-",
+              classPrefix: 'language-',
               // This is used to allow setting a language for inline code
               // (i.e. single backticks) by creating a separator.
               // This separator is a string and will do no white-space
@@ -107,7 +114,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/images/gatsby-icon.png`,
       },
     },
     `gatsby-plugin-offline`,
@@ -118,13 +125,8 @@ module.exports = {
         // Add any options here
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-typescript`,
-    //   options: {
-    //     isTSX: true, // defaults to false
-    //     jsxPragma: `jsx`, // defaults to "React"
-    //     allExtensions: true, // defaults to false
-    //   },
-    // }
+    {
+      resolve: `gatsby-plugin-typescript`,
+    },
   ],
-}
+};
