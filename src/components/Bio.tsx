@@ -7,38 +7,47 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import users from '../utils/users';
+import authors from '../utils/authors';
+import { ElevationStyles, Headline3, Body2 } from '@class101/ui';
 
 const Bio = ({ userName }: any) => {
-  const { name, profileImage, github, description } = users.find(
+  const { name, profileImage, github, description } = authors.find(
     user => user.name === userName
   );
+  console.log(profileImage)
 
   return (
     <BioContainer>
-      <img
+      <BioImage
         src={profileImage}
-        style={{ width: '100px', height: '100px', borderRadius: '100px' }}
       />
-      <h3>{name}</h3>
-      <p>{description}</p>
-      <a href={github} target="_blank">
-        Github
-      </a>
+      <BioBody>
+        <Headline3>{name}</Headline3>
+        <Body2>{description}</Body2>
+      </BioBody>
     </BioContainer>
   );
 };
 
 const BioContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  max-width: 960px;
+  margin: 16px auto;
+  background: white;
   align-items: center;
-  margin: 16px 0;
-  border: #333 solid 1px;
-  padding: 16px;
-  box-sizing: border-box;
+  padding: 32px;
+  display: flex;
+  ${ElevationStyles.elevation2};
 `;
+
+const BioImage = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 32px;
+`
+
+const BioBody = styled.div``;
+
 
 // const bioQuery = graphql`
 //   query BioQuery {
