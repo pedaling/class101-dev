@@ -30,7 +30,7 @@ const Container = styled.footer`
 `;
 
 const InnerContainer = styled.div`
-  max-width: 960px;
+  max-width: 760px;
   margin: 0 auto;
   padding: 32px;
 `

@@ -1,23 +1,17 @@
-import {
-  Headline1,
-  Body1,
-  ElevationStyles,
-  TextStyles,
-  Body2,
-} from '@class101/ui';
+import { Body2, ElevationStyles, TextStyles } from '@class101/ui';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
+import styled, { css } from 'styled-components';
 
 import Bio from '../components/Bio';
+import Img from '../components/Img';
 import Layout from '../components/layout';
 import SEO from '../components/SEO';
-import styled, { css } from 'styled-components';
-import Img from '../components/Img';
+import Comments from '../components/Comments';
 
 class BlogPostTemplate extends React.Component<any> {
   render() {
     const post = this.props.data.markdownRemark;
-    const siteTitle = this.props.data.site.siteMetadata.title;
     const { previous, next } = this.props.pageContext;
     console.log(this.props.pageContext)
     return (
@@ -52,6 +46,7 @@ class BlogPostTemplate extends React.Component<any> {
           </PostNavigatorContainer>
         </MarkdownContainer>
         <Bio userName={post.frontmatter.user} />
+        <Comments />
       </Layout>
     );
   }
@@ -95,16 +90,22 @@ const MarkdownDiv = styled.div``;
 const PostNavigatorContainer = styled.div`
   display: flex;
   margin: 16px -32px -32px;
- 
 `
 
 const PostNavigator = styled(Link)`
   display: block;
   position: relative;
   flex: 1;
-  img:hover {
-    transition: transform 0.3s ease-in;
-    transform: scale(1.025);
+  background: black;
+  opacity: 0.9;
+  img {
+    z-index: -1;
+  }
+  &:hover {
+    img {
+      transition: transform 0.3s ease-in;
+      transform: scale(1.025);
+    }
   }
 `
 
@@ -1081,7 +1082,7 @@ const MarkdownContainer = styled.div`
   background: white;
   border-radius: 3px;
   padding: 32px;
-  max-width: 960px;
+  max-width: 760px;
   margin: 0 auto;
   padding: 32px;
   ${ElevationStyles.elevation2};

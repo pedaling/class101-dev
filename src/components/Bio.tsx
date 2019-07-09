@@ -30,7 +30,7 @@ const Bio = ({ userName }: any) => {
 };
 
 const BioContainer = styled.div`
-  max-width: 960px;
+  max-width: 760px;
   margin: 16px auto;
   background: white;
   align-items: center;

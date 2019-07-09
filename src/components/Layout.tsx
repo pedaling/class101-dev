@@ -1,10 +1,11 @@
 import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
 import styled from 'styled-components';
 
+import Footer from './Footer';
+import Header from './Header';
+
 interface Props {
-  children: JSX.Element[]
+  children: JSX.Element[];
 }
 
 class Layout extends React.Component<Props> {
