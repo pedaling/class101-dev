@@ -16,13 +16,13 @@ interface Props {
         node: {
           excerpt: string;
           fields: {
-            slug: string
-          }
-          frontmatter: Frontmatter
-        }
-      }[]
-    }
-  }
+            slug: string;
+          };
+          frontmatter: Frontmatter;
+        };
+      }[];
+    };
+  };
   [key: string]: any; // 임시 선언. location 어디서 받아오는거야?
 }
 
@@ -32,13 +32,10 @@ class BlogIndex extends React.Component<Props> {
     const siteTitle = data.site.siteMetadata.title;
     const posts = data.allMarkdownRemark.edges;
     console.log(this.props);
-    
+
     return (
       <Layout>
-        <SEO
-          title="All posts"
-          keywords={[`blog`, `gatsby`, `javascript`, `react`]}
-        />
+        <SEO title="All posts" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
         <Grid>
           <Row>
             {posts.map(({ node }) => {
@@ -48,27 +45,22 @@ class BlogIndex extends React.Component<Props> {
               return (
                 <Col key={node.fields.slug} sm={4}>
                   <PostCard to={node.fields.slug}>
-                    <PostCardThumbnail src={thumbnail}/>
+                    <PostCardThumbnail src={thumbnail} />
                     <PostCardBody>
-                      <PostCardTitle >
-                        {title}
-                      </PostCardTitle>
-                      <PostCardDate>
-                        {node.frontmatter.date}
-                      </PostCardDate>
+                      <PostCardTitle>{title}</PostCardTitle>
+                      <PostCardDate>{node.frontmatter.date}</PostCardDate>
                       <PostCardDescription
                         dangerouslySetInnerHTML={{
                           __html: node.frontmatter.description || node.excerpt,
                         }}
                       />
                     </PostCardBody>
-                 </PostCard>
+                  </PostCard>
                 </Col>
               );
             })}
           </Row>
         </Grid>
-        
       </Layout>
     );
   }
@@ -115,35 +107,33 @@ const PostCard = styled(Link)`
     transform: scale(1.025);
   }
   ${ElevationStyles.elevation3};
-`
+`;
 
 const PostCardBody = styled.div`
   padding: 8px 16px;
-`
+`;
 
-const PostCardThumbnail = styled(Img)`
-`
+const PostCardThumbnail = styled(Img)``;
 
 const PostCardTitle = styled.h2`
   ${TextStyles.headline3}
   margin-bottom: 8px;
-`
+`;
 
 const PostCardDate = styled.div`
   ${TextStyles.body2}
   color: ${Colors.gray600};
   margin-bottom: 8px;
-`
+`;
 
 const PostCardDescription = styled.div`
   ${TextStyles.body1}
   overflow: hidden;
-text-overflow: ellipsis;
-display: -webkit-box;
--webkit-line-clamp: 4; /* 라인수 */
--webkit-box-orient: vertical;
-word-wrap:break-word; 
-line-height: 1.5em;
-height: 6.0em;
-
-`
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  line-height: 1.5em;
+  height: 6em;
+`;

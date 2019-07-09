@@ -13,36 +13,33 @@ class BlogPostTemplate extends React.Component<any> {
   render() {
     const post = this.props.data.markdownRemark;
     const { previous, next } = this.props.pageContext;
-    console.log(this.props.pageContext)
+    console.log(this.props.pageContext);
     return (
       <Layout>
-        <SEO
-          title={post.frontmatter.title}
-          description={post.frontmatter.description || post.excerpt}
-        />
+        <SEO title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} />
         <MarkdownContainer>
-          <PostTitle>
-            {post.frontmatter.title}
-          </PostTitle>
+          <PostTitle>{post.frontmatter.title}</PostTitle>
           <PostDate>{post.frontmatter.date}</PostDate>
-          <MarkdownDiv
-            className="markdown-body"
-            dangerouslySetInnerHTML={{ __html: post.html }}
-          />
+          <MarkdownDiv className="markdown-body" dangerouslySetInnerHTML={{ __html: post.html }} />
           <PostNavigatorContainer>
-            {
-              previous && <PostNavigator to={previous.fields.slug} rel="prev">
-              <Img src={previous.frontmatter.thumbnail}/>
-              <PostNavigatorTitle>이전 글<br/>{previous.frontmatter.title}</PostNavigatorTitle>
-            </PostNavigator>
-            }
-            {
-              next && <PostNavigator to={next.fields.slug} rel="next">
-              <Img src={next.frontmatter.thumbnail}/>
-              <PostNavigatorTitle>다음 글<br/>{next.frontmatter.title}</PostNavigatorTitle>
-            </PostNavigator>
-            }
-            
+            {previous && (
+              <PostNavigator to={previous.fields.slug} rel="prev">
+                <Img src={previous.frontmatter.thumbnail} />
+                <PostNavigatorTitle>
+                  이전 글<br />
+                  {previous.frontmatter.title}
+                </PostNavigatorTitle>
+              </PostNavigator>
+            )}
+            {next && (
+              <PostNavigator to={next.fields.slug} rel="next">
+                <Img src={next.frontmatter.thumbnail} />
+                <PostNavigatorTitle>
+                  다음 글<br />
+                  {next.frontmatter.title}
+                </PostNavigatorTitle>
+              </PostNavigator>
+            )}
           </PostNavigatorContainer>
         </MarkdownContainer>
         <Bio userName={post.frontmatter.user} />
@@ -90,7 +87,7 @@ const MarkdownDiv = styled.div``;
 const PostNavigatorContainer = styled.div`
   display: flex;
   margin: 16px -32px -32px;
-`
+`;
 
 const PostNavigator = styled(Link)`
   display: block;
@@ -107,7 +104,7 @@ const PostNavigator = styled(Link)`
       transform: scale(1.025);
     }
   }
-`
+`;
 
 const PostNavigatorTitle = styled.p`
   ${TextStyles.subtitle1}
@@ -117,7 +114,7 @@ const PostNavigatorTitle = styled.p`
   width: 100%;
   font-weight: 800;
   color: white;
-`
+`;
 
 const markdownBody = css`
   .markdown-body .octicon {
@@ -498,8 +495,7 @@ const markdownBody = css`
 
   .markdown-body code,
   .markdown-body pre {
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
-      monospace;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
     font-size: 12px;
   }
 
@@ -858,8 +854,7 @@ const markdownBody = css`
   .markdown-body .commit-tease-sha {
     color: #444d56;
     display: inline-block;
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
-      monospace;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
     font-size: 90%;
   }
 
@@ -881,8 +876,7 @@ const markdownBody = css`
     -webkit-user-select: none;
     color: rgba(27, 31, 35, 0.3);
     cursor: pointer;
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
-      monospace;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
     font-size: 12px;
     line-height: 20px;
     min-width: 50px;
@@ -913,8 +907,7 @@ const markdownBody = css`
 
   .markdown-body .blob-code-inner {
     color: #24292e;
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
-      monospace;
+    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
     font-size: 12px;
     overflow: visible;
     white-space: pre;
@@ -935,8 +928,7 @@ const markdownBody = css`
     box-shadow: inset 0 -1px 0 #c6cbd1;
     color: #444d56;
     display: inline-block;
-    font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier,
-      monospace;
+    font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
     line-height: 10px;
     padding: 3px 5px;
     vertical-align: middle;

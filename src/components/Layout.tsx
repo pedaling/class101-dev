@@ -15,9 +15,7 @@ class Layout extends React.Component<Props> {
     return (
       <Root className="root">
         <Header />
-        <Main>
-        {children}
-        </Main>
+        <Main>{children}</Main>
         <Footer />
       </Root>
     );
@@ -27,6 +25,6 @@ class Layout extends React.Component<Props> {
 const Root = styled.div``;
 const Main = styled.main`
   padding: 32px 0;
-`
+`;
 
 export default Layout;

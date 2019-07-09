@@ -6,15 +6,14 @@ export default class Footer extends React.Component {
     return (
       <Container>
         <InnerContainer>
-        © {new Date().getFullYear()}, Built with
+          © {new Date().getFullYear()}, Built with
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
         </InnerContainer>
       </Container>
-    )
+    );
   }
-};
-
+}
 
 const Container = styled.footer`
   background-color: rgb(27, 28, 29);
@@ -33,4 +32,4 @@ const InnerContainer = styled.div`
   max-width: 760px;
   margin: 0 auto;
   padding: 32px;
-`
+`;

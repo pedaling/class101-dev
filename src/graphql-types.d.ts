@@ -1,10 +1,10 @@
 export interface MarkdownRemark {
   id: string;
   html: string;
-  frontmatter: Frontmatter
+  frontmatter: Frontmatter;
   fields: {
     slug?: string;
-  }
+  };
 }
 
 export interface Frontmatter {

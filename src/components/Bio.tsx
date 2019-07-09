@@ -11,16 +11,12 @@ import authors from '../utils/authors';
 import { ElevationStyles, Headline3, Body2 } from '@class101/ui';
 
 const Bio = ({ userName }: any) => {
-  const { name, profileImage, github, description } = authors.find(
-    user => user.name === userName
-  );
-  console.log(profileImage)
+  const { name, profileImage, github, description } = authors.find(user => user.name === userName);
+  console.log(profileImage);
 
   return (
     <BioContainer>
-      <BioImage
-        src={profileImage}
-      />
+      <BioImage src={profileImage} />
       <BioBody>
         <Headline3>{name}</Headline3>
         <Body2>{description}</Body2>
@@ -44,10 +40,9 @@ const BioImage = styled.img`
   height: 100px;
   border-radius: 50%;
   margin-right: 32px;
-`
+`;
 
 const BioBody = styled.div``;
-
 
 // const bioQuery = graphql`
 //   query BioQuery {

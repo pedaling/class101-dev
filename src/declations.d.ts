@@ -1,3 +1,3 @@
-declare const graphql: (query: TemplateStringsArray) => void
+declare const graphql: (query: TemplateStringsArray) => void;
 
-declare module '*.jpg'
+declare module '*.jpg';
