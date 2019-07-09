@@ -115,8 +115,10 @@ const PostCard = styled(Link)`
   margin-bottom: 16px;
   &:hover {
     color: inherit;
-    transition: transform 0.3s ease-in;
-    transform: scale(1.025);
+    img {
+      transition: transform 0.3s ease-in;
+      transform: scale(1.025);
+    }
   }
 `;
 

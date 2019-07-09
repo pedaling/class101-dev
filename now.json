@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "name": "class101-dev",
+  "builds": [
+      { "src": "package.json", "use": "@now/static-build", "config": {"distDir": "public"} }
+  ]
+}

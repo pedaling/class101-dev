@@ -4,15 +4,15 @@
  *
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
-
+import { Body2, Headline3 } from '@class101/ui';
 import React from 'react';
 import styled from 'styled-components';
+
 import authors from '../utils/authors';
-import { ElevationStyles, Headline3, Body2, Colors } from '@class101/ui';
+
 
 const Bio = ({ authorName }: any) => {
   const { name, profileImage, description } = authors.find(author => author.name === authorName);
-  console.log(profileImage);
 
   return (
     <BioContainer>

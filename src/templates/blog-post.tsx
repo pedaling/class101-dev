@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Bio from '../components/Bio';
 import Comments from '../components/Comments';
 import Img from '../components/Img';
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import markdown from '../utils/markdown';
 
