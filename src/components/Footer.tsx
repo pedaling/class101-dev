@@ -29,7 +29,7 @@ const Container = styled.footer`
 `;
 
 const InnerContainer = styled.div`
-  max-width: 760px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 32px;
 `;

@@ -2,7 +2,8 @@
 title: Hello World
 date: "2015-05-01T22:12:03.284Z"
 thumbnail: "/images/thumbnail.jpg"
-user: "김요한"
+author: "김요한"
+tags: ["class101"]
 ---
 
 This is my first post on my new fake blog! How exciting!

@@ -8,7 +8,7 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
-    "@class101/ui": "^5.0.1",
+    "@class101/ui": "7.0.0-rc13",
     "babel-plugin-styled-components": "^1.10.0",
     "gatsby": "^2.4.2",
     "gatsby-image": "^2.0.41",
@@ -34,10 +34,12 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
+    "react-id-swiper": "^2.3.1",
     "react-router-dom": "^5.0.0",
     "react-typography": "^0.16.19",
     "react-utterances": "^0.6.4",
     "styled-components": "^4.2.0",
+    "swiper": "^4.5.0",
     "typeface-merriweather": "0.0.72",
     "typeface-montserrat": "0.0.54",
     "typescript": "^3.5.2",
@@ -46,10 +48,12 @@
   },
   "devDependencies": {
     "@class101/tslint-config": "^1.3.0",
+    "@types/lodash": "^4.14.136",
     "@types/react-helmet": "^5.0.8",
     "@types/styled-components": "^4.1.16",
     "husky": "^3.0.0",
     "lint-staged": "^9.1.0",
+    "lodash": "^4.17.11",
     "prettier": "^1.18.2",
     "tslint": "^5.18.0"
   },

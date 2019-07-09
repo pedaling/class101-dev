@@ -8,10 +8,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import authors from '../utils/authors';
-import { ElevationStyles, Headline3, Body2 } from '@class101/ui';
+import { ElevationStyles, Headline3, Body2, Colors } from '@class101/ui';
 
-const Bio = ({ userName }: any) => {
-  const { name, profileImage, github, description } = authors.find(user => user.name === userName);
+const Bio = ({ authorName }: any) => {
+  const { name, profileImage, description } = authors.find(author => author.name === authorName);
   console.log(profileImage);
 
   return (
@@ -26,13 +26,12 @@ const Bio = ({ userName }: any) => {
 };
 
 const BioContainer = styled.div`
-  max-width: 760px;
+  max-width: 960px;
   margin: 16px auto;
   background: white;
   align-items: center;
   padding: 32px;
   display: flex;
-  ${ElevationStyles.elevation2};
 `;
 
 const BioImage = styled.img`

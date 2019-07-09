@@ -2,7 +2,8 @@
 title: 클래스 101이란?
 date: "2019-05-03T22:12:03.284Z"
 thumbnail: "/images/thumbnail.jpg"
-user: "김요한"
+author: "김요한"
+tags: ["class101"]
 ---
 
 온라인 취미 클래스 플랫폼

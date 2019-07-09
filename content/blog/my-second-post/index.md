@@ -2,7 +2,8 @@
 title: My Second Post!
 date: "2015-05-06T23:46:37.121Z"
 thumbnail: "/images/thumbnail.jpg"
-user: "김요한"
+author: "김요한"
+tags: ["class101"]
 ---
 
 Wow! I love blogging so much already.

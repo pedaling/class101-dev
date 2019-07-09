@@ -2,7 +2,9 @@
 title: 마크다운 테스트
 date: "2018-05-01T22:12:03.284Z"
 thumbnail: "/images/thumbnail.jpg"
-user: "김요한"
+author: "김요한"
+tags: ["class101"]
+
 ---
 __Advertisement :)__
 

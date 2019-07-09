@@ -1,60 +1,59 @@
-import { Body2, Headline3, TextStyles, ElevationStyles, Grid, Row, Col, Colors } from '@class101/ui';
+import { Body2, Col, Colors, ElevationStyles, Grid, Row, TextStyles, Headline1, Headline2 } from '@class101/ui';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 
-import Layout from '../components/Layout';
 import Img from '../components/Img';
+import Layout from '../components/Layout';
 import SEO from '../components/SEO';
-import { Frontmatter, Site } from '../graphql-types';
+import SmallBio from '../components/SmallBio';
+import { Edge, Site } from '../graphql-types';
 
 interface Props {
   data: {
     site: Site;
     allMarkdownRemark: {
-      edges: {
-        node: {
-          excerpt: string;
-          fields: {
-            slug: string;
-          };
-          frontmatter: Frontmatter;
-        };
-      }[];
+      edges: Edge[];
     };
   };
   [key: string]: any; // 임시 선언. location 어디서 받아오는거야?
 }
 
 class BlogIndex extends React.Component<Props> {
-  render() {
+  public render() {
     const { data } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
     const posts = data.allMarkdownRemark.edges;
-    console.log(this.props);
 
     return (
       <Layout>
         <SEO title="All posts" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
         <Grid>
           <Row>
+            <Col>
+              <SiteTitle>Class101 Dev</SiteTitle>
+              <SiteContent>기술 공유 합니다. dfsdfdsfsdfsdfdsfsdhfklzhdfksdhfkjlsdfhskjdfhsdkjfsdhfjks</SiteContent>
+            </Col>
+          </Row>
+          <Row>
             {posts.map(({ node }) => {
               const title = node.frontmatter.title || node.fields.slug;
               const thumbnail = node.frontmatter.thumbnail;
-              console.log(thumbnail);
               return (
                 <Col key={node.fields.slug} sm={4}>
                   <PostCard to={node.fields.slug}>
                     <PostCardThumbnail src={thumbnail} />
                     <PostCardBody>
                       <PostCardTitle>{title}</PostCardTitle>
-                      <PostCardDate>{node.frontmatter.date}</PostCardDate>
                       <PostCardDescription
                         dangerouslySetInnerHTML={{
                           __html: node.frontmatter.description || node.excerpt,
                         }}
                       />
                     </PostCardBody>
+                    <PostCardFooter>
+                      <SmallBio authorName={node.frontmatter.author} />
+                      <PostCardDate>{node.frontmatter.date}</PostCardDate>
+                    </PostCardFooter>
                   </PostCard>
                 </Col>
               );
@@ -87,12 +86,25 @@ export const pageQuery = graphql`
             title
             description
             thumbnail
+            author
+            tags
           }
         }
       }
     }
   }
 `;
+
+const SiteTitle = styled(Headline1)`
+  font-size: 36px;
+  margin-bottom: 8px;
+`
+
+const SiteContent = styled(Body2)`
+  font-size: 17px;
+  margin-bottom: 62px;
+  color: ${Colors.gray700};
+`
 
 const PostCard = styled(Link)`
   display: block;
@@ -106,12 +118,18 @@ const PostCard = styled(Link)`
     transition: transform 0.3s ease-in;
     transform: scale(1.025);
   }
-  ${ElevationStyles.elevation3};
 `;
 
 const PostCardBody = styled.div`
-  padding: 8px 16px;
+  padding: 8px 0;
 `;
+
+const PostCardFooter = styled.div`
+  padding: 8px 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+`
 
 const PostCardThumbnail = styled(Img)``;
 
@@ -120,8 +138,7 @@ const PostCardTitle = styled.h2`
   margin-bottom: 8px;
 `;
 
-const PostCardDate = styled.div`
-  ${TextStyles.body2}
+const PostCardDate = styled(Body2)`
   color: ${Colors.gray600};
   margin-bottom: 8px;
 `;
