@@ -70,6 +70,7 @@ const CardCaption = styled(Body2)`
 
 const CardDescription = styled.div`
   ${TextStyles.body2}
+  color: ${Colors.gray900};
   overflow: hidden;
   text-overflow: ellipsis;
   letter-spacing: none;
