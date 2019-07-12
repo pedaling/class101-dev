@@ -37,7 +37,6 @@ class Comments extends React.Component {
 }
 
 const CommentsContainer = styled.div`
-  width: 960px;
   margin: 32px auto;
 `;
 

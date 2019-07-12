@@ -12,10 +12,8 @@ class NotFoundPage extends React.Component {
         <SEO title="404: Not Found" />
         <Grid>
           <Headline1>404 Not Found</Headline1>
-          <br/>
-          <Body2>
-            아무것도 찾지 못했다요.
-          </Body2>
+          <br />
+          <Body2>아무것도 찾지 못했다요.</Body2>
         </Grid>
       </Layout>
     );

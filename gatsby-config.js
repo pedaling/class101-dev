@@ -4,7 +4,7 @@ module.exports = {
     author: `Class101`,
     description: `기술 공유를 좋아하며 어쩌구 저러구 이러쿵 저러쿵 합니다.`,
     keywords: ['class101', 'typescript', 'monorepo', 'react', 'graphql', 'apllo', 'aws'],
-    siteUrl: `https://class101.net/`,
+    siteUrl: `https://class101.dev`,
     social: {
       twitter: `Class101`,
     },
@@ -86,7 +86,7 @@ module.exports = {
               // Defaults to false.
               // If you wish to only show line numbers on certain code blocks,
               // leave false and use the {numberLines: true} syntax below
-              showLineNumbers: false,
+              showLineNumbers: true,
               // If setting this to true, the parser won't handle and highlight inline
               // code used in markdown i.e. single backtick code like `this`.
               noInlineHighlight: false,

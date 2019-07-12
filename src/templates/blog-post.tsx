@@ -11,6 +11,7 @@ import LinkTag from '../components/LinkTag';
 import SEO from '../components/SEO';
 import { MarkdownRemark, Site } from '../graphql-types';
 import markdown from '../utils/markdown';
+import ShareButtons from '../components/ShareButtons';
 
 interface Props {
   data: {
@@ -21,28 +22,32 @@ interface Props {
 }
 
 const BlogPostTemplate: React.SFC<Props> = props => {
-  const { 
-    pageContext: { previous, next }, 
-    data: { 
-      markdownRemark: { 
-        excerpt, 
+  const {
+    pageContext: { previous, next },
+    data: {
+      site: {
+        siteMetadata: { siteUrl },
+      },
+      markdownRemark: {
+        excerpt,
         html,
-        frontmatter: {
-          title, 
-          date, 
-          description, 
-          thumbnail, 
-          author, 
-          tags 
-        }
-      }
-    }
+        fields: { slug },
+        frontmatter: { title, date, description, thumbnail, author, tags },
+      },
+    },
   } = props;
 
-  return ( 
+  return (
     <Layout>
-      <SEO title={title} description={description.length > 30 ? description : `${description}\n${excerpt}`} thumbnail={thumbnail} />
+      <SEO
+        title={title}
+        description={`${description} ${excerpt}`}
+        thumbnail={thumbnail}
+        author={author}
+        pathname={slug}
+      />
       <PostContainer>
+        <ShareButtons url={siteUrl + slug} />
         <PostHeader>
           {tags.map((tag: string) => (
             <LinkTag fieldValue={tag} key={tag} />
@@ -89,14 +94,19 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         author
+        siteUrl
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
+        thumbnail
         date(formatString: "YYYY년 MM월 DD일")
         description
         author
@@ -115,7 +125,7 @@ const PostContainer = styled.div`
 `;
 
 const PostHeader = styled.div`
-  padding: 32px 0;
+  padding: 32px 8px;
   text-align: center;
 `;
 
@@ -129,7 +139,7 @@ const PostDate = styled(Body2)`
 `;
 
 const PostBody = styled.div`
-  margin: 16px 0;
+  margin: 16px;
 `;
 
 const PostFooter = styled.div`

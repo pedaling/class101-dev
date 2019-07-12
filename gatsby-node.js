@@ -69,6 +69,7 @@ exports.createPages = ({ graphql, actions }) => {
         component: tagTemplate,
         context: {
           tag,
+          slug: `/tags/${_.kebabCase(tag)}/`,
         },
       });
     });

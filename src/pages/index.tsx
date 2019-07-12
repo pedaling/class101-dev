@@ -26,10 +26,17 @@ const getColLg = (index: number) => {
     return 6;
   }
   return 4;
-}
+};
 
 const BlogIndex: React.SFC<Props> = props => {
-  const { data: { allMarkdownRemark: { edges }, site: { siteMetadata: { title, description }}} } = props;
+  const {
+    data: {
+      allMarkdownRemark: { edges },
+      site: {
+        siteMetadata: { title, description },
+      },
+    },
+  } = props;
 
   return (
     <Layout>
@@ -91,6 +98,6 @@ const SiteTitle = styled(Headline1)`
 
 const SiteContent = styled(Body2)`
   font-size: 17px;
-  margin-bottom: 62px;
+  margin-bottom: 32px;
   color: ${Colors.gray700};
 `;

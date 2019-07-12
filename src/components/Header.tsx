@@ -20,7 +20,9 @@ export default class Header extends React.Component {
               <NavLink to="/tags/careers">채용</NavLink>
             </NavLinkEl>
             <NavLinkEl>
-              <ExternalNavLink href="https://github.com/pedaling" target="_blank">깃허브</ExternalNavLink>
+              <ExternalNavLink href="https://github.com/pedaling" target="_blank">
+                깃허브
+              </ExternalNavLink>
             </NavLinkEl>
             <NavLinkEl>
               <NavLink to="/">블로그</NavLink>
@@ -90,11 +92,12 @@ const navLinkCss = css`
   &:hover {
     color: ${Colors.gray500};
     text-decoration: underline;
-}`
+  }
+`;
 const NavLink = styled(Link)`
   ${navLinkCss};
 `;
 
 const ExternalNavLink = styled.a`
   ${navLinkCss};
-`
+`;

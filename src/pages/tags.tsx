@@ -22,11 +22,11 @@ interface Props {
 
 const TagsPage: React.SFC<Props> = ({
   data: {
-    allMarkdownRemark: { group }
+    allMarkdownRemark: { group },
   },
 }) => (
   <Layout>
-    <SEO title={`모든 태그`} />
+    <SEO title={`모든 태그`} pathname={'/tags'} />
     <Grid>
       <Row>
         <Headline2>모든 태그</Headline2>

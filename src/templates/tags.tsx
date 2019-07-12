@@ -15,37 +15,41 @@ interface Props {
     allMarkdownRemark: {
       totalCount: number;
       edges: Edge[];
-    }
+    };
   };
   pageContext: {
     tag: string;
-  }
-};
+    slug: string;
+  };
+}
 
-const Tags: React.SFC<Props> = (props) => {
+const Tags: React.SFC<Props> = props => {
   const { pageContext, data } = props;
-  const { tag } = pageContext;
+  const { tag, slug } = pageContext;
   const { edges, totalCount } = data.allMarkdownRemark;
   const tagText = getTagText(tag);
   return (
     <Layout>
-      <SEO title={`${tagText}`} />
-    <Grid>
-      <Row>
-        <Col>
-          <SiteTitle>{tagText}</SiteTitle>
-          <SiteContent>총 {totalCount}개의 글이 있습니다. <br/><br/>
-          <Link to="/tags">모든 태그 보기</Link></SiteContent>
-        </Col>
-      </Row>
-      <Row>
-        {edges.map(({ node }) => (
-          <Col key={node.fields.slug} md={12} lg={6}>
-            <PostCard node={node} />
+      <SEO title={`${tagText}`} pathname={slug} />
+      <Grid>
+        <Row>
+          <Col>
+            <SiteTitle>{tagText}</SiteTitle>
+            <SiteContent>
+              총 {totalCount}개의 글이 있습니다. <br />
+              <br />
+              <Link to="/tags">모든 태그 보기</Link>
+            </SiteContent>
           </Col>
-        ))}
-      </Row>
-    </Grid>
+        </Row>
+        <Row>
+          {edges.map(({ node }) => (
+            <Col key={node.fields.slug} md={12} lg={6}>
+              <PostCard node={node} />
+            </Col>
+          ))}
+        </Row>
+      </Grid>
     </Layout>
   );
 };
@@ -79,7 +83,6 @@ export const pageQuery = graphql`
     }
   }
 `;
-
 
 const SiteTitle = styled(Headline1)`
   font-size: 36px;
