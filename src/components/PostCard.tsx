@@ -19,13 +19,16 @@ const PostCard: React.SFC<Props> = props => {
     <Card to={node.fields.slug}>
       <CardThumbnail src={thumbnail} />
       <CardBody>
-        <CardCaption>{node.frontmatter.date} Written By {node.frontmatter.author}</CardCaption>
+        <CardCaption>{node.frontmatter.date}</CardCaption>
         <CardTitle>{title}</CardTitle>
         <CardDescription
           dangerouslySetInnerHTML={{
             __html: node.frontmatter.description || node.excerpt,
           }}
         />
+        <CardCaption>
+          Written By <b>{node.frontmatter.author}</b>
+        </CardCaption>
       </CardBody>
     </Card>
   );
@@ -57,23 +60,24 @@ const CardThumbnail = styled(Img)``;
 
 const CardTitle = styled.h2`
   ${TextStyles.headline3}
+  margin-bottom: 4px;
 `;
 
 const CardCaption = styled(Body2)`
   color: ${Colors.gray700};
+  margin-bottom: 4px;
 `;
 
-
-
 const CardDescription = styled.div`
-  ${TextStyles.body1}
+  ${TextStyles.body2}
   overflow: hidden;
   text-overflow: ellipsis;
   letter-spacing: none;
   display: -webkit-box;
-  -webkit-line-clamp: 4; /* 라인수 */
+  -webkit-line-clamp: 3; /* 라인수 */
   -webkit-box-orient: vertical;
   word-wrap: break-word;
   line-height: 1.5em;
-  height: 6em;
+  height: 4.5em;
+  margin-bottom: 4px;
 `;
