@@ -20,6 +20,9 @@ export default class Header extends React.Component {
               <NavLink to="/tags/careers">채용</NavLink>
             </NavLinkEl>
             <NavLinkEl>
+              <NavLink to="/authors/">구성원</NavLink>
+            </NavLinkEl>
+            <NavLinkEl>
               <ExternalNavLink href="https://github.com/pedaling" target="_blank">
                 깃허브
               </ExternalNavLink>

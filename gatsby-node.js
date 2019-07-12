@@ -14,7 +14,7 @@ const users = [
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const blogPost = path.resolve(`./src/templates/blog-post.tsx`);
+  const blogTemplate = path.resolve(`./src/templates/blog-post.tsx`);
   const tagTemplate = path.resolve('src/templates/tags.tsx');
   const authorTemplate = path.resolve('src/templates/authors.tsx');
 
@@ -48,19 +48,19 @@ exports.createPages = ({ graphql, actions }) => {
       throw result.errors;
     }
 
-    // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges;
+    // Create blog edges pages.
+    const edges = result.data.allMarkdownRemark.edges;
 
-    posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node;
-      const next = index === 0 ? null : posts[index - 1].node;
+    edges.forEach((edge, index) => {
+      const previous = index === edges.length - 1 ? null : edges[index + 1].node;
+      const next = index === 0 ? null : edges[index - 1].node;
 
       createPage({
-        path: post.node.fields.slug,
-        component: blogPost,
+        path: edge.node.fields.slug,
+        component: blogTemplate,
         context: {
-          slug: post.node.fields.slug,
-          user: users.find(users => users.name === post.node.frontmatter.author),
+          slug: edge.node.fields.slug,
+          user: users.find(users => users.name === edge.node.frontmatter.author),
           previous,
           next,
         },
@@ -69,8 +69,8 @@ exports.createPages = ({ graphql, actions }) => {
 
     // Tag pages:
     let tags = [];
-    // Iterate through each post, putting all found tags into `tags`
-    _.each(posts, edge => {
+    // Iterate through each edge, putting all found tags into `tags`
+    _.each(edges, edge => {
       if (_.get(edge, 'node.frontmatter.tags')) {
         tags = tags.concat(edge.node.frontmatter.tags);
       }
@@ -92,8 +92,8 @@ exports.createPages = ({ graphql, actions }) => {
 
     // Tag pages:
     let authors = [];
-    // Iterate through each post, putting all found authors into `authors`
-    _.each(posts, edge => {
+    // Iterate through each edge, putting all found authors into `authors`
+    _.each(edges, edge => {
       if (_.get(edge, 'node.frontmatter.author')) {
         authors = authors.concat(edge.node.frontmatter.author);
       }
@@ -120,6 +120,14 @@ exports.createPages = ({ graphql, actions }) => {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
+  console.log(node);
+
+  /**
+   * 흑마법 ㅋㅋㅋㅋ
+   */
+  if (node.internalComponentName === 'ComponentAuthors') {
+    node.context.users = users;
+  }
 
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode });
