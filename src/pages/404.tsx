@@ -1,19 +1,22 @@
-import React from 'react';
+import { Body2, Grid, Headline1 } from '@class101/ui';
 import { graphql } from 'gatsby';
+import React from 'react';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 
 class NotFoundPage extends React.Component {
-  render() {
-    const { data } = this.props;
-    const siteTitle = data.site.siteMetadata.title;
-
+  public render() {
     return (
-      <Layout location={this.props.location} title={siteTitle}>
+      <Layout>
         <SEO title="404: Not Found" />
-        <h1>Not Found</h1>
-        <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+        <Grid>
+          <Headline1>404 Not Found</Headline1>
+          <br/>
+          <Body2>
+            아무것도 찾지 못했다요.
+          </Body2>
+        </Grid>
       </Layout>
     );
   }

@@ -26,7 +26,7 @@ const TagsPage: React.SFC<Props> = ({
   },
 }) => (
   <Layout>
-    <SEO title={`모든 태그`} keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
+    <SEO title={`모든 태그`} />
     <Grid>
       <Row>
         <Headline2>Tags</Headline2>

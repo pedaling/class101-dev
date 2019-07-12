@@ -18,23 +18,32 @@ interface Props {
   [key: string]: any; // 임시 선언. location 어디서 받아오는거야?
 }
 
+const getColLg = (index: number) => {
+  if (index === 0) {
+    return 12;
+  }
+  if (index <= 2) {
+    return 6;
+  }
+  return 4;
+}
+
 const BlogIndex: React.SFC<Props> = props => {
-  const { data } = props;
-  const posts = data.allMarkdownRemark.edges;
+  const { data: { allMarkdownRemark: { edges }, site: { siteMetadata: { title, description }}} } = props;
 
   return (
     <Layout>
-      <SEO title="모든 글" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
+      <SEO title="모든 글" />
       <Grid>
         <Row>
           <Col>
-            <SiteTitle>Class101 Dev</SiteTitle>
-            <SiteContent>기술 공유를 좋아하며 어쩌구 저러구 이러쿵 저러쿵 합니다.</SiteContent>
+            <SiteTitle>{title}</SiteTitle>
+            <SiteContent>{description}</SiteContent>
           </Col>
         </Row>
         <Row>
-          {posts.map(({ node }) => (
-            <Col key={node.fields.slug} md={12} lg={4}>
+          {edges.map(({ node }, i) => (
+            <Col key={node.fields.slug} md={12} lg={getColLg(i)}>
               <PostCard node={node} />
             </Col>
           ))}
@@ -51,12 +60,13 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        description
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          excerpt(pruneLength: 160)
+          excerpt(pruneLength: 240)
           fields {
             slug
           }

@@ -1,7 +1,7 @@
 import { Colors, ElevationStyles } from '@class101/ui';
 import { Link } from 'gatsby';
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export default class Header extends React.Component {
   render() {
@@ -14,13 +14,13 @@ export default class Header extends React.Component {
           <Spacer />
           <NavLinkList>
             <NavLinkEl>
-              <NavLink to="/open-source">오픈 소스</NavLink>
+              <NavLink to="/tags/open-source">오픈 소스</NavLink>
             </NavLinkEl>
             <NavLinkEl>
-              <NavLink to="/carrers">채용</NavLink>
+              <NavLink to="/tags/careers">채용</NavLink>
             </NavLinkEl>
             <NavLinkEl>
-              <NavLink to="https://github.com/peddaing">깃허브</NavLink>
+              <ExternalNavLink href="https://github.com/pedaling" target="_blank">깃허브</ExternalNavLink>
             </NavLinkEl>
             <NavLinkEl>
               <NavLink to="/">블로그</NavLink>
@@ -80,7 +80,7 @@ const NoHoverLink = styled(Link)`
   }
 `;
 
-const NavLink = styled(Link)`
+const navLinkCss = css`
   font-size: 14px;
   line-height: 24px;
   text-align: left;
@@ -90,5 +90,11 @@ const NavLink = styled(Link)`
   &:hover {
     color: ${Colors.gray500};
     text-decoration: underline;
-  }
+}`
+const NavLink = styled(Link)`
+  ${navLinkCss};
 `;
+
+const ExternalNavLink = styled.a`
+  ${navLinkCss};
+`

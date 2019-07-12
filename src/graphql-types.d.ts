@@ -19,6 +19,7 @@ export interface Frontmatter {
 
 export interface Edge {
   node: Node;
+  fields: Fields;
 }
 
 export interface Node {
@@ -39,6 +40,7 @@ export interface SiteMetadata {
   author: string;
   description: string;
   siteUrl: string;
+  keywords: string[];
   social: Social;
 }
 
