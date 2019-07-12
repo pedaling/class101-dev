@@ -2,11 +2,12 @@ import { Body2, Col, Colors, Grid, Headline1, Row } from '@class101/ui';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
+
 import Layout from '../components/Layout';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
-import getTagText from '../utils/getTagText';
 import { Edge } from '../graphql-types';
+import getTagText from '../utils/getTagText';
 
 // Components
 interface Props {
@@ -28,7 +29,7 @@ const Tags: React.SFC<Props> = (props) => {
   const tagText = getTagText(tag);
   return (
     <Layout>
-      <SEO title={`${tagText} | 태그`} />
+      <SEO title={`${tagText}`} />
     <Grid>
       <Row>
         <Col>

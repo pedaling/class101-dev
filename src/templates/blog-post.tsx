@@ -25,7 +25,7 @@ const BlogPostTemplate: React.SFC<Props> = props => {
   const { previous, next } = props.pageContext;
   return (
     <Layout>
-      <SEO title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} />
+      <SEO title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} thumbnail={post.frontmatter.thumbnail} />
       <PostContainer>
         <PostHeader>
           {post.frontmatter.tags.map((tag: string) => (

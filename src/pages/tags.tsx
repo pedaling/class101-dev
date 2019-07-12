@@ -29,7 +29,7 @@ const TagsPage: React.SFC<Props> = ({
     <SEO title={`모든 태그`} />
     <Grid>
       <Row>
-        <Headline2>Tags</Headline2>
+        <Headline2>모든 태그</Headline2>
       </Row>
       <Row>
         {group.map(tag => (

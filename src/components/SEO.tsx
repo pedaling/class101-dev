@@ -38,7 +38,7 @@ const SEO: React.SFC<Props> = (props) => {
 
   const siteMetadata: SiteMetadata = queryResult.site.siteMetadata;
 
-  const { lang = 'ko', title, description, thumbnail } = props;
+  const { lang = 'ko', title, description, thumbnail = '/images/thumbnails/default.png' } = props;
 
   return <Helmet
   htmlAttributes={{
@@ -59,6 +59,10 @@ const SEO: React.SFC<Props> = (props) => {
     {
       property: `og:title`,
       content: title,
+    },
+    {
+      property: `og:image`,
+      content: thumbnail,
     },
     {
       property: `og:description`,
