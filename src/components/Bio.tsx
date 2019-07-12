@@ -10,7 +10,6 @@ import styled from 'styled-components';
 
 import authors from '../utils/authors';
 
-
 const Bio = ({ authorName }: any) => {
   const { name, profileImage, description } = authors.find(author => author.name === authorName);
 

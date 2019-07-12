@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import authors from '../utils/authors';
 
-
 const SmallBio = ({ authorName }: any) => {
   const { name, profileImage, description } = authors.find(author => author.name === authorName);
   return (
@@ -29,8 +28,7 @@ const SmallBioImage = styled.img`
   margin-right: 16px;
 `;
 
-const SmallBioAuthorName = styled(Body2)`
-`
+const SmallBioAuthorName = styled(Body2)``;
 
 const SmallBioBody = styled.div``;
 

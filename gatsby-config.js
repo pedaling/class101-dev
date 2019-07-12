@@ -1,9 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: `Class101 기술 블로그`,
+    title: `Class101 Dev`,
     author: `Class101`,
-    description: `지식을 공유하자`,
-    siteUrl: `https://www.class101.net/`,
+    description: `기술 공유를 좋아하며 어쩌구 저러구 이러쿵 저러쿵 합니다.`,
+    keywords: ['class101', 'typescript', 'monorepo', 'react', 'graphql', 'apllo', 'aws'],
+    siteUrl: `https://class101.net/`,
     social: {
       twitter: `Class101`,
     },

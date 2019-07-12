@@ -15,24 +15,22 @@ export default class Header extends React.Component {
           <NavLinkList>
             <NavLinkEl>
               <NavLink to="/open-source">오픈 소스</NavLink>
-              </NavLinkEl>
-              <NavLinkEl>
+            </NavLinkEl>
+            <NavLinkEl>
               <NavLink to="/carrers">채용</NavLink>
-              </NavLinkEl>
-              <NavLinkEl>
+            </NavLinkEl>
+            <NavLinkEl>
               <NavLink to="https://github.com/peddaing">깃허브</NavLink>
-              </NavLinkEl>
-              <NavLinkEl>
+            </NavLinkEl>
+            <NavLinkEl>
               <NavLink to="/">블로그</NavLink>
             </NavLinkEl>
           </NavLinkList>
         </NavInnerContainer>
       </NavConatiner>
-
     );
   }
 }
-
 
 const NavConatiner = styled.nav`
   padding: 16px 24px;
@@ -45,17 +43,16 @@ const NavInnerContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
-`
+`;
 
 const NavLinkList = styled.ul`
-   padding: 0;
+  padding: 0;
   margin: 0;
   flex: 0 1 auto;
   display: flex;
   justify-content: flex-end;
   flex-flow: row wrap;
-`
+`;
 
 const NavLinkEl = styled.li`
   margin: 0;
@@ -64,7 +61,7 @@ const NavLinkEl = styled.li`
   font-size: 14px;
   line-height: 24px;
   margin-left: 16px;
-`
+`;
 
 const Spacer = styled.div`
   flex: 1;

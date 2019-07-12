@@ -1,12 +1,11 @@
-import { Body2, Col, Colors, ElevationStyles, Grid, Row, TextStyles, Headline1, Headline2 } from '@class101/ui';
-import { graphql, Link } from 'gatsby';
+import { Body2, Col, Colors, Grid, Headline1, Row } from '@class101/ui';
+import { graphql } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 
-import Img from '../components/Img';
 import Layout from '../components/Layout';
+import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
-import SmallBio from '../components/SmallBio';
 import { Edge, Site } from '../graphql-types';
 
 interface Props {
@@ -19,51 +18,31 @@ interface Props {
   [key: string]: any; // 임시 선언. location 어디서 받아오는거야?
 }
 
-class BlogIndex extends React.Component<Props> {
-  public render() {
-    const { data } = this.props;
-    const posts = data.allMarkdownRemark.edges;
+const BlogIndex: React.SFC<Props> = props => {
+  const { data } = props;
+  const posts = data.allMarkdownRemark.edges;
 
-    return (
-      <Layout>
-        <SEO title="All posts" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
-        <Grid>
-          <Row>
-            <Col>
-              <SiteTitle>Class101 Dev</SiteTitle>
-              <SiteContent>기술 공유 합니다. dfsdfdsfsdfsdfdsfsdhfklzhdfksdhfkjlsdfhskjdfhsdkjfsdhfjks</SiteContent>
+  return (
+    <Layout>
+      <SEO title="모든 글" keywords={[`blog`, `gatsby`, `javascript`, `react`]} />
+      <Grid>
+        <Row>
+          <Col>
+            <SiteTitle>Class101 Dev</SiteTitle>
+            <SiteContent>기술 공유를 좋아하며 어쩌구 저러구 이러쿵 저러쿵 합니다.</SiteContent>
+          </Col>
+        </Row>
+        <Row>
+          {posts.map(({ node }) => (
+            <Col key={node.fields.slug} md={12} lg={4}>
+              <PostCard node={node} />
             </Col>
-          </Row>
-          <Row>
-            {posts.map(({ node }) => {
-              const title = node.frontmatter.title || node.fields.slug;
-              const thumbnail = node.frontmatter.thumbnail;
-              return (
-                <Col key={node.fields.slug} sm={4}>
-                  <PostCard to={node.fields.slug}>
-                    <PostCardThumbnail src={thumbnail} />
-                    <PostCardBody>
-                      <PostCardTitle>{title}</PostCardTitle>
-                      <PostCardDescription
-                        dangerouslySetInnerHTML={{
-                          __html: node.frontmatter.description || node.excerpt,
-                        }}
-                      />
-                    </PostCardBody>
-                    <PostCardFooter>
-                      <SmallBio authorName={node.frontmatter.author} />
-                      <PostCardDate>{node.frontmatter.date}</PostCardDate>
-                    </PostCardFooter>
-                  </PostCard>
-                </Col>
-              );
-            })}
-          </Row>
-        </Grid>
-      </Layout>
-    );
-  }
-}
+          ))}
+        </Row>
+      </Grid>
+    </Layout>
+  );
+};
 
 export default BlogIndex;
 
@@ -98,61 +77,10 @@ export const pageQuery = graphql`
 const SiteTitle = styled(Headline1)`
   font-size: 36px;
   margin-bottom: 8px;
-`
+`;
 
 const SiteContent = styled(Body2)`
   font-size: 17px;
   margin-bottom: 62px;
   color: ${Colors.gray700};
-`
-
-const PostCard = styled(Link)`
-  display: block;
-  border-radius: 3px;
-  box-sizing: border-box;
-  background: white;
-  text-decoration: none;
-  margin-bottom: 16px;
-  &:hover {
-    color: inherit;
-    img {
-      transition: transform 0.3s ease-in;
-      transform: scale(1.025);
-    }
-  }
-`;
-
-const PostCardBody = styled.div`
-  padding: 8px 0;
-`;
-
-const PostCardFooter = styled.div`
-  padding: 8px 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-`
-
-const PostCardThumbnail = styled(Img)``;
-
-const PostCardTitle = styled.h2`
-  ${TextStyles.headline3}
-  margin-bottom: 8px;
-`;
-
-const PostCardDate = styled(Body2)`
-  color: ${Colors.gray600};
-  margin-bottom: 8px;
-`;
-
-const PostCardDescription = styled.div`
-  ${TextStyles.body1}
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 4; /* 라인수 */
-  -webkit-box-orient: vertical;
-  word-wrap: break-word;
-  line-height: 1.5em;
-  height: 6em;
 `;

@@ -1,4 +1,3 @@
-
 const authors = [
   {
     profileImage: '/images/profiles/yozzing.jpeg',

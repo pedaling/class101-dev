@@ -1,6 +1,7 @@
 export interface MarkdownRemark {
   id: string;
   html: string;
+  excerpt?: string;
   frontmatter: Frontmatter;
   fields: {
     slug?: string;
@@ -47,3 +48,10 @@ export interface Social {
   rocketpunch?: string;
   github?: string;
 }
+
+export interface GroupEl {
+  fieldValue: string;
+  totalCount: number;
+}
+
+export type Group = GroupEl[];
