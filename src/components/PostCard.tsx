@@ -4,7 +4,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Img from '../components/Img';
-import SmallBio from '../components/SmallBio';
 import { Node } from '../graphql-types';
 
 interface Props {
@@ -20,6 +19,7 @@ const PostCard: React.SFC<Props> = props => {
     <Card to={node.fields.slug}>
       <CardThumbnail src={thumbnail} />
       <CardBody>
+        <CardCaption>{node.frontmatter.date} Written By {node.frontmatter.author}</CardCaption>
         <CardTitle>{title}</CardTitle>
         <CardDescription
           dangerouslySetInnerHTML={{
@@ -27,10 +27,6 @@ const PostCard: React.SFC<Props> = props => {
           }}
         />
       </CardBody>
-      <CardFooter>
-        <SmallBio authorName={node.frontmatter.author} />
-        <CardDate>{node.frontmatter.date}</CardDate>
-      </CardFooter>
     </Card>
   );
 };
@@ -57,24 +53,17 @@ const CardBody = styled.div`
   padding: 8px 0;
 `;
 
-const CardFooter = styled.div`
-  padding: 8px 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-`;
-
 const CardThumbnail = styled(Img)``;
 
 const CardTitle = styled.h2`
   ${TextStyles.headline3}
-  margin-bottom: 8px;
 `;
 
-const CardDate = styled(Body2)`
-  color: ${Colors.gray600};
-  margin-bottom: 8px;
+const CardCaption = styled(Body2)`
+  color: ${Colors.gray700};
 `;
+
+
 
 const CardDescription = styled.div`
   ${TextStyles.body1}

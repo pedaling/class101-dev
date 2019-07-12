@@ -9,21 +9,25 @@ import Img from '../components/Img';
 import Layout from '../components/Layout';
 import LinkTag from '../components/LinkTag';
 import SEO from '../components/SEO';
-import { MarkdownRemark, Site } from '../graphql-types';
-import markdown from '../utils/markdown';
 import ShareButtons from '../components/ShareButtons';
+import { MarkdownRemark, Site, User } from '../graphql-types';
+import markdown from '../utils/markdown';
 
 interface Props {
   data: {
     site: Site;
     markdownRemark: MarkdownRemark;
   };
-  pageContext: any;
+  pageContext: {
+    user: User,
+    previous: MarkdownRemark,
+    next: MarkdownRemark,
+  };
 }
 
 const BlogPostTemplate: React.SFC<Props> = props => {
   const {
-    pageContext: { previous, next },
+    pageContext: { previous, next, user },
     data: {
       site: {
         siteMetadata: { siteUrl },
@@ -80,7 +84,7 @@ const BlogPostTemplate: React.SFC<Props> = props => {
           )}
         </PostFooter>
       </PostContainer>
-      <Bio authorName={author} />
+      <Bio user={user} />
       <Comments />
     </Layout>
   );
@@ -107,7 +111,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         thumbnail
-        date(formatString: "YYYY년 MM월 DD일")
+        date(formatString: "YYYY-MM-DD")
         description
         author
         tags

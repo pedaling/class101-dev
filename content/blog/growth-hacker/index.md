@@ -3,7 +3,7 @@ title: 그로쓰해커를 모집합니다.
 date: "2019-05-03T22:12:03.284Z"
 thumbnail: "/images/thumbnails/growth-hacker.jpg"
 description: ""
-author: "김요한"
+author: "Yohan Kim"
 tags: ["careers"]
 ---
 

@@ -2,11 +2,26 @@ const path = require(`path`);
 const _ = require('lodash');
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
+const users = [
+  {
+    profileImage: '/images/profiles/yozzing.jpeg',
+    name: 'Yohan Kim',
+    description: '김요찡입니다.',
+    github: 'https://github.com/ddalpange',
+  },
+];
+
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
   const blogPost = path.resolve(`./src/templates/blog-post.tsx`);
   const tagTemplate = path.resolve('src/templates/tags.tsx');
+  const authorTemplate = path.resolve('src/templates/authors.tsx');
+
+  users.forEach(user => {
+    user.slug = `/authors/${_.kebabCase(user.name)}/`;
+  });
+
   return graphql(
     `
       {
@@ -45,6 +60,7 @@ exports.createPages = ({ graphql, actions }) => {
         component: blogPost,
         context: {
           slug: post.node.fields.slug,
+          user: users.find(users => users.name === post.node.frontmatter.author),
           previous,
           next,
         },
@@ -70,6 +86,30 @@ exports.createPages = ({ graphql, actions }) => {
         context: {
           tag,
           slug: `/tags/${_.kebabCase(tag)}/`,
+        },
+      });
+    });
+
+    // Tag pages:
+    let authors = [];
+    // Iterate through each post, putting all found authors into `authors`
+    _.each(posts, edge => {
+      if (_.get(edge, 'node.frontmatter.author')) {
+        authors = authors.concat(edge.node.frontmatter.author);
+      }
+    });
+    // Eliminate duplicate authors
+    authors = _.uniq(authors);
+
+    // Make tag pages
+    authors.forEach(author => {
+      createPage({
+        path: `/authors/${_.kebabCase(author)}/`,
+        component: authorTemplate,
+        context: {
+          author,
+          user: users.find(users => users.name === author),
+          slug: `/authors/${_.kebabCase(author)}/`,
         },
       });
     });

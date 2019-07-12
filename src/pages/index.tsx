@@ -78,7 +78,7 @@ export const pageQuery = graphql`
             slug
           }
           frontmatter {
-            date(formatString: "YYYY년 MM월 DD일")
+            date(formatString: "YYYY-MM-DD")
             title
             description
             thumbnail

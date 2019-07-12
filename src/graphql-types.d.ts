@@ -56,4 +56,12 @@ export interface GroupEl {
   totalCount: number;
 }
 
+export interface User {
+  profileImage: string;
+  name: string;
+  description: string;
+  github: string;
+  slug: string;
+}
+
 export type Group = GroupEl[];

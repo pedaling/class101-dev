@@ -5,16 +5,21 @@
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
 import { Body2, Headline3 } from '@class101/ui';
+import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 
-import authors from '../utils/authors';
+import { User } from '../graphql-types';
 
-const Bio = ({ authorName }: any) => {
-  const { name, profileImage, description } = authors.find(author => author.name === authorName);
+interface Props {
+  user: User;
+}
+
+const Bio: React.SFC<Props> = (props) => {
+  const { name, profileImage, description, slug } = props.user;
 
   return (
-    <BioContainer>
+    <BioContainer to={slug}>
       <BioImage src={profileImage} />
       <BioBody>
         <Headline3>{name}</Headline3>
@@ -24,13 +29,18 @@ const Bio = ({ authorName }: any) => {
   );
 };
 
-const BioContainer = styled.div`
+const BioContainer = styled(Link)`
+  display: block;
   max-width: 960px;
   margin: 16px auto;
   background: white;
   align-items: center;
   padding: 32px;
   display: flex;
+  text-decoration: none;
+  &:hover {
+    color: inherit;
+  }
 `;
 
 const BioImage = styled.img`
