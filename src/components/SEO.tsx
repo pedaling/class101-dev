@@ -63,10 +63,11 @@ const SEO: React.SFC<Props> = (props) => {
     {
       property: `og:image`,
       content: thumbnail,
+      href: thumbnail
     },
     {
       property: `og:description`,
-      content: siteMetadata.description,
+      content: description || siteMetadata.description,
     },
     {
       property: `og:type`,
@@ -86,7 +87,7 @@ const SEO: React.SFC<Props> = (props) => {
     },
     {
       name: `twitter:description`,
-      content: siteMetadata.description,
+      content: description || siteMetadata.description,
     },
   ]
     .concat(

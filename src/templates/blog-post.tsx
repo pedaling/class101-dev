@@ -21,22 +21,38 @@ interface Props {
 }
 
 const BlogPostTemplate: React.SFC<Props> = props => {
-  const post = props.data.markdownRemark;
-  const { previous, next } = props.pageContext;
-  return (
+  const { 
+    pageContext: { previous, next }, 
+    data: { 
+      markdownRemark: { 
+        excerpt, 
+        html,
+        frontmatter: {
+          title, 
+          date, 
+          description, 
+          thumbnail, 
+          author, 
+          tags 
+        }
+      }
+    }
+  } = props;
+
+  return ( 
     <Layout>
-      <SEO title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} thumbnail={post.frontmatter.thumbnail} />
+      <SEO title={title} description={description.length > 30 ? description : `${description}\n${excerpt}`} thumbnail={thumbnail} />
       <PostContainer>
         <PostHeader>
-          {post.frontmatter.tags.map((tag: string) => (
+          {tags.map((tag: string) => (
             <LinkTag fieldValue={tag} key={tag} />
           ))}
-          <PostTitle>{post.frontmatter.title}</PostTitle>
+          <PostTitle>{title}</PostTitle>
 
-          <PostDate>{post.frontmatter.date}</PostDate>
+          <PostDate>{date}</PostDate>
         </PostHeader>
 
-        <PostBody className="markdown-body" dangerouslySetInnerHTML={{ __html: post.html }} />
+        <PostBody className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
 
         <PostFooter>
           {previous && (
@@ -59,7 +75,7 @@ const BlogPostTemplate: React.SFC<Props> = props => {
           )}
         </PostFooter>
       </PostContainer>
-      <Bio authorName={post.frontmatter.author} />
+      <Bio authorName={author} />
       <Comments />
     </Layout>
   );
