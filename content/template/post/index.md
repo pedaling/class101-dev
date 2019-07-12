@@ -2,6 +2,7 @@
 title: 제목
 date: "2019-07-12T22:12:03.284Z"
 thumbnail: "/images/thumbnails/monorepo.png"
+description: SEO와 미리보기에 들어갈 디스크립션입니다 헤헤
 author: "유저이름"
 tags: ["typescript", "monorepo"]
 ---

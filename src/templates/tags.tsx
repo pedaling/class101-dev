@@ -5,11 +5,8 @@ import styled from 'styled-components';
 import Layout from '../components/Layout';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
+import getTagText from '../utils/getTagText';
 import { Edge } from '../graphql-types';
-
-const TAG_TEXT: { [key: string] : string} = {
-  careers: '채용'
-}
 
 // Components
 interface Props {
@@ -28,14 +25,14 @@ const Tags: React.SFC<Props> = (props) => {
   const { pageContext, data } = props;
   const { tag } = pageContext;
   const { edges, totalCount } = data.allMarkdownRemark;
-
+  const tagText = getTagText(tag);
   return (
     <Layout>
-      <SEO title={`${TAG_TEXT[tag] || tag} | 태그`} />
+      <SEO title={`${tagText} | 태그`} />
     <Grid>
       <Row>
         <Col>
-          <SiteTitle>{TAG_TEXT[tag] || tag}</SiteTitle>
+          <SiteTitle>{tagText}</SiteTitle>
           <SiteContent>총 {totalCount}개의 글이 있습니다. <br/><br/>
           <Link to="/tags">모든 태그 보기</Link></SiteContent>
         </Col>

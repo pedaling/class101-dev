@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 import kebabCase from 'lodash/kebabCase';
 import React from 'react';
 import styled from 'styled-components';
+import getTagText from '../utils/getTagText';
 
 interface Props {
   fieldValue: string;
@@ -12,7 +13,7 @@ interface Props {
 const LinkTag: React.SFC<Props> = ({ fieldValue, totalCount }) => {
   return (
     <StyledLink to={`/tags/${kebabCase(fieldValue)}/`} key={fieldValue}>
-      {fieldValue} {totalCount > 0 && `(${totalCount})`}
+      {getTagText(fieldValue)} {totalCount > 0 && `(${totalCount})`}
     </StyledLink>
   );
 };
