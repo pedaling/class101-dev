@@ -42,7 +42,7 @@ const SEO: React.SFC<Props> = props => {
 
   const { lang = 'ko', title, description, thumbnail, author, pathname } = props;
 
-  const absolutedThumbnail = siteMetadata.siteUrl + (thumbnail || '/images/thumbnails/default.png');
+  const absolutedThumbnail = siteMetadata.siteUrl + (thumbnail || '/images/thumbnails/default.jpg');
 
   return (
     <Helmet

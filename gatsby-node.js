@@ -106,5 +106,3 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     });
   }
 };
-
-console.log(users);
