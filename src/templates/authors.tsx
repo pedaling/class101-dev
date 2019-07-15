@@ -1,7 +1,6 @@
-import { Body2, Col, Colors, Grid, Headline1, Row } from '@class101/ui';
+import { Col, Grid, Row } from '@class101/ui';
 import { graphql } from 'gatsby';
 import React from 'react';
-import styled from 'styled-components';
 
 import Bio from '../components/Bio';
 import Layout from '../components/Layout';
@@ -26,7 +25,9 @@ interface Props {
 const Authors: React.SFC<Props> = props => {
   const { pageContext, data } = props;
   const { user, slug } = pageContext;
-  const { edges } = data.allMarkdownRemark;
+  const edges = data.allMarkdownRemark && data.allMarkdownRemark.edges 
+    ? data.allMarkdownRemark.edges 
+    : [];
   return (
     <Layout>
       <SEO title={user.name} pathname={slug} />

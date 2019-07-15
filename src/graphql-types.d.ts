@@ -61,6 +61,8 @@ export interface User {
   name: string;
   description: string;
   github: string;
+  linkedin: string;
+  blog: string;
   slug: string;
 }
 
