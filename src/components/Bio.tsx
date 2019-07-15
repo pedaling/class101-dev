@@ -1,35 +1,39 @@
-/**
- * Bio component that queries for data
- * with Gatsby's StaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/static-query/
- */
-import { Body2, Headline3 } from '@class101/ui';
+import { Body2, Headline3, Colors, TextStyles } from '@class101/ui';
 import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 
 import { User } from '../graphql-types';
+import kebabCase from 'lodash/kebabCase';
 
 interface Props {
   user: User;
 }
 
 const Bio: React.SFC<Props> = (props) => {
-  const { name, profileImage, description, slug } = props.user;
+  const { name, profileImage, description, blog, github, linkedin } = props.user;
 
   return (
-    <BioContainer to={slug}>
+    <BioContainer>
       <BioImage src={profileImage} />
       <BioBody>
-        <Headline3>{name}</Headline3>
+        <Username to={`/authors/${kebabCase(name)}`}>{name}</Username>
         <Body2>{description}</Body2>
+        <SocialIcon href={blog} target="_blank">
+          <img src="/images/blog-64x64.png" alt="blog"/>
+        </SocialIcon>
+        <SocialIcon href={github} target="_blank">
+          <img src="/images/github-64x64.png" alt="github"/>
+        </SocialIcon>
+        <SocialIcon href={linkedin} target="_blank">
+          <img src="/images/linkedin-64x64.png" alt="linkedin"/>
+        </SocialIcon>
       </BioBody>
     </BioContainer>
   );
 };
 
-const BioContainer = styled(Link)`
+const BioContainer = styled.div`
   display: block;
   max-width: 960px;
   margin: 16px auto;
@@ -48,21 +52,26 @@ const BioImage = styled.img`
   height: 100px;
   border-radius: 50%;
   margin-right: 32px;
+  object-fit: cover;
 `;
 
 const BioBody = styled.div``;
 
-// const bioQuery = graphql`
-//   query BioQuery {
-//     site {
-//       siteMetadata {
-//         author
-//         social {
-//           twitter
-//         }
-//       }
-//     }
-//   }
-// `
+const Username = styled(Link)`
+  ${TextStyles.subtitle1};
+  display: block;
+  text-decoration: none;
+  margin-bottom: 4px;
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+const SocialIcon = styled.a`
+  img {
+    margin: 8px 4px 0px 0px;
+    width: 24px;
+  }
+`
 
 export default Bio;

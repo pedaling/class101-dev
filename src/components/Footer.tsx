@@ -1,35 +1,43 @@
+import { Colors, TextStyles } from '@class101/ui';
 import React from 'react';
 import styled from 'styled-components';
-import { Colors, TextStyles } from '@class101/ui';
+import ShareButtons from './ShareButtons';
 
-export default class Footer extends React.Component {
-  public render() {
-    return (
-      <Container>
-        <InnerContainer>
-          <LogoIcon src="/images/ic-logo-black.png" alt="class101" />
-          <ContactSection>
-            <ContactArticle>
-              <b>(주)클래스101</b>
-              <p>서울특별시 중구 한강대로 416 서울스퀘어 위워크 13층</p>
-              <br/>
-              <p><a href="tel:4578100277">457-81-00277</a></p>
-              <p><a href="mailto:dev@class101.net">dev@class101.net</a></p>
-            </ContactArticle>
-            <ContactArticle>
-              <a href="https://play.google.com/store/apps/details?id=net.pedaling.class101" target="_blank">
-                <DownloadIcon src="/images/download-android.png" alt="android" />
-              </a>
-              <a href="https://apps.apple.com/kr/app/class101-%ED%81%B4%EB%9E%98%EC%8A%A4101/id1320607634" target="_blank">
-                <DownloadIcon src="/images/download-ios.png" alt="ios" />
-              </a>
-            </ContactArticle>
-          </ContactSection>
-        </InnerContainer>
-      </Container>
-    );
-  }
+interface Props {
+  shareUrl?: string;
 }
+
+const Footer: React.SFC<Props> = (props) => {
+  const { shareUrl } = props;
+
+  return (
+    <Container>
+      <InnerContainer>
+        <ShareButtons url={shareUrl || '/'} />
+        <LogoIcon src="/images/ic-logo-black.png" alt="class101" />
+        <ContactSection>
+          <ContactArticle>
+            <b>(주)클래스101</b>
+            <p>서울특별시 중구 한강대로 416 서울스퀘어 위워크 13층</p>
+            <br/>
+            <p><a href="tel:4578100277">457-81-00277</a></p>
+            <p><a href="mailto:dev@class101.net">dev@class101.net</a></p>
+          </ContactArticle>
+          <ContactArticle>
+            <a href="https://play.google.com/store/apps/details?id=net.pedaling.class101" target="_blank">
+              <DownloadIcon src="/images/download-android.png" alt="android" />
+            </a>
+            <a href="https://apps.apple.com/kr/app/class101-%ED%81%B4%EB%9E%98%EC%8A%A4101/id1320607634" target="_blank">
+              <DownloadIcon src="/images/download-ios.png" alt="ios" />
+            </a>
+          </ContactArticle>
+        </ContactSection>
+      </InnerContainer>
+    </Container>
+  );
+}
+
+export default Footer;
 
 const Container = styled.footer`
   background-color: ${Colors.gray100};

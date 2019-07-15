@@ -4,7 +4,7 @@ date: "2019-05-03T22:12:03.284Z"
 thumbnail: "/images/thumbnails/growth-hacker.jpg"
 description: ""
 author: "Yohan Kim"
-tags: ["careers"]
+tags: ["recruiting"]
 ---
 
 [주요 업무]

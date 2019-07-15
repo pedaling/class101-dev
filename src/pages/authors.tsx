@@ -1,37 +1,28 @@
-import { Grid, Headline2, Row, Tag } from '@class101/ui';
-import { graphql, Link } from 'gatsby';
-import kebabCase from 'lodash/kebabCase';
+import { Grid, Headline2, Row, Col } from '@class101/ui';
 import React from 'react';
 
-import Layout from '../components/Layout';
-import LinkTag from '../components/LinkTag';
-import SEO from '../components/SEO';
-import { Group, Site, User } from '../graphql-types';
 import Bio from '../components/Bio';
+import Layout from '../components/Layout';
+import SEO from '../components/SEO';
+import { users } from '../data/users';
 
-// Utilities
-// Components
 
-interface Props {
-  pageContext: {
-    users: User[];
-  }
-}
-
-const TagsPage: React.SFC<Props> = ({
-  pageContext: {
-    users
-  }
-}) => (
+const TagsPage: React.SFC = () => (
   <Layout>
     <SEO title={`클래스101 구성원`} pathname={'/tags'} />
     <Grid>
       <Row>
-        <Headline2>구성원</Headline2>
+        <Col lgOffset={2}>
+          <Headline2>구성원</Headline2>
+        </Col>
       </Row>
+      <Row>
       {users.map(user => (
-        <Bio key={user.name} user={user}/>
+        <Col key={user.name} lgOffset={2}>
+          <Bio user={user}/>
+        </Col>
       ))}
+      </Row>
     </Grid>
   </Layout>
 );

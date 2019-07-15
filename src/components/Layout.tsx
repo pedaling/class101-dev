@@ -6,17 +6,18 @@ import Header from './Header';
 
 interface Props {
   children: JSX.Element[];
+  shareUrl?: string;
 }
 
 class Layout extends React.Component<Props> {
   render() {
-    const { children } = this.props;
+    const { children, shareUrl } = this.props;
 
     return (
       <Root className="root">
         <Header />
         <Main>{children}</Main>
-        <Footer />
+        <Footer shareUrl={shareUrl}/>
       </Root>
     );
   }

@@ -1,7 +1,8 @@
-import { Colors, ElevationStyles } from '@class101/ui';
+import { Colors } from '@class101/ui';
 import { Link } from 'gatsby';
 import React from 'react';
 import styled, { css } from 'styled-components';
+import SearchInput from './SearchInput';
 
 export default class Header extends React.Component {
   render() {
@@ -11,13 +12,13 @@ export default class Header extends React.Component {
           <NoHoverLink to="/">
             <LogoIcon src="/images/ic-logo-black.png" alt="class101" />
           </NoHoverLink>
-          <Spacer />
+          <SearchInput />
           <NavLinkList>
-            <NavLinkEl>
+            {/* <NavLinkEl>
               <NavLink to="/tags/open-source">오픈 소스</NavLink>
-            </NavLinkEl>
+            </NavLinkEl> */}
             <NavLinkEl>
-              <NavLink to="/tags/careers">채용</NavLink>
+              <NavLink to="/tags/recruiting">채용</NavLink>
             </NavLinkEl>
             <NavLinkEl>
               <NavLink to="/authors/">구성원</NavLink>
@@ -39,7 +40,7 @@ export default class Header extends React.Component {
 
 const NavConatiner = styled.nav`
   padding: 16px 24px;
-  background: white;
+  background: ;
 `;
 
 const NavInnerContainer = styled.div`
@@ -97,6 +98,7 @@ const navLinkCss = css`
     text-decoration: underline;
   }
 `;
+
 const NavLink = styled(Link)`
   ${navLinkCss};
 `;

@@ -9,7 +9,6 @@ import Img from '../components/Img';
 import Layout from '../components/Layout';
 import LinkTag from '../components/LinkTag';
 import SEO from '../components/SEO';
-import ShareButtons from '../components/ShareButtons';
 import { MarkdownRemark, Site, User } from '../graphql-types';
 import markdown from '../utils/markdown';
 
@@ -42,7 +41,7 @@ const BlogPostTemplate: React.SFC<Props> = props => {
   } = props;
 
   return (
-    <Layout>
+    <Layout shareUrl={siteUrl + slug}>
       <SEO
         title={title}
         description={`${description} ${excerpt}`}
@@ -51,7 +50,6 @@ const BlogPostTemplate: React.SFC<Props> = props => {
         pathname={slug}
       />
       <PostContainer>
-        <ShareButtons url={siteUrl + slug} />
         <PostHeader>
           {tags.map((tag: string) => (
             <LinkTag fieldValue={tag} key={tag} />
@@ -68,8 +66,8 @@ const BlogPostTemplate: React.SFC<Props> = props => {
             <PostNavigator to={previous.fields.slug} rel="prev">
               <Img src={previous.frontmatter.thumbnail} />
               <PostNavigatorTitle>
-                이전 글<br />
-                {previous.frontmatter.title}
+                <span>이전 글</span><br />
+                <b>{previous.frontmatter.title}</b>
               </PostNavigatorTitle>
             </PostNavigator>
           )}
@@ -77,8 +75,8 @@ const BlogPostTemplate: React.SFC<Props> = props => {
             <PostNavigator to={next.fields.slug} rel="next">
               <Img src={next.frontmatter.thumbnail} />
               <PostNavigatorTitle>
-                다음 글<br />
-                {next.frontmatter.title}
+                <span>다음 글</span><br />
+                <b>{next.frontmatter.title}</b>
               </PostNavigatorTitle>
             </PostNavigator>
           )}
@@ -155,7 +153,7 @@ const PostNavigator = styled(Link)`
   position: relative;
   flex: 1;
   background: black;
-  opacity: 0.9;
+  opacity: 0.99;
   img {
     z-index: -1;
   }
@@ -168,11 +166,17 @@ const PostNavigator = styled(Link)`
 `;
 
 const PostNavigatorTitle = styled.p`
-  ${TextStyles.subtitle1}
+  ${TextStyles.headline3}
   position: absolute;
-  top: 50%;
+  top: 35%;
   text-align: center;
   width: 100%;
   font-weight: 800;
   color: white;
+  span {
+    font-weight: 400;
+  }
+  b {
+    font-weight: 600;
+  }
 `;

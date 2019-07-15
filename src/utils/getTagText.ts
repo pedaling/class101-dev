@@ -1,5 +1,5 @@
 const TAG_TEXT: { [key: string] : string} = {
-  careers: '채용 공고',
+  recruiting: '채용 공고',
   'open-source': '오픈소스'
 }
 
