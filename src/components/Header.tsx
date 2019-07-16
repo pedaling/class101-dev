@@ -7,7 +7,7 @@ import SearchInput from './SearchInput';
 const Header: React.SFC = () => {
 
   const [menu, openMenu] = useState(false);
-  const logo = window.innerWidth > 425 ? '/images/logotype-black.png' : '/images/symbol-black.png';
+  const logo = typeof window !== 'undefined' && window.innerWidth > 425 ? '/images/logotype-black.png' : '/images/symbol-black.png';
 
   const toggleMenu = () => openMenu(!menu);
 

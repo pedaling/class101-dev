@@ -1,5 +1,5 @@
 ---
-title: TF-IDF를 활용한 클래스 유사도 분석 기반 추천 서버 구축 1
+title: TF-IDF를 활용한 클래스 유사도 분석 기반 추천 서버 구축 1편
 date: "2019-07-16T22:12:03.284Z"
 thumbnail: "/images/thumbnails/tf-idf.png"
 description: ""
@@ -89,7 +89,8 @@ tfidf_matrix = tfidf_vectorizer.fit_transform(doc_list)
 doc_distances = (tfidf_matrix * tfidf_matrix.T)
 
 print(doc_distances.toarray())
-
+```
+```
 [[1.         0.04612956 0.        ]
     [0.04612956 1.         0.        ]
     [0.         0.         1.        ]]
@@ -111,6 +112,8 @@ tfidf_matrix = tfidf_vectorizer.fit_transform(doc_nouns_list)
 doc_nouns_distances = (tfidf_matrix * tfidf_matrix.T)
 
 print(doc_nouns_distances.toarray())
+```
+```
 
 [ 
     '프리 시즌 아시아 투어 토트넘 싱가포르 중국 차례 방문 경기', 
@@ -195,7 +198,8 @@ title_similar_products = get_similar_products(product_noun_list, 'title_noun', 1
 description_similar_products = get_similar_products_new(product_noun_list, 'title_noun', 10)
 
 print(title_similar_products[0])
-
+```
+```
 {
     'product_id': 'xxxxx',
     'top_similar_products': [
@@ -232,7 +236,8 @@ title_ratio_list_of_same_category = get_ratio_list_of_same_category(title_simila
 desc_ratio_list_of_same_category = get_ratio_list_of_same_category(description_similar_products)
 
 print(title_ratio_list_of_same_category[0])
-
+```
+```
 [
     {'product_id': 'xxxx', 'same_category_ratio': 0.3},
     {'product_id': 'xxxx', 'same_category_ratio': 0.2},
@@ -253,7 +258,8 @@ desc_avaerage_of_ratio = get_avaerage_of_ratio(desc_ratio_list_of_same_category)
 
 print(f"title 기준 타겟 클래스와 카테고리가 일치하는 비율의 평균: {round(title_avaerage_of_ratio, 5)}")
 print(f"description 기준 타겟 클래스와 카테고리가 일치하는 비율의 평균: {round(desc_avaerage_of_ratio, 5)}")
-
+```
+```
 title 기준 타겟 클래스와 카테고리가 일치하는 비율의 평균: 0.224
 description 기준 타겟 클래스와 카테고리가 일치하는 비율의 평균: 0.425
 ```

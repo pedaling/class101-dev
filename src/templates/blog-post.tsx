@@ -159,6 +159,9 @@ const PostBody = styled.div`
 
 const PostFooter = styled.div`
   display: flex;
+  @media(max-width: 425px) {
+    flex-direction: column;
+  }
 `;
 
 const PostNavigator = styled(Link)`
@@ -182,7 +185,8 @@ const PostNavigator = styled(Link)`
 const PostNavigatorTitle = styled.p`
   font-size: 19px;
   position: absolute;
-  top: 35%;
+  top: 50%;
+  margin-top: -39px;
   text-align: center;
   width: 100%;
   font-weight: 800;

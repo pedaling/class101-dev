@@ -35,8 +35,6 @@ const Bio: React.SFC<Props> = (props) => {
 
 const BioContainer = styled.div`
   display: block;
-  max-width: 960px;
-  margin: 16px auto;
   background: white;
   align-items: center;
   padding: 32px;
