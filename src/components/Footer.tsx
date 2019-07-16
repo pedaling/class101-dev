@@ -16,7 +16,7 @@ const Footer: React.SFC<Props> = (props) => {
         <Row>
           <Col>
           <ShareButtons url={shareUrl || '/'} />
-            <LogoIcon src="/images/ic-logo-black.png" alt="class101" />
+            <LogoIcon src="/images/logotype-black.png" alt="class101" />
             <ContactSection>
               <ContactArticle>
                 <b>(주)클래스101</b>

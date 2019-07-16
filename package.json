@@ -28,7 +28,6 @@
     "gatsby-remark-prismjs": "^3.2.9",
     "gatsby-remark-responsive-iframe": "^2.1.1",
     "gatsby-remark-smartypants": "^2.0.9",
-    "gatsby-remark-toc": "^1.2.0",
     "gatsby-source-filesystem": "^2.0.33",
     "gatsby-transformer-remark": "^2.3.12",
     "gatsby-transformer-sharp": "^2.1.19",
@@ -41,14 +40,9 @@
     "react-router-dom": "^5.0.0",
     "react-share": "^3.0.0",
     "react-typography": "^0.16.19",
-    "react-utterances": "^0.6.4",
     "styled-components": "^4.2.0",
     "swiper": "^4.5.0",
-    "typeface-merriweather": "0.0.72",
-    "typeface-montserrat": "0.0.54",
-    "typescript": "^3.5.2",
-    "typography": "^0.16.19",
-    "typography-theme-wordpress-2016": "^0.16.19"
+    "typescript": "^3.5.2"
   },
   "devDependencies": {
     "@class101/tslint-config": "^1.3.0",
@@ -86,11 +80,12 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.{js,jsx}",
+    "format": "prettier --write src/**/*.{ts,tsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
-    "now-build": "npm run build"
+    "now-build": "npm run build",
+    "deploy": "now --target production"
   },
   "peerDependencies": {}
 }

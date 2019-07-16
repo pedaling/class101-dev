@@ -49,7 +49,7 @@ exports.users = [
   },
   {
     profileImage: '/images/profiles/esmond.png',
-    name: 'Jeonyeon Jo',
+    name: 'Jeongyeon Jo',
     description: '안녕하세요. 애즈먼입니다.',
     github: 'https://github.com/EsmondCho',
     blog: '',
