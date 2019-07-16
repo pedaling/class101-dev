@@ -4,53 +4,35 @@
  *
  * See: https://www.gatsbyjs.org/docs/static-query/
  */
+import { DiscussionEmbed } from 'disqus-react';
 import React from 'react';
 import styled from 'styled-components';
 
-const src = 'https://utteranc.es/client.js';
-const branch = 'master';
-const repo = 'pedaling/class101-tech-comments';
+interface Props {
+  slug: string;
+  title: string;
+  siteUrl: string;
+}
 
-class Comments extends React.Component {
-  public containerRef = React.createRef<HTMLDivElement>();
+const Comments: React.SFC<Props> = (props) => {
+  const { slug, title, siteUrl } = props;
+  const disqusShortname = 'class101-dev';
+  const disqusConfig = {
+    title,
+    url: `${siteUrl}${slug}`,
+    identifier: slug,
+  };
 
-  public componentDidMount() {
-    const utterances = document.createElement('script');
-    const utterancesConfig = {
-      src,
-      repo,
-      branch,
-      async: 'true',
-      'issue-term': 'pathname',
-      crossorigin: 'anonymous',
-    };
-    for (const [key, value] of Object.entries(utterancesConfig)) {
-      utterances.setAttribute(key, value);
-    }
+  console.log({disqusShortname , disqusConfig})
 
-    this.containerRef.current.appendChild(utterances);
-  }
-
-  public render() {
-    return <CommentsContainer className="utterences" ref={this.containerRef} />;
-  }
+  return <CommentsContainer>
+    <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+  </CommentsContainer>
 }
 
 const CommentsContainer = styled.div`
   margin: 32px auto;
 `;
 
-// const bioQuery = graphql`
-//   query BioQuery {
-//     site {
-//       siteMetadata {
-//         author
-//         social {
-//           twitter
-//         }
-//       }
-//     }
-//   }
-// `
 
 export default Comments;

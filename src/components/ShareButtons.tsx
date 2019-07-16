@@ -6,18 +6,8 @@ import {
   FacebookShareButton,
   LinkedinIcon,
   LinkedinShareButton,
-  LivejournalIcon,
-  LivejournalShareButton,
-  RedditIcon,
-  RedditShareButton,
-  TelegramIcon,
-  TelegramShareButton,
-  TumblrIcon,
-  TumblrShareButton,
   TwitterIcon,
   TwitterShareButton,
-  WhatsappIcon,
-  WhatsappShareButton,
 } from 'react-share';
 import styled from 'styled-components';
 
@@ -42,34 +32,9 @@ const ShareButtons: React.SFC<Props> = props => {
         </TwitterShareButton>
       </ButtonWrapper>
       <ButtonWrapper>
-        <TelegramShareButton url={url} title={title}>
-          <TelegramIcon size={32} round />
-        </TelegramShareButton>
-      </ButtonWrapper>
-      <ButtonWrapper>
-        <WhatsappShareButton url={url} title={title} separator=":: ">
-          <WhatsappIcon size={32} round />
-        </WhatsappShareButton>
-      </ButtonWrapper>
-      <ButtonWrapper>
         <LinkedinShareButton url={url} windowWidth={750} windowHeight={600}>
           <LinkedinIcon size={32} round />
         </LinkedinShareButton>
-      </ButtonWrapper>
-      <ButtonWrapper>
-        <RedditShareButton url={url} title={title} windowWidth={660} windowHeight={460}>
-          <RedditIcon size={32} round />
-        </RedditShareButton>
-      </ButtonWrapper>
-      <ButtonWrapper>
-        <TumblrShareButton url={url} title={title} windowWidth={660} windowHeight={460}>
-          <TumblrIcon size={32} round />
-        </TumblrShareButton>
-      </ButtonWrapper>
-      <ButtonWrapper>
-        <LivejournalShareButton url={url} title={title} description={url}>
-          <LivejournalIcon size={32} round />
-        </LivejournalShareButton>
       </ButtonWrapper>
       <ButtonWrapper>
         <EmailShareButton url={url} subject={title} body="body">

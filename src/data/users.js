@@ -36,8 +36,8 @@ exports.users = [
     name: 'Geonho Han',
     description: '가리지 않고 배우는 개발자 한건호입니다.',
     github: 'https://github.com/hrg921',
-    blog: 'https://www.linkedin.com/in/%EA%B1%B4%ED%98%B8-%ED%95%9C-76a139b1/',
-    linkedin: 'https://blog.geonho.com/',
+    blog: 'https://blog.geonho.com/',
+    linkedin: 'https://www.linkedin.com/in/%EA%B1%B4%ED%98%B8-%ED%95%9C-76a139b1/',
   },
   {
     profileImage: '/images/profiles/grep.png',

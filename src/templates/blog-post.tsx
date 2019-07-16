@@ -67,20 +67,20 @@ const BlogPostTemplate: React.SFC<Props> = props => {
               <PostFooter>
                 {previous && (
                   <PostNavigator to={previous.fields.slug} rel="prev">
-                    <Img src={previous.frontmatter.thumbnail} />
                     <PostNavigatorTitle>
                       <span>이전 글</span><br />
                       <b>{previous.frontmatter.title}</b>
                     </PostNavigatorTitle>
+                    <Img src={previous.frontmatter.thumbnail} />
                   </PostNavigator>
                 )}
                 {next && (
                   <PostNavigator to={next.fields.slug} rel="next">
-                    <Img src={next.frontmatter.thumbnail} />
                     <PostNavigatorTitle>
                       <span>다음 글</span><br />
                       <b>{next.frontmatter.title}</b>
                     </PostNavigatorTitle>
+                    <Img src={next.frontmatter.thumbnail} />
                   </PostNavigator>
                 )}
               </PostFooter>
@@ -94,7 +94,7 @@ const BlogPostTemplate: React.SFC<Props> = props => {
         </Row>
         <Row>
           <Col>
-            <Comments />
+            <Comments title={title} siteUrl={siteUrl} slug={slug}/>
           </Col>
         </Row>
       </Grid>
@@ -154,7 +154,7 @@ const PostDate = styled(Body2)`
 `;
 
 const PostBody = styled.div`
-  margin: 16px;
+  margin: 16px 0;
 `;
 
 const PostFooter = styled.div`
@@ -168,7 +168,8 @@ const PostNavigator = styled(Link)`
   background: black;
   opacity: 0.99;
   img {
-    z-index: -1;
+    z-index: 1;
+    opacity: 0.5;
   }
   &:hover {
     img {
@@ -179,13 +180,14 @@ const PostNavigator = styled(Link)`
 `;
 
 const PostNavigatorTitle = styled.p`
-  ${TextStyles.headline3}
+  font-size: 19px;
   position: absolute;
   top: 35%;
   text-align: center;
   width: 100%;
   font-weight: 800;
   color: white;
+  z-index: 2;
   span {
     font-weight: 400;
   }

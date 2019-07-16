@@ -1,4 +1,4 @@
-import { Colors, ElevationStyles, TextStyles } from '@class101/ui';
+import { Colors, TextStyles } from '@class101/ui';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -52,7 +52,6 @@ const PostsQuery = graphql`
 export default SearchInput;
 
 const AutoCompleteContainer = styled.div`
-  ${ElevationStyles.elevation3};
   border: 1px solid ${Colors.gray200};
   box-sizing: border-box;
   margin: 0 16px;
@@ -72,7 +71,6 @@ const AutoCompleteList = styled.div`
 
 const AutoCompleteItem = styled(Link)`
   ${TextStyles.body2}
-  ${ElevationStyles.elevation3};
   border: 1px solid ${Colors.gray200};
   box-sizing: border-box;
   display: block;

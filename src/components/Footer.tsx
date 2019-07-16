@@ -1,4 +1,4 @@
-import { Colors, TextStyles } from '@class101/ui';
+import { Colors, TextStyles, Grid, Row, Col } from '@class101/ui';
 import React from 'react';
 import styled from 'styled-components';
 import ShareButtons from './ShareButtons';
@@ -12,27 +12,30 @@ const Footer: React.SFC<Props> = (props) => {
 
   return (
     <Container>
-      <InnerContainer>
-        <ShareButtons url={shareUrl || '/'} />
-        <LogoIcon src="/images/ic-logo-black.png" alt="class101" />
-        <ContactSection>
-          <ContactArticle>
-            <b>(주)클래스101</b>
-            <p>서울특별시 중구 한강대로 416 서울스퀘어 위워크 13층</p>
-            <br/>
-            <p><a href="tel:4578100277">457-81-00277</a></p>
-            <p><a href="mailto:dev@class101.net">dev@class101.net</a></p>
-          </ContactArticle>
-          <ContactArticle>
-            <a href="https://play.google.com/store/apps/details?id=net.pedaling.class101" target="_blank">
-              <DownloadIcon src="/images/download-android.png" alt="android" />
-            </a>
-            <a href="https://apps.apple.com/kr/app/class101-%ED%81%B4%EB%9E%98%EC%8A%A4101/id1320607634" target="_blank">
-              <DownloadIcon src="/images/download-ios.png" alt="ios" />
-            </a>
-          </ContactArticle>
-        </ContactSection>
-      </InnerContainer>
+      <Grid>
+        <Row>
+          <Col>
+          <ShareButtons url={shareUrl || '/'} />
+            <LogoIcon src="/images/ic-logo-black.png" alt="class101" />
+            <ContactSection>
+              <ContactArticle>
+                <b>(주)클래스101</b>
+                <p>서울특별시 중구 한강대로 416 서울스퀘어 위워크 13층</p>
+                <p><a href="tel:4578100277">457-81-00277</a></p>
+                <p><a href="mailto:dev@class101.net">dev@class101.net</a></p>
+              </ContactArticle>
+              <ContactArticle>
+                <a href="https://play.google.com/store/apps/details?id=net.pedaling.class101" target="_blank">
+                  <DownloadIcon src="/images/download-android.png" alt="android" />
+                </a>
+                <a href="https://apps.apple.com/kr/app/class101-%ED%81%B4%EB%9E%98%EC%8A%A4101/id1320607634" target="_blank">
+                  <DownloadIcon src="/images/download-ios.png" alt="ios" />
+                </a>
+              </ContactArticle>
+            </ContactSection>
+          </Col>
+        </Row>
+      </Grid>
     </Container>
   );
 }
@@ -41,6 +44,7 @@ export default Footer;
 
 const Container = styled.footer`
   background-color: ${Colors.gray100};
+  padding-top: 32px;
   a {
     color: inherit;
     font-weight: 600;
@@ -57,13 +61,6 @@ const Container = styled.footer`
   }
 `;
 
-const InnerContainer = styled.div`
-  ${TextStyles.body1};
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 32px;
-`;
-
 const LogoIcon = styled.img`
   width: 80px;
   margin: 0;
@@ -71,14 +68,12 @@ const LogoIcon = styled.img`
 
 const DownloadIcon = styled.img`
   width: 160px;
-  margin-left: 16px;
+  margin-right: 16px;
 `;
 
 const ContactSection = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  ${TextStyles.body1};
 `
 const ContactArticle = styled.div`
-  
+  padding: 16px 0;
 `
