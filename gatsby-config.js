@@ -2,9 +2,10 @@ module.exports = {
   siteMetadata: {
     title: `Class101 Dev`,
     author: `Class101`,
-    description: `기술 공유를 좋아하며 어쩌구 저러구 이러쿵 저러쿵 합니다.`,
+    description: `신나는 코딩 세상`,
     keywords: ['class101', 'typescript', 'monorepo', 'react', 'graphql', 'apllo', 'aws'],
     siteUrl: `https://class101.dev`,
+    facebookAppId: '2582489538450547',
     social: {
       twitter: `Class101`,
     },
@@ -102,7 +103,34 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: `UA-64561335-30`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-facebook-analytics`,
+      options: {
+        // Required - set this to the ID of your facebook app.
+        appId: `2582489538450547`,
+
+        // Which version of the SDK to load.
+        version: `v3.3`,
+
+        // Determines whether XFBML tags used by social plugins are parsed.
+        xfbml: true,
+
+        // Determines whether a cookie is created for the session or not.
+        cookie: false,
+
+        // Include facebook analytics in development.
+        // Defaults to false meaning the library will only be loaded in production.
+        includeInDevelopment: false,
+
+        // Include debug version of sdk
+        // Defaults to false meaning the library will load sdk.js
+        debug: false,
+
+        // Select your language.
+        language: `ko`,
       },
     },
     `gatsby-plugin-feed`,

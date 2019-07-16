@@ -1,4 +1,4 @@
-import { Body2, TextStyles } from '@class101/ui';
+import { Body2, TextStyles, Row, Col, Grid } from '@class101/ui';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
@@ -49,41 +49,55 @@ const BlogPostTemplate: React.SFC<Props> = props => {
         author={author}
         pathname={slug}
       />
-      <PostContainer>
-        <PostHeader>
-          {tags.map((tag: string) => (
-            <LinkTag fieldValue={tag} key={tag} />
-          ))}
-          <PostTitle>{title}</PostTitle>
+      <Grid>
+        <Row>
+          <Col>
+            <PostContainer>
+              <PostHeader>
+                {tags.map((tag: string) => (
+                  <LinkTag fieldValue={tag} key={tag} />
+                ))}
+                <PostTitle>{title}</PostTitle>
 
-          <PostDate>{date}</PostDate>
-        </PostHeader>
+                <PostDate>{date}</PostDate>
+              </PostHeader>
 
-        <PostBody className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
+              <PostBody className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
 
-        <PostFooter>
-          {previous && (
-            <PostNavigator to={previous.fields.slug} rel="prev">
-              <Img src={previous.frontmatter.thumbnail} />
-              <PostNavigatorTitle>
-                <span>이전 글</span><br />
-                <b>{previous.frontmatter.title}</b>
-              </PostNavigatorTitle>
-            </PostNavigator>
-          )}
-          {next && (
-            <PostNavigator to={next.fields.slug} rel="next">
-              <Img src={next.frontmatter.thumbnail} />
-              <PostNavigatorTitle>
-                <span>다음 글</span><br />
-                <b>{next.frontmatter.title}</b>
-              </PostNavigatorTitle>
-            </PostNavigator>
-          )}
-        </PostFooter>
-      </PostContainer>
-      <Bio user={user} />
-      <Comments />
+              <PostFooter>
+                {previous && (
+                  <PostNavigator to={previous.fields.slug} rel="prev">
+                    <Img src={previous.frontmatter.thumbnail} />
+                    <PostNavigatorTitle>
+                      <span>이전 글</span><br />
+                      <b>{previous.frontmatter.title}</b>
+                    </PostNavigatorTitle>
+                  </PostNavigator>
+                )}
+                {next && (
+                  <PostNavigator to={next.fields.slug} rel="next">
+                    <Img src={next.frontmatter.thumbnail} />
+                    <PostNavigatorTitle>
+                      <span>다음 글</span><br />
+                      <b>{next.frontmatter.title}</b>
+                    </PostNavigatorTitle>
+                  </PostNavigator>
+                )}
+              </PostFooter>
+            </PostContainer>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+           <Bio user={user} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Comments />
+          </Col>
+        </Row>
+      </Grid>
     </Layout>
   );
 };
@@ -121,7 +135,6 @@ export const pageQuery = graphql`
 const PostContainer = styled.div`
   background: white;
   border-radius: 3px;
-  max-width: 960px;
   margin: 0 auto;
   ${markdown};
 `;

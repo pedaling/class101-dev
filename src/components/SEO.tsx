@@ -29,6 +29,7 @@ const SEO: React.SFC<Props> = props => {
             author
             siteUrl
             keywords
+            facebookAppId
             social {
               twitter
             }
@@ -125,6 +126,10 @@ const SEO: React.SFC<Props> = props => {
         {
           name: 'keywords',
           content: siteMetadata.keywords.join(`, `),
+        },
+        {
+          name: 'fb:app_id',
+          content: siteMetadata.facebookAppId,
         },
       ]}
     />

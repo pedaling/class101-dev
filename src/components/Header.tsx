@@ -40,7 +40,6 @@ export default class Header extends React.Component {
 
 const NavConatiner = styled.nav`
   padding: 16px 24px;
-  background: ;
 `;
 
 const NavInnerContainer = styled.div`
@@ -54,10 +53,10 @@ const NavInnerContainer = styled.div`
 const NavLinkList = styled.ul`
   padding: 0;
   margin: 0;
-  flex: 0 1 auto;
   display: flex;
-  justify-content: flex-end;
-  flex-flow: row wrap;
+  @media (max-width: 500px) {
+    width: 82px;
+  }
 `;
 
 const NavLinkEl = styled.li`
@@ -66,11 +65,10 @@ const NavLinkEl = styled.li`
   display: block;
   font-size: 14px;
   line-height: 24px;
-  margin-left: 16px;
-`;
-
-const Spacer = styled.div`
-  flex: 1;
+  margin-right: 16px;
+  &:nth-last-child() {
+    margin-right: 0;
+  }
 `;
 
 const LogoIcon = styled.img`

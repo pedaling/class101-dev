@@ -41,6 +41,7 @@ export interface SiteMetadata {
   description: string;
   siteUrl: string;
   keywords: string[];
+  facebookAppId: string;
   social: Social;
 }
 

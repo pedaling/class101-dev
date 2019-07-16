@@ -71,4 +71,12 @@ exports.users = [
     blog: 'https://chiabi.github.io/',
     linkedin: 'www.linkedin.com/in/parkchihye',
   },
+  {
+    profileImage: '/images/profiles/lama.png',
+    name: 'Jonghyeok Choi',
+    description: '넓은 경험을 가지고 싶은 개발자입니다.',
+    github: 'https://github.com/opendev-choi',
+    blog: 'https://opendev-choi.github.io/',
+    linkedin: '',
+  },
 ];

@@ -99,5 +99,5 @@ const SiteTitle = styled(Headline1)`
 const SiteContent = styled(Body2)`
   font-size: 17px;
   margin-bottom: 32px;
-  color: ${Colors.gray700};
+  color: ${Colors.gray800};
 `;

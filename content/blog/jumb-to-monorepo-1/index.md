@@ -3,7 +3,7 @@ title: Jump to MONOREPO(with typescript) - 1
 date: "2019-07-12T22:12:03.284Z"
 thumbnail: "/images/thumbnails/monorepo.png"
 description: ""
-author: "Yohan Kim"
+author: "Geonho Han"
 tags: ["typescript", "monorepo"]
 ---
 

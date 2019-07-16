@@ -56,7 +56,9 @@ const CardBody = styled.div`
   padding: 8px 0;
 `;
 
-const CardThumbnail = styled(Img)``;
+const CardThumbnail = styled(Img)`
+  object-fit: cover;
+`;
 
 const CardTitle = styled.h2`
   ${TextStyles.headline3}
