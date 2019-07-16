@@ -58,7 +58,7 @@ const AutoCompleteContainer = styled.div`
   padding: 8px 0;
   position: relative;
   background: white;
-  flex: 1;
+  flex: 1 1 auto;
 `
 
 const AutoCompleteList = styled.div`
