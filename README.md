@@ -1,7 +1,7 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://class101.dev">
-    <img alt="Gatsby" src="https://class101.dev/thumbnails/default.jpg" width="140" />
+    <img alt="Gatsby" src="https://class101.dev/images/thumbnails/default.jpg" width="140" />
   </a>
 </p>
 <h1 align="center">
