@@ -9,9 +9,9 @@ import Comments from '../components/Comments';
 import Img from '../components/Img';
 import Layout from '../components/Layout';
 import LinkTag from '../components/LinkTag';
+import RecruitingCard from '../components/RecruitingCard';
 import SEO from '../components/SEO';
 import ShareButtons from '../components/ShareButtons';
-import RecruitingCard from '../components/RecruitingCard';
 import { MarkdownRemark, Site, User } from '../graphql-types';
 import markdown from '../utils/markdown';
 

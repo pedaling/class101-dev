@@ -7,6 +7,7 @@ import Layout from '../components/Layout';
 import LinkTag from '../components/LinkTag';
 import SEO from '../components/SEO';
 import { Group, Site } from '../graphql-types';
+import styled from 'styled-components';
 
 // Utilities
 // Components
@@ -29,7 +30,7 @@ const TagsPage: React.SFC<Props> = ({
     <SEO title={`모든 태그`} pathname={'/tags'} />
     <Grid>
       <Row>
-        <Headline2>모든 태그</Headline2>
+        <SiteTitle>모든 태그</SiteTitle>
       </Row>
       <Row>
         {group.map(tag => (
@@ -56,4 +57,8 @@ export const pageQuery = graphql`
       }
     }
   }
+`;
+
+const SiteTitle = styled(Headline2)`
+  margin-bottom: 32px;
 `;

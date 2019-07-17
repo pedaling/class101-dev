@@ -26,9 +26,9 @@ const StyledLink = styled(Link)`
   background: ${Colors.gray100};
   font-size: 16px;
   padding: 4px 8px;
-  margin: 4px;
   border-radius: 3px;
-  margin: 16px 16px 16px 0;
+  display: inline-block;
+  margin: 8px;
 
   &:hover {
     color: ${Colors.white};

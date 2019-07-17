@@ -47,7 +47,7 @@ const ShareButtons: React.SFC<Props> = props => {
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: row-reverse;
+  justify-content: center;
 `;
 
 const ButtonWrapper = styled.div`

@@ -26,6 +26,7 @@ exports.createPages = ({ graphql, actions }) => {
                 author
                 tags
                 description
+                date
               }
             }
           }
@@ -43,9 +44,14 @@ exports.createPages = ({ graphql, actions }) => {
     edges.forEach((edge, index) => {
       const previous = index === edges.length - 1 ? null : edges[index + 1].node;
       const next = index === 0 ? null : edges[index - 1].node;
-
+      const date = new Date(edge.node.frontmatter.date);
+      const postPath = `/blog/${date
+        .toISOString()
+        .slice(0, 10)
+        .replace(/-/gi, '/')}/${_.kebabCase(edge.node.frontmatter.author)}/`;
+      console.log(postPath);
       createPage({
-        path: edge.node.fields.slug,
+        path: postPath,
         component: blogTemplate,
         context: {
           slug: edge.node.fields.slug,
@@ -61,7 +67,7 @@ exports.createPages = ({ graphql, actions }) => {
 
     Array.from({ length: numPages }).forEach((_, i) => {
       createPage({
-        path: i === 0 ? `/` : `/${i + 1}`,
+        path: i === 0 ? `/` : `/blog/${i + 1}`,
         component: listTemplate,
         context: {
           limit: postsPerPage,

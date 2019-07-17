@@ -1,5 +1,6 @@
 import { Body2, Colors, TextStyles } from '@class101/ui';
 import { Link } from 'gatsby';
+import _ from 'lodash';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -15,8 +16,14 @@ const PostCard: React.SFC<Props> = props => {
 
   const title = node.frontmatter.title || node.fields.slug;
   const thumbnail = node.frontmatter.thumbnail;
+  const date = new Date(node.frontmatter.date);
+  const postPath = `/blog/${date
+    .toISOString()
+    .slice(0, 10)
+    .replace(/-/gi, '/')}/${_.kebabCase(node.frontmatter.author)}/`;
+
   return (
-    <Card to={node.fields.slug}>
+    <Card to={postPath}>
       <CardThumbnail src={thumbnail} />
       <CardBody>
         <CardCaption>{node.frontmatter.date}</CardCaption>

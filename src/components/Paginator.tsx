@@ -8,11 +8,11 @@ interface Props {
   currentPage: number;
 }
 
-const Paginator: React.SFC<Props> = ({ numPages, currentPage }) => {
+const Paginator: React.SFC<Props> = ({ numPages }) => {
   const links = [];
-  for (let i = 0; i < numPages; i += 1) {
+  for (const i = 0; i < numPages; i += 1) {
     links.push(
-      <PaginationLink key={i} to={`/${i === 0 ? '' : i + 1}`} activeClassName="active">
+      <PaginationLink key={i} to={`/${i === 0 ? '/' : `/blog/${i + 1}`}`} activeClassName="active">
         {i + 1}
       </PaginationLink>
     );

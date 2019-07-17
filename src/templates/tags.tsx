@@ -8,7 +8,6 @@ import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
 import { Edge } from '../graphql-types';
 import getTagText from '../utils/getTagText';
-
 // Components
 interface Props {
   data: {
