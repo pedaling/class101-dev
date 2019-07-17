@@ -31,7 +31,7 @@ const StyledLink = styled(Link)`
   margin: 16px 16px 16px 0;
 
   &:hover {
-    color: ${Colors.orange600};
-    background: ${Colors.black};
+    color: ${Colors.white};
+    background: ${Colors.orange600};
   }
 `;

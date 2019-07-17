@@ -215,7 +215,7 @@ export default css`
   .markdown-body code,
   .markdown-body kbd,
   .markdown-body pre {
-    font-family: monospace, monospace;
+    font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     font-size: 1em;
   }
 
@@ -385,7 +385,7 @@ export default css`
 
   .markdown-body code,
   .markdown-body pre {
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     font-size: 12px;
   }
 
@@ -728,7 +728,7 @@ export default css`
     line-height: 1.45;
     overflow: auto;
     padding: 16px;
-    box-shadow: 0 4px 5px -2px rgba(41,42,43,0.2);
+    box-shadow: 0 4px 5px -2px rgba(41, 42, 43, 0.2);
   }
 
   .markdown-body pre code {
@@ -746,7 +746,7 @@ export default css`
   .markdown-body .commit-tease-sha {
     color: #444d56;
     display: inline-block;
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     font-size: 90%;
   }
 
@@ -768,7 +768,7 @@ export default css`
     -webkit-user-select: none;
     color: rgba(27, 31, 35, 0.3);
     cursor: pointer;
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     font-size: 12px;
     line-height: 20px;
     min-width: 50px;
@@ -799,7 +799,7 @@ export default css`
 
   .markdown-body .blob-code-inner {
     color: #24292e;
-    font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
     font-size: 12px;
     overflow: visible;
     white-space: pre;
@@ -820,7 +820,8 @@ export default css`
     box-shadow: inset 0 -1px 0 #c6cbd1;
     color: #444d56;
     display: inline-block;
-    font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, Courier, monospace;
+    font-family: 'Source Code Pro', 'Noto Sans KR', monospace;
+    font-size: 11px;
     line-height: 10px;
     padding: 3px 5px;
     vertical-align: middle;

@@ -12,6 +12,22 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Noto Sans KR`,
+            variants: [`300`, `400`, `600`, `700`, `800`],
+          },
+          {
+            family: `Source Code Pro`,
+            variants: [`400`, `600`],
+          },
+        ],
+      },
+    },
+
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,

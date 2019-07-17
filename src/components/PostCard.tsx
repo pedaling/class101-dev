@@ -61,7 +61,7 @@ const CardThumbnail = styled(Img)`
 `;
 
 const CardTitle = styled.h2`
-  ${TextStyles.headline3}
+  ${TextStyles.subtitle1};
   margin-bottom: 4px;
 `;
 

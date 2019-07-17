@@ -5,9 +5,9 @@ import { RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
 
 import Layout from '../components/Layout';
+import Paginator from '../components/Paginator';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
-import Paginator from '../components/Paginator';
 import { Edge, Site } from '../graphql-types';
 
 interface Props {
@@ -23,7 +23,7 @@ interface Props {
     currentPage: number;
     limit: number;
     skip: number;
-  }
+  };
 }
 
 const getColLg = (index: number) => {
@@ -37,7 +37,6 @@ const getColLg = (index: number) => {
 };
 
 const BlogList: React.SFC<RouteComponentProps & Props> = props => {
-  console.log(props);
   const {
     data: {
       allMarkdownRemark: { edges },
@@ -45,10 +44,7 @@ const BlogList: React.SFC<RouteComponentProps & Props> = props => {
         siteMetadata: { description },
       },
     },
-    pageContext: {
-      numPages,
-      currentPage
-    }
+    pageContext: { numPages, currentPage },
   } = props;
 
   return (
@@ -85,14 +81,10 @@ export const pageQuery = graphql`
         description
       }
     }
-    allMarkdownRemark(
-        sort: { fields: [frontmatter___date], order: DESC }
-        limit: $limit
-        skip: $skip
-      ) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: $limit, skip: $skip) {
       edges {
         node {
-          excerpt(pruneLength: 240)
+          excerpt(pruneLength: 300)
           fields {
             slug
           }
@@ -112,5 +104,5 @@ export const pageQuery = graphql`
 
 const SiteTitle = styled(Headline1)`
   font-size: 36px;
-  margin-bottom: 8px;
+  margin-bottom: 24px;
 `;

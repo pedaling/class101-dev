@@ -38,7 +38,7 @@ const Tags: React.SFC<Props> = props => {
             <SiteContent>
               총 {totalCount}개의 글이 있습니다. <br />
               <br />
-              <Link to="/tags">모든 태그 보기</Link>
+              <ViewAllTagLink to="/tags">모든 태그 보기</ViewAllTagLink>
             </SiteContent>
           </Col>
         </Row>
@@ -86,11 +86,19 @@ export const pageQuery = graphql`
 
 const SiteTitle = styled(Headline1)`
   font-size: 36px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 `;
 
 const SiteContent = styled(Body2)`
   font-size: 17px;
   margin-bottom: 62px;
   color: ${Colors.gray700};
+`;
+
+const ViewAllTagLink = styled(Link)`
+  color: ${Colors.gray800};
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 `;

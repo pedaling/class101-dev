@@ -1,41 +1,3 @@
-@font-face {
-  font-family: 'SpoqaHanSans';
-  font-weight: 700;
-  font-display: swap;
-  src: local('Spoqa Han Sans Bold'),
-    url('https://cdn.rawgit.com/spoqa/spoqa-han-sans/01ff0283/Subset/SpoqaHanSans/SpoqaHanSansBold.woff2')
-      format('woff2'),
-    url('https://cdn.rawgit.com/spoqa/spoqa-han-sans/01ff0283/Subset/SpoqaHanSans/SpoqaHanSansBold.woff') format('woff'),
-    url('https://cdn.rawgit.com/spoqa/spoqa-han-sans/01ff0283/Subset/SpoqaHanSans/SpoqaHanSansBold.ttf')
-      format('truetype');
-}
-
-@font-face {
-  font-family: 'SpoqaHanSans';
-  font-weight: 400;
-  font-display: swap;
-  src: local('Spoqa Han Sans Regular'),
-    url('https://cdn.rawgit.com/spoqa/spoqa-han-sans/01ff0283/Subset/SpoqaHanSans/SpoqaHanSansRegular.woff2')
-      format('woff2'),
-    url('https://cdn.rawgit.com/spoqa/spoqa-han-sans/01ff0283/Subset/SpoqaHanSans/SpoqaHanSansRegular.woff')
-      format('woff'),
-    url('https://cdn.rawgit.com/spoqa/spoqa-han-sans/01ff0283/Subset/SpoqaHanSans/SpoqaHanSansRegular.ttf')
-      format('truetype');
-}
-
-@font-face {
-  font-family: 'SpoqaHanSans';
-  font-weight: 300;
-  font-display: swap;
-  src: local('Spoqa Han Sans Light'),
-    url('https://cdn.rawgit.com/spoqa/spoqa-han-sans/01ff0283/Subset/SpoqaHanSans/SpoqaHanSansLight.woff2')
-      format('woff2'),
-    url('https://cdn.rawgit.com/spoqa/spoqa-han-sans/01ff0283/Subset/SpoqaHanSans/SpoqaHanSansLight.woff')
-      format('woff'),
-    url('https://cdn.rawgit.com/spoqa/spoqa-han-sans/01ff0283/Subset/SpoqaHanSans/SpoqaHanSansLight.ttf')
-      format('truetype');
-}
-
 *,
 *::before,
 *::after {
@@ -55,8 +17,7 @@ body {
   font-weight: 400;
   font-style: normal;
   letter-spacing: 0;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Spoqa Han Sans", "Roboto", "Open Sans", "Microsoft YaHei", sans-serif;
+  font-family: 'Noto Sans KR', 'Roboto', 'Open Sans', 'Microsoft YaHei', sans-serif;
 }
