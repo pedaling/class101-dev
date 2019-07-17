@@ -14,7 +14,7 @@ interface Props {
   siteUrl: string;
 }
 
-const Comments: React.SFC<Props> = (props) => {
+const Comments: React.SFC<Props> = props => {
   const { slug, title, siteUrl } = props;
   const disqusShortname = 'class101-dev';
   const disqusConfig = {
@@ -23,16 +23,15 @@ const Comments: React.SFC<Props> = (props) => {
     identifier: slug,
   };
 
-  console.log({disqusShortname , disqusConfig})
-
-  return <CommentsContainer>
-    <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
-  </CommentsContainer>
-}
+  return (
+    <CommentsContainer>
+      <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+    </CommentsContainer>
+  );
+};
 
 const CommentsContainer = styled.div`
   margin: 32px auto;
 `;
-
 
 export default Comments;

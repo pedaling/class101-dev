@@ -41,7 +41,7 @@ const BlogPostTemplate: React.SFC<Props & RouteComponentProps> = props => {
         frontmatter: { title, date, description, thumbnail, author, tags },
       },
     },
-    location: { href },
+    location: { href, pathname },
   } = props;
 
   return (
@@ -51,7 +51,7 @@ const BlogPostTemplate: React.SFC<Props & RouteComponentProps> = props => {
         description={`${description} ${excerpt}`}
         thumbnail={thumbnail}
         author={author}
-        pathname={slug}
+        pathname={pathname}
       />
       <Grid>
         <Row>
@@ -104,7 +104,7 @@ const BlogPostTemplate: React.SFC<Props & RouteComponentProps> = props => {
         </Row>
         <Row>
           <Col>
-            <Comments title={title} siteUrl={siteUrl} slug={slug} />
+            <Comments title={title} siteUrl={siteUrl} slug={pathname} />
           </Col>
         </Row>
       </Grid>
