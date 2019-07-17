@@ -24,6 +24,7 @@
     "gatsby-plugin-typescript": "^2.0.13",
     "gatsby-plugin-typography": "^2.2.13",
     "gatsby-remark-copy-linked-files": "^2.0.12",
+    "gatsby-remark-external-links": "^0.0.4",
     "gatsby-remark-images": "^2.0.6",
     "gatsby-remark-prismjs": "^3.2.9",
     "gatsby-remark-responsive-iframe": "^2.1.1",
@@ -67,13 +68,17 @@
     "type": "git",
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,scss,md}": [
       "prettier --write --loglevel warn",
       "git add"
     ],
     "*.{ts,tsx}": [
-      "tslint --fix",
       "git add"
     ]
   },

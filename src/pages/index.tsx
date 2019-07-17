@@ -33,19 +33,18 @@ const BlogIndex: React.SFC<Props> = props => {
     data: {
       allMarkdownRemark: { edges },
       site: {
-        siteMetadata: { title, description },
+        siteMetadata: { description },
       },
     },
   } = props;
 
   return (
     <Layout>
-      <SEO title="모든 글" />
+      <SEO title="클래스101 기술 블로그" />
       <Grid>
         <Row>
           <Col>
-            <SiteTitle>{title}</SiteTitle>
-            <SiteContent>{description}</SiteContent>
+            <SiteTitle>{description}</SiteTitle>
           </Col>
         </Row>
         <Row>
@@ -94,10 +93,4 @@ export const pageQuery = graphql`
 const SiteTitle = styled(Headline1)`
   font-size: 36px;
   margin-bottom: 8px;
-`;
-
-const SiteContent = styled(Body2)`
-  font-size: 17px;
-  margin-bottom: 32px;
-  color: ${Colors.gray800};
 `;

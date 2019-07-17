@@ -6,32 +6,35 @@ import styled from 'styled-components';
 const SearchInput: React.SFC = () => {
   const [text, setText] = useState('');
 
-  const { allMarkdownRemark: { edges } } = useStaticQuery(PostsQuery);
+  const {
+    allMarkdownRemark: { edges },
+  } = useStaticQuery(PostsQuery);
 
   const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
-  }
+  };
 
-  return <AutoCompleteContainer>
-    <StyledInput placeholder="제목 및 내용을 입력하세요." onChange={onChangeText} />
-    {
-      text && <AutoCompleteList>
-      {
-        edges
-          .filter(({ node }: any) => node.frontmatter.title.includes(text) || node.rawMarkdownBody.includes(text))
-          .map(({ node }: any) => <AutoCompleteItem key={node.fields.slug} to={node.fields.slug}>
-          <b>{node.frontmatter.title}</b>
-          <p>{node.rawMarkdownBody.slice(0, 200)}...</p>
-        </AutoCompleteItem>)
-      }
-    </AutoCompleteList>
-    }
-  </AutoCompleteContainer>
-}
+  return (
+    <AutoCompleteContainer>
+      <StyledInput placeholder="제목 및 내용을 입력하세요." onChange={onChangeText} />
+      {text && (
+        <AutoCompleteList>
+          {edges
+            .filter(({ node }: any) => node.frontmatter.title.includes(text))
+            .map(({ node }: any) => (
+              <AutoCompleteItem key={node.fields.slug} to={node.fields.slug}>
+                <b>{node.frontmatter.title}</b>
+              </AutoCompleteItem>
+            ))}
+        </AutoCompleteList>
+      )}
+    </AutoCompleteContainer>
+  );
+};
 
 const PostsQuery = graphql`
   query {
-    allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}, limit: 1000) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
       edges {
         node {
           fields {
@@ -42,7 +45,6 @@ const PostsQuery = graphql`
             tags
             description
           }
-          rawMarkdownBody
         }
       }
     }
@@ -59,7 +61,7 @@ const AutoCompleteContainer = styled.div`
   position: relative;
   background: white;
   flex: 1 1 auto;
-`
+`;
 
 const AutoCompleteList = styled.div`
   position: absolute;
@@ -67,7 +69,7 @@ const AutoCompleteList = styled.div`
   bottom: 1px;
   top: 100%;
   z-index: 100;
-`
+`;
 
 const AutoCompleteItem = styled(Link)`
   ${TextStyles.body2}
@@ -79,7 +81,7 @@ const AutoCompleteItem = styled(Link)`
   color: inherit;
   text-decoration: none;
   margin: -1px;
-`
+`;
 
 const StyledInput = styled.input`
   ${TextStyles.body2};
