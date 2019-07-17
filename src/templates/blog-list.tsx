@@ -1,11 +1,13 @@
-import { Body2, Col, Colors, Grid, Headline1, Row } from '@class101/ui';
+import { Col, Grid, Headline1, Row } from '@class101/ui';
 import { graphql } from 'gatsby';
 import React from 'react';
+import { RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
 
 import Layout from '../components/Layout';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
+import Paginator from '../components/Paginator';
 import { Edge, Site } from '../graphql-types';
 
 interface Props {
@@ -15,20 +17,27 @@ interface Props {
       edges: Edge[];
     };
   };
-  [key: string]: any; // 임시 선언. location 어디서 받아오는거야?
+  pageContext: {
+    isCreatedByStatefulCreatePages: boolean;
+    numPages: number;
+    currentPage: number;
+    limit: number;
+    skip: number;
+  }
 }
 
 const getColLg = (index: number) => {
   if (index === 0) {
     return 12;
   }
-  if (index <= 2) {
-    return 6;
+  if (index <= 4) {
+    return 4;
   }
-  return 4;
+  return 6;
 };
 
-const BlogIndex: React.SFC<Props> = props => {
+const BlogList: React.SFC<RouteComponentProps & Props> = props => {
+  console.log(props);
   const {
     data: {
       allMarkdownRemark: { edges },
@@ -36,6 +45,10 @@ const BlogIndex: React.SFC<Props> = props => {
         siteMetadata: { description },
       },
     },
+    pageContext: {
+      numPages,
+      currentPage
+    }
   } = props;
 
   return (
@@ -53,23 +66,30 @@ const BlogIndex: React.SFC<Props> = props => {
               <PostCard node={node} />
             </Col>
           ))}
+          <Col md={12}>
+            <Paginator numPages={numPages} currentPage={currentPage} />
+          </Col>
         </Row>
       </Grid>
     </Layout>
   );
 };
 
-export default BlogIndex;
+export default BlogList;
 
 export const pageQuery = graphql`
-  query {
+  query blogListQuery($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
         description
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+        sort: { fields: [frontmatter___date], order: DESC }
+        limit: $limit
+        skip: $skip
+      ) {
       edges {
         node {
           excerpt(pruneLength: 240)
