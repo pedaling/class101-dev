@@ -1,5 +1,13 @@
 exports.users = [
   {
+    profileImage: '/images/profiles/john.png',
+    name: 'Geunwoo Jang',
+    description: '클래스101의 브랜드 매니저입니다.',
+    github: '',
+    blog: '',
+    linkedin: '',
+  },
+  {
     profileImage: '/images/profiles/joy.jpg',
     name: 'Hyeonseung Bae',
     description: '매일 세상의 중요한 문제를 해결하려고 고민하는 소프트웨어 개발자입니다.',

@@ -1,4 +1,5 @@
-import { Body2, TextStyles, Row, Col, Grid } from '@class101/ui';
+import { Body2, Col, Grid, Row, TextStyles } from '@class101/ui';
+import { RouteComponentProps } from '@reach/router';
 import { graphql, Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
@@ -9,6 +10,8 @@ import Img from '../components/Img';
 import Layout from '../components/Layout';
 import LinkTag from '../components/LinkTag';
 import SEO from '../components/SEO';
+import ShareButtons from '../components/ShareButtons';
+import RecruitingCard from '../components/RecruitingCard';
 import { MarkdownRemark, Site, User } from '../graphql-types';
 import markdown from '../utils/markdown';
 
@@ -18,13 +21,13 @@ interface Props {
     markdownRemark: MarkdownRemark;
   };
   pageContext: {
-    user: User,
-    previous: MarkdownRemark,
-    next: MarkdownRemark,
+    user: User;
+    previous: MarkdownRemark;
+    next: MarkdownRemark;
   };
 }
 
-const BlogPostTemplate: React.SFC<Props> = props => {
+const BlogPostTemplate: React.SFC<Props & RouteComponentProps> = props => {
   const {
     pageContext: { previous, next, user },
     data: {
@@ -38,10 +41,11 @@ const BlogPostTemplate: React.SFC<Props> = props => {
         frontmatter: { title, date, description, thumbnail, author, tags },
       },
     },
+    location: { href },
   } = props;
 
   return (
-    <Layout shareUrl={siteUrl + slug}>
+    <Layout>
       <SEO
         title={title}
         description={`${description} ${excerpt}`}
@@ -54,6 +58,8 @@ const BlogPostTemplate: React.SFC<Props> = props => {
           <Col>
             <PostContainer>
               <PostHeader>
+                <ShareButtons url={href} />
+
                 {tags.map((tag: string) => (
                   <LinkTag fieldValue={tag} key={tag} />
                 ))}
@@ -64,11 +70,14 @@ const BlogPostTemplate: React.SFC<Props> = props => {
 
               <PostBody className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
 
+              {tags.includes('recruiting') && <RecruitingCard />}
+
               <PostFooter>
                 {previous && (
                   <PostNavigator to={previous.fields.slug} rel="prev">
                     <PostNavigatorTitle>
-                      <span>이전 글</span><br />
+                      <span>이전 글</span>
+                      <br />
                       <b>{previous.frontmatter.title}</b>
                     </PostNavigatorTitle>
                     <Img src={previous.frontmatter.thumbnail} />
@@ -77,7 +86,8 @@ const BlogPostTemplate: React.SFC<Props> = props => {
                 {next && (
                   <PostNavigator to={next.fields.slug} rel="next">
                     <PostNavigatorTitle>
-                      <span>다음 글</span><br />
+                      <span>다음 글</span>
+                      <br />
                       <b>{next.frontmatter.title}</b>
                     </PostNavigatorTitle>
                     <Img src={next.frontmatter.thumbnail} />
@@ -89,12 +99,12 @@ const BlogPostTemplate: React.SFC<Props> = props => {
         </Row>
         <Row>
           <Col>
-           <Bio user={user} />
+            <Bio user={user} />
           </Col>
         </Row>
         <Row>
           <Col>
-            <Comments title={title} siteUrl={siteUrl} slug={slug}/>
+            <Comments title={title} siteUrl={siteUrl} slug={slug} />
           </Col>
         </Row>
       </Grid>
@@ -159,7 +169,7 @@ const PostBody = styled.div`
 
 const PostFooter = styled.div`
   display: flex;
-  @media(max-width: 425px) {
+  @media (max-width: 425px) {
     flex-direction: column;
   }
 `;

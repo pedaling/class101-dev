@@ -1,21 +1,13 @@
-import { Colors, TextStyles, Grid, Row, Col } from '@class101/ui';
+import { Col, Colors, Grid, Row, TextStyles } from '@class101/ui';
 import React from 'react';
 import styled from 'styled-components';
-import ShareButtons from './ShareButtons';
 
-interface Props {
-  shareUrl?: string;
-}
-
-const Footer: React.SFC<Props> = props => {
-  const { shareUrl } = props;
-
+const Footer: React.SFC = () => {
   return (
     <Container>
       <Grid>
         <Row>
           <Col>
-            <ShareButtons url={shareUrl || '/'} />
             <LogoIcon src="/images/logotype-black.png" alt="class101" />
             <ContactSection>
               <ContactArticle>

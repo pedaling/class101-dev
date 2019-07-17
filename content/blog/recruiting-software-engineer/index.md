@@ -1,9 +1,9 @@
 ---
-title: '취미 플랫폼,  클래스101의 개발자를 모십니다.'
+title: '취미 플랫폼, 클래스101의 개발자를 모십니다.'
 date: '2019-07-17T22:12:03.284Z'
 thumbnail: '/images/default.jpg'
 description: ''
-author: 'Yohan Kim'
+author: 'Geunwoo Jang'
 tags: ['recruiting', 'developer', 'web developer', 'software engineer']
 ---
 
@@ -77,7 +77,7 @@ tags: ['recruiting', 'developer', 'web developer', 'software engineer']
 - 필요에 따라 다양한 새로운 기술을 도입할 수 있는 유연한 개발 환경입니다.
 - 새로운 기술, 아키텍처, 코드 스타일 등 개발 전반적인 부분에서 활발한 토론을 하고 있으며, 필요하다고 생각하면 제안자가 직접 제품에 도입할 수 있습니다.
 - 프론트엔드 개발자와 백엔드 개발자의 경계를 두지 않습니다. 코드 전체를 이해할 수 있을 때 효율적인 코드와 프로덕트가 나온다고 믿습니다.
-- 자신의 업무 과정을 정리하고 기술 블로그( [https://class101.dev](https://class101.dev/) )에 기록합니다.
+- 자신의 업무 과정을 정리하고 기술 블로그( [https:// class101.dev](https://class101.dev/) )에 기록합니다.
 
 ## 개발 환경
 
