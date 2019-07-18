@@ -1,7 +1,7 @@
 const path = require(`path`);
 const _ = require('lodash');
-const { createFilePath } = require(`gatsby-source-filesystem`);
 const { users } = require(`./src/data/users`);
+// const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -44,14 +44,9 @@ exports.createPages = ({ graphql, actions }) => {
     edges.forEach((edge, index) => {
       const previous = index === edges.length - 1 ? null : edges[index + 1].node;
       const next = index === 0 ? null : edges[index - 1].node;
-      const date = new Date(edge.node.frontmatter.date);
-      const postPath = `/blog/${date
-        .toISOString()
-        .slice(0, 10)
-        .replace(/-/gi, '/')}/${_.kebabCase(edge.node.frontmatter.author)}/`;
-      console.log(postPath);
+
       createPage({
-        path: postPath,
+        path: edge.node.fields.slug,
         component: postTemplate,
         context: {
           slug: edge.node.fields.slug,
@@ -121,11 +116,22 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
+    /**
+     * blog post의 path를 년/월/일/지은이 로 고정합니다.
+     */
+
+    // const value = createFilePath({ node, getNode });
+
+    const date = new Date(node.frontmatter.date);
+    const slug = `/blog/${date
+      .toISOString()
+      .slice(0, 10)
+      .replace(/-/gi, '/')}/${_.kebabCase(node.frontmatter.author)}/`;
+
     createNodeField({
-      name: `slug`,
       node,
-      value,
+      name: `slug`,
+      value: slug,
     });
   }
 };

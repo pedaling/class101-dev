@@ -1,4 +1,4 @@
-import { Body2, Col, Grid, Row, TextStyles, Colors } from '@class101/ui';
+import { Body2, Col, Colors, Grid, Row, TextStyles } from '@class101/ui';
 import { RouteComponentProps } from '@reach/router';
 import { graphql, Link } from 'gatsby';
 import parse, { HTMLReactParserOptions } from 'html-react-parser';
@@ -16,7 +16,6 @@ import SEO from '../components/SEO';
 import ShareButtons from '../components/ShareButtons';
 import { MarkdownRemark, Site, User } from '../graphql-types';
 import markdown from '../utils/markdown';
-import getPostPath from '../utils/getPostPath';
 
 interface Props {
   data: {
@@ -97,7 +96,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
                 <PostDate>{date}</PostDate>
               </PostHeader>
 
-              <PostTOC>{parse(tableOfContents.split(slug).join(''), options)}</PostTOC>
+              {tableOfContents && <PostTOC>{parse(tableOfContents.split(slug).join(''), options)}</PostTOC>}
 
               <PostBody className="markdown-body">{parse(html, options)}</PostBody>
 
@@ -105,7 +104,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
 
               <PostFooter>
                 {previous && (
-                  <PostNavigator to={getPostPath(previous.frontmatter.date, previous.frontmatter.author)} rel="prev">
+                  <PostNavigator to={previous.fields.slug} rel="prev">
                     <PostNavigatorTitle>
                       <span>이전 글</span>
                       <br />
@@ -115,7 +114,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
                   </PostNavigator>
                 )}
                 {next && (
-                  <PostNavigator to={getPostPath(next.frontmatter.date, next.frontmatter.author)} rel="next">
+                  <PostNavigator to={next.fields.slug} rel="next">
                     <PostNavigatorTitle>
                       <span>다음 글</span>
                       <br />

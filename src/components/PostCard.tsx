@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 import Img from '../components/Img';
 import { Node } from '../graphql-types';
-import getPostPath from '../utils/getPostPath';
 
 interface Props {
   node: Node;
@@ -14,13 +13,14 @@ interface Props {
 const PostCard: React.SFC<Props> = props => {
   const {
     node: {
+      fields: { slug },
       frontmatter: { title, description, thumbnail, date, author },
       excerpt,
     },
   } = props;
 
   return (
-    <Card to={getPostPath(date, author)}>
+    <Card to={slug}>
       <CardThumbnail src={thumbnail} />
       <CardBody>
         <CardCaption>{date}</CardCaption>
