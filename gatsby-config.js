@@ -167,7 +167,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#ffffff`,
         lang: `ko`,
-        display: `minimal-ui`,
+        display: `fullscreen`,
         include_favicon: true,
         icon: `static/icons/favicon-32x32.png`,
         icons: [
