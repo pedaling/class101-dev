@@ -13,11 +13,9 @@ const Footer: React.SFC = () => {
               <ContactArticle>
                 <b>(주)클래스101</b>
                 <p>서울특별시 중구 한강대로 416 서울스퀘어 위워크 13층</p>
+                <p>457-81-00277</p>
                 <p>
-                  <a href="tel:4578100277">457-81-00277</a>
-                </p>
-                <p>
-                  <a href="mailto:dev@class101.net">dev@class101.net</a>
+                  <a href="mailto:helloworld@class101.net">helloworld@class101.net</a>
                 </p>
               </ContactArticle>
               <ContactArticle>
