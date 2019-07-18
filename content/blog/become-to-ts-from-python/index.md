@@ -3,7 +3,7 @@ title: Python 서버 개발자 관점에서 본 TypeScript, JavaScript
 date: '2019-07-16T14:12:03.284Z'
 thumbnail: '/images/thumbnails/typescript.png'
 description: ''
-author: 'Jonghyeok Choi'
+author: 'Jinho Kim'
 tags: ['typescript', 'javascript']
 ---
 
