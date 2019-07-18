@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `class101 dev`,
+    title: `클래스101 기술 블로그`,
     author: `class101`,
     description: `신나는 코딩 세상`,
     keywords: ['class101', 'typescript', 'monorepo', 'react', 'graphql', 'apllo', 'aws'],
@@ -161,7 +161,7 @@ module.exports = {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `클래스101 기술 블로그`,
-        short_name: `class101 dev`,
+        short_name: `class101.dev`,
         description: `신나는 코딩 세상`,
         start_url: `/`,
         background_color: `#ffffff`,

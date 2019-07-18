@@ -49,7 +49,7 @@ const PostsTemplate: React.SFC<RouteComponentProps & Props> = props => {
 
   return (
     <Layout>
-      <SEO title="클래스101 기술 블로그" />
+      <SEO title="class101.dev" />
       <Grid>
         <Row>
           <Col>
