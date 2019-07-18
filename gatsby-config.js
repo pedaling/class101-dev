@@ -1,13 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `Class101 Dev`,
-    author: `Class101`,
+    title: `class101 dev`,
+    author: `class101`,
     description: `신나는 코딩 세상`,
     keywords: ['class101', 'typescript', 'monorepo', 'react', 'graphql', 'apllo', 'aws'],
     siteUrl: `https://class101.dev`,
     facebookAppId: '2582489538450547',
     social: {
-      twitter: `Class101`,
+      twitter: `class101`,
     },
   },
   plugins: [
@@ -160,14 +160,58 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Class101 Dev`,
-        short_name: `Class101 Dev`,
+        name: `클래스101 기술 블로그`,
+        short_name: `class101 dev`,
+        description: `신나는 코딩 세상`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#ffffff`,
+        lang: `ko`,
         display: `minimal-ui`,
-        icon: `static/favicon-32x32.png`,
-        include_favicon: false,
+        include_favicon: true,
+        icon: `static/icons/favicon-32x32.png`,
+        icons: [
+          {
+            src: 'static/icons/android-icon-48x48.png',
+            sizes: '48x48',
+            type: 'image/png',
+          },
+          {
+            src: 'static/icons/android-icon-72x72.png',
+            sizes: '72x72',
+            type: 'image/png',
+          },
+          {
+            src: 'static/icons/android-icon-96x96.png',
+            sizes: '96x96',
+            type: 'image/png',
+          },
+          {
+            src: 'static/icons/android-icon-144x144.png',
+            sizes: '144x144',
+            type: 'image/png',
+          },
+          {
+            src: 'static/icons/android-icon-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'static/icons/android-icon-256x256.png',
+            sizes: '256x256',
+            type: 'image/png',
+          },
+          {
+            src: 'static/icons/android-icon-384x384.png',
+            sizes: '384x384',
+            type: 'image/png',
+          },
+          {
+            src: 'static/icons/android-icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
       },
     },
     `gatsby-plugin-offline`,
