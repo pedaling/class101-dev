@@ -11,16 +11,7 @@ tags: ['typescript', 'monorepo']
 
 클래스101에서 추천 서버를 담당하고 있는 Esmond입니다. 최근에 TF-IDF(Term Frequency - Inverse Document Frequency)를 활용해 클래스 간의 유사도를 분석하고 이를 API로 올렸습니다. 그 개발 과정과 이를 통해 앞으로 개선할 점을 두 편의 글로 쓰겠습니다.
 
-1. 개발 배경 및 목표
-2. 객체 수치화를 위한 유사도 측정법 조사
-   1. Euclidean Distance
-   2. Manhattan Distance
-   3. Cosine Similarity
-3. 개발 과정
-4. 산출물 결과 평가
-5. 향후 개선 방향 수립
-
-## 1. 개발 배경 및 목표
+## 개발 배경 및 목표
 
 클래스101 앱에서 볼 수 있는 수백 개의 클래스를 어떻게 분류할 수 있을까요? 우리는 크게 두 가지의 기준을 가지고 있습니다.
 
@@ -34,18 +25,20 @@ tags: ['typescript', 'monorepo']
 - 클래스가 추가될 때마다 자동으로 해당 데이터를 갱신한다.
 - API로 오픈되어 어플리케이션 Layer에서 쉽게 접근할 수 있도록 한다.
 
-## 2. 객체 수치화를 위한 유사도 측정법 조사
+## 객체 수치화를 위한 유사도 측정법 조사
 
 클래스 간의 유사도를 추출하려면 먼저 유사도를 측정하는 여러가지 방법들을 알아야 합니다. 지금부터 소개하는 Euclidean Distance, Manhattan Distance, Cosine Similarity는 자주 쓰이는 유사도 측정법입니다.
 
-**1) Euclidean Distance**
+### Euclidean Distance
+
 가장 간단하고도 유명한 방법으로, 두 벡터 간의 직선 거리를 측정하는 방식입니다. 2차원에서는 피타고라스 정의로도 유명한 바로 그 방법입니다. 점 p = (p1, p2, ..., pn), q = (q1, q2, ..., qn) 에 대하여
 
 ![](Untitled-d230bf87-2140-4196-8e40-871c0ac265de.png)
 
 와 같이 계산합니다.
 
-**2) Manhattan Distance**
+### Manhattan Distance
+
 Taxicab geometry라고도 합니다. 다음과 같이 정사각형으로 나뉜 공간에서 좌표로 표시된 한 점이 다른 한 점으로 가는 길의 거리입니다.
 
 ![](Untitled-6d28fa68-102f-48d2-81df-d940175de695.png)
@@ -56,7 +49,8 @@ Taxicab geometry라고도 합니다. 다음과 같이 정사각형으로 나뉜 
 
 와 같이 계산합니다.
 
-**3) Cosine Similarity**
+### Cosine Similarity
+
 내적공간의 두 벡터에 대하여 벡터의 크기가 아닌 방향의 유사도를 판단하는 목적으로 사용합니다. 두 벡터의 방향이 비슷할 수록 유사도가 높다고 판단합니다. 두 벡터의 방향이 완전히 다를 경우(각도가 180°일 때)와 완전히 같을 경우(각도가 0°일 때)의 코사인 값 -1에서 1 사이의 값을 가집니다.
 
 ![](Untitled-477f1d55-4962-4ce0-a5b4-2ec9751bc69c.png)
@@ -65,7 +59,7 @@ Taxicab geometry라고도 합니다. 다음과 같이 정사각형으로 나뉜 
 
 위와 같은 유사도 측정법을 클래스에 적용하려면 먼저 클래스라는 개념적인 객체를 수치화하는 과정이 필요했습니다. 이 과정에서 활용되는 개념이 바로 벡터 공간 모델인 TF-IDF입니다. TF-IDF란 특정 Document에 등장하는 단어들이 해당 Document에서 얼마나 중요한지를 나타내는 통계적 수치입니다. 이 값이 높은 단어일수록 Document에서 중요한 단어라고 판단할 수 있습니다. 이 값은 TF(단어의 빈도)와 IDF(문서 빈도의 역수)의 곱으로 계산됩니다. 다시 말해 이 TF-IDF값을 활용하여 클래스를 Vectorization한 뒤 유사도를 측정하는 식으로 클래스 간 유사도를 계산한다고 할 수 있습니다. <a href="#footnote-1">[1]</a>
 
-## 3. 개발 과정
+## 개발 과정
 
 클래스라는 객체는 클래스 제목, 클래스 설명, 오픈 예정일, 크리에이터... 등등 여러 가지 속성을 가지고 있습니다. 이 모든 속성들을 전부 반영하여 클래스라는 개념을 수치화할 수 있다면 정말 좋겠지만, 우선은 클래스 제목과 설명 값만 가지고 유사도를 구해보기로 했습니다. TF-IDF를 활용한 vectorization과 유사도 분석은 관련 내장 함수들이 잘 갖춰진 scikit-learn을 사용했습니다.
 
@@ -300,8 +294,8 @@ description 기준 타겟 클래스와 카테고리가 일치하는 비율의 �
 
 **웹사이트**
 
-- Euclidean distance, Wikipedia, [https://en.wikipedia.org/wiki/Euclidean_distance](https://en.wikipedia.org/wiki/Euclidean_distance) 참조. (2019.07.12)
-- Taxicab geometry, Wikipedia, [https://en.wikipedia.org/wiki/Taxicab_geometry](https://en.wikipedia.org/wiki/Taxicab_geometry) 참조. (2019.07.12)
-- Cosine similarity, Wikipedia, [https://en.wikipedia.org/wiki/Cosine_similarity](https://en.wikipedia.org/wiki/Cosine_similarity) 참조. (2019.07.12)
-- TF-IDF, Wikipedia, [https://en.wikipedia.org/wiki/Tf–idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) 참조. (2019.07.12)
-- Okt class, KoNLPy, [http://konlpy.org/en/latest/api/konlpy.tag/](http://konlpy.org/en/latest/api/konlpy.tag/) 참조. (2019.07.12)
+- Euclidean distance, Wikipedia, [https:// en.wikipedia.org/wiki/Euclidean_distance](https://en.wikipedia.org/wiki/Euclidean_distance) 참조. (2019.07.12)
+- Taxicab geometry, Wikipedia, [https:// en.wikipedia.org/wiki/Taxicab_geometry](https://en.wikipedia.org/wiki/Taxicab_geometry) 참조. (2019.07.12)
+- Cosine similarity, Wikipedia, [https:// en.wikipedia.org/wiki/Cosine_similarity](https://en.wikipedia.org/wiki/Cosine_similarity) 참조. (2019.07.12)
+- TF-IDF, Wikipedia, [https:// en.wikipedia.org/wiki/Tf–idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf) 참조. (2019.07.12)
+- Okt class, KoNLPy, [http:// konlpy.org/en/latest/api/konlpy.tag/](http://konlpy.org/en/latest/api/konlpy.tag/) 참조. (2019.07.12)

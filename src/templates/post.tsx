@@ -1,6 +1,8 @@
-import { Body2, Col, Grid, Row, TextStyles } from '@class101/ui';
+import { Body2, Col, Grid, Row, TextStyles, Colors } from '@class101/ui';
 import { RouteComponentProps } from '@reach/router';
 import { graphql, Link } from 'gatsby';
+import parse, { HTMLReactParserOptions } from 'html-react-parser';
+import _ from 'lodash';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -14,6 +16,7 @@ import SEO from '../components/SEO';
 import ShareButtons from '../components/ShareButtons';
 import { MarkdownRemark, Site, User } from '../graphql-types';
 import markdown from '../utils/markdown';
+import getPostPath from '../utils/getPostPath';
 
 interface Props {
   data: {
@@ -27,6 +30,31 @@ interface Props {
   };
 }
 
+const options: HTMLReactParserOptions = {
+  replace: domEl => {
+    if (!domEl.parent || !domEl.parent.name) {
+      return;
+    }
+
+    const tagName = domEl.parent.name;
+
+    if (
+      tagName === 'h1' ||
+      tagName === 'h2' ||
+      tagName === 'h3' ||
+      tagName === 'h4' ||
+      tagName === 'h5' ||
+      tagName === 'h6'
+    ) {
+      const innerText = domEl.data as string;
+
+      return React.createElement('span', { id: encodeURI(_.kebabCase(innerText)) }, innerText);
+    }
+
+    return;
+  },
+};
+
 const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
   const {
     pageContext: { previous, next, user },
@@ -35,6 +63,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
         siteMetadata: { siteUrl },
       },
       markdownRemark: {
+        tableOfContents,
         excerpt,
         html,
         fields: { slug },
@@ -68,13 +97,15 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
                 <PostDate>{date}</PostDate>
               </PostHeader>
 
-              <PostBody className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
+              <PostTOC>{parse(tableOfContents.split(slug).join(''), options)}</PostTOC>
+
+              <PostBody className="markdown-body">{parse(html, options)}</PostBody>
 
               {tags.includes('recruiting') && <RecruitingCard />}
 
               <PostFooter>
                 {previous && (
-                  <PostNavigator to={previous.fields.slug} rel="prev">
+                  <PostNavigator to={getPostPath(previous.frontmatter.date, previous.frontmatter.author)} rel="prev">
                     <PostNavigatorTitle>
                       <span>이전 글</span>
                       <br />
@@ -84,7 +115,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
                   </PostNavigator>
                 )}
                 {next && (
-                  <PostNavigator to={next.fields.slug} rel="next">
+                  <PostNavigator to={getPostPath(next.frontmatter.date, next.frontmatter.author)} rel="next">
                     <PostNavigatorTitle>
                       <span>다음 글</span>
                       <br />
@@ -125,6 +156,7 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
+      tableOfContents
       excerpt(pruneLength: 300, truncate: true)
       html
       fields {
@@ -161,6 +193,29 @@ const PostTitle = styled.h1`
 
 const PostDate = styled(Body2)`
   margin-bottom: 16px;
+`;
+
+const PostTOC = styled.div`
+  ${TextStyles.body2};
+  margin: 16px 0;
+  padding: 16px 0;
+  line-height: 26px;
+  border: ${Colors.gray400} solid 1px;
+  a {
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  ul,
+  ol {
+    margin: 0 0 0 8px;
+    list-style-type: decimal;
+  }
+  p {
+    margin: 0;
+  }
 `;
 
 const PostBody = styled.div`

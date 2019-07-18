@@ -1,40 +1,33 @@
 import { Body2, Colors, TextStyles } from '@class101/ui';
 import { Link } from 'gatsby';
-import _ from 'lodash';
 import React from 'react';
 import styled from 'styled-components';
 
 import Img from '../components/Img';
 import { Node } from '../graphql-types';
+import getPostPath from '../utils/getPostPath';
 
 interface Props {
   node: Node;
 }
 
 const PostCard: React.SFC<Props> = props => {
-  const { node } = props;
-
-  const title = node.frontmatter.title || node.fields.slug;
-  const thumbnail = node.frontmatter.thumbnail;
-  const date = new Date(node.frontmatter.date);
-  const postPath = `/blog/${date
-    .toISOString()
-    .slice(0, 10)
-    .replace(/-/gi, '/')}/${_.kebabCase(node.frontmatter.author)}/`;
+  const {
+    node: {
+      frontmatter: { title, description, thumbnail, date, author },
+      excerpt,
+    },
+  } = props;
 
   return (
-    <Card to={postPath}>
+    <Card to={getPostPath(date, author)}>
       <CardThumbnail src={thumbnail} />
       <CardBody>
-        <CardCaption>{node.frontmatter.date}</CardCaption>
+        <CardCaption>{date}</CardCaption>
         <CardTitle>{title}</CardTitle>
-        <CardDescription
-          dangerouslySetInnerHTML={{
-            __html: node.frontmatter.description || node.excerpt,
-          }}
-        />
+        <CardDescription>{description || excerpt}</CardDescription>
         <CardCaption>
-          Written By <b>{node.frontmatter.author}</b>
+          Written By <b>{author}</b>
         </CardCaption>
       </CardBody>
     </Card>

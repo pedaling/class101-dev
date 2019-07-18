@@ -2,6 +2,7 @@ import { Colors, TextStyles } from '@class101/ui';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import getPostPath from '../utils/getPostPath';
 
 const SearchInput: React.SFC = () => {
   const [text, setText] = useState('');
@@ -22,7 +23,7 @@ const SearchInput: React.SFC = () => {
           {edges
             .filter(({ node }: any) => node.frontmatter.title.includes(text))
             .map(({ node }: any) => (
-              <AutoCompleteItem key={node.fields.slug} to={node.fields.slug}>
+              <AutoCompleteItem key={node.fields.slug} to={getPostPath(node.frontmatter.date, node.frontmatter.author)}>
                 <b>{node.frontmatter.title}</b>
               </AutoCompleteItem>
             ))}
@@ -44,6 +45,8 @@ const PostsQuery = graphql`
             title
             tags
             description
+            author
+            date
           }
         }
       }

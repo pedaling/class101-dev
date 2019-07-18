@@ -1,6 +1,6 @@
 ---
-title: '취미 플랫폼, 클래스101의 개발자를 모십니다.'
-date: '2019-07-17T22:12:03.284Z'
+title: '클래스101 소프트웨어 개발자 채용'
+date: '2099-07-17T22:12:03.284Z'
 thumbnail: '/images/default.jpg'
 description: ''
 author: 'Geunwoo Jang'

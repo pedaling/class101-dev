@@ -2,6 +2,7 @@ export interface MarkdownRemark {
   id: string;
   html: string;
   excerpt?: string;
+  tableOfContents?: string;
   frontmatter: Frontmatter;
   fields: {
     slug?: string;

@@ -303,7 +303,7 @@ export default css`
   .markdown-body h5,
   .markdown-body h6 {
     margin-bottom: 0;
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   .markdown-body h1 {
@@ -352,7 +352,7 @@ export default css`
 
   .markdown-body p {
     line-height: 28px;
-    margin-bottom: 10px;
+    margin-bottom: 24px;
     margin-top: 0;
   }
 
@@ -524,7 +524,7 @@ export default css`
   .markdown-body pre,
   .markdown-body table,
   .markdown-body ul {
-    margin-bottom: 16px;
+    margin-bottom: 32px;
     margin-top: 0;
   }
 
@@ -573,7 +573,7 @@ export default css`
     font-weight: 600;
     line-height: 1.25;
     margin-bottom: 16px;
-    margin-top: 24px;
+    margin-top: 44px;
   }
 
   .markdown-body h1 {
@@ -591,7 +591,8 @@ export default css`
   }
 
   .markdown-body h3 {
-    font-size: 1.25em;
+    font-size: 1.15em;
+    font-weight: 400;
   }
 
   .markdown-body h4 {
@@ -625,7 +626,7 @@ export default css`
   }
 
   .markdown-body li > p {
-    margin-top: 0px;
+    margin-top: 0;
     margin-bottom: 0;
   }
 
