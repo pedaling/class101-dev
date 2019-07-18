@@ -25,9 +25,7 @@ interface Props {
 const AuthorTemplate: React.SFC<Props> = props => {
   const { pageContext, data } = props;
   const { user, slug } = pageContext;
-  const edges = data.allMarkdownRemark && data.allMarkdownRemark.edges 
-    ? data.allMarkdownRemark.edges 
-    : [];
+  const edges = data.allMarkdownRemark && data.allMarkdownRemark.edges ? data.allMarkdownRemark.edges : [];
   return (
     <Layout>
       <SEO title={user.name} pathname={slug} />
@@ -61,7 +59,7 @@ export const pageQuery = graphql`
       totalCount
       edges {
         node {
-          excerpt(pruneLength: 320)
+          excerpt(pruneLength: 300, truncate: true)
           fields {
             slug
           }
@@ -78,4 +76,3 @@ export const pageQuery = graphql`
     }
   }
 `;
-
