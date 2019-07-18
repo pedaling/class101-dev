@@ -1,4 +1,4 @@
-import { Col, Grid, Headline1, Row } from '@class101/ui';
+import { Col, Grid, Headline1, Row, Headline2, TextStyles } from '@class101/ui';
 import { graphql } from 'gatsby';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
@@ -102,7 +102,7 @@ export const pageQuery = graphql`
   }
 `;
 
-const SiteTitle = styled(Headline1)`
-  font-size: 36px;
+const SiteTitle = styled.h1`
+  ${TextStyles.headline2};
   margin-bottom: 24px;
 `;
