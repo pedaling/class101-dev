@@ -6,10 +6,10 @@ const { users } = require(`./src/data/users`);
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  const blogTemplate = path.resolve(`./src/templates/blog-post.tsx`);
-  const listTemplate = path.resolve(`./src/templates/blog-list.tsx`);
-  const tagTemplate = path.resolve('src/templates/tags.tsx');
-  const authorTemplate = path.resolve('src/templates/authors.tsx');
+  const postTemplate = path.resolve(`./src/templates/post.tsx`);
+  const postsTemplate = path.resolve(`./src/templates/posts.tsx`);
+  const tagTemplate = path.resolve('src/templates/tag.tsx');
+  const authorTemplate = path.resolve('src/templates/author.tsx');
 
   return graphql(
     `
@@ -52,7 +52,7 @@ exports.createPages = ({ graphql, actions }) => {
       console.log(postPath);
       createPage({
         path: postPath,
-        component: blogTemplate,
+        component: postTemplate,
         context: {
           slug: edge.node.fields.slug,
           user: users.find(users => users.name === edge.node.frontmatter.author),
@@ -68,7 +68,7 @@ exports.createPages = ({ graphql, actions }) => {
     Array.from({ length: numPages }).forEach((_, i) => {
       createPage({
         path: i === 0 ? `/` : `/blog/${i + 1}`,
-        component: listTemplate,
+        component: postsTemplate,
         context: {
           limit: postsPerPage,
           skip: i * postsPerPage,

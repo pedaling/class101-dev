@@ -36,7 +36,7 @@ const getColLg = (index: number) => {
   return 6;
 };
 
-const BlogList: React.SFC<RouteComponentProps & Props> = props => {
+const PostsTemplate: React.SFC<RouteComponentProps & Props> = props => {
   const {
     data: {
       allMarkdownRemark: { edges },
@@ -71,10 +71,10 @@ const BlogList: React.SFC<RouteComponentProps & Props> = props => {
   );
 };
 
-export default BlogList;
+export default PostsTemplate;
 
 export const pageQuery = graphql`
-  query blogListQuery($skip: Int!, $limit: Int!) {
+  query PostsTemplateQuery($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title

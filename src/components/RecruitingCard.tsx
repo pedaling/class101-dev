@@ -15,7 +15,7 @@ const RecruitingCard: React.SFC = () => {
   const [copied, setCopied] = useState(false);
 
   const handleClickCopy = () => {
-    copyToClipboard('hr@class101.net');
+    copyToClipboard('helloworld@class101.net');
     setCopied(true);
   };
 
@@ -27,7 +27,7 @@ const RecruitingCard: React.SFC = () => {
         (제목 예: [개발자] 프론트엔드 개발자에 지원합니다.)
       </p>
       <p>
-        <b>hr@class101.net</b> <button onClick={handleClickCopy}>복사하기</button>
+        <b>helloworld@class101.net</b> <button onClick={handleClickCopy}>복사하기</button>
       </p>
       {copied && <p>복사되었습니다!</p>}
     </RecruitingCardWrapper>

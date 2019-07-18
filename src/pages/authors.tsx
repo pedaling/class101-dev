@@ -6,8 +6,7 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { users } from '../data/users';
 
-
-const TagsPage: React.SFC = () => (
+const AuthorsPage: React.SFC = () => (
   <Layout>
     <SEO title={`클래스101 구성원`} pathname={'/tags'} />
     <Grid>
@@ -17,15 +16,14 @@ const TagsPage: React.SFC = () => (
         </Col>
       </Row>
       <Row>
-      {users.map(user => (
-        <Col key={user.name} lgOffset={2}>
-          <Bio user={user}/>
-        </Col>
-      ))}
+        {users.map(user => (
+          <Col key={user.name} lgOffset={2}>
+            <Bio user={user} />
+          </Col>
+        ))}
       </Row>
     </Grid>
   </Layout>
 );
 
-export default TagsPage;
-
+export default AuthorsPage;

@@ -27,7 +27,7 @@ interface Props {
   };
 }
 
-const BlogPostTemplate: React.SFC<Props & RouteComponentProps> = props => {
+const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
   const {
     pageContext: { previous, next, user },
     data: {
@@ -112,7 +112,7 @@ const BlogPostTemplate: React.SFC<Props & RouteComponentProps> = props => {
   );
 };
 
-export default BlogPostTemplate;
+export default PostTemplate;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {

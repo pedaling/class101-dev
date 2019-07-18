@@ -1,13 +1,13 @@
-import { Body2, Col, Colors, Grid, Headline1, Row } from '@class101/ui';
-import { graphql, Link } from 'gatsby';
+import { Col, Grid, Row } from '@class101/ui';
+import { graphql } from 'gatsby';
 import React from 'react';
-import styled from 'styled-components';
 
+import Bio from '../components/Bio';
 import Layout from '../components/Layout';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
-import { Edge } from '../graphql-types';
-import getTagText from '../utils/getTagText';
+import { Edge, User } from '../graphql-types';
+
 // Components
 interface Props {
   data: {
@@ -17,28 +17,24 @@ interface Props {
     };
   };
   pageContext: {
-    tag: string;
+    user: User;
     slug: string;
   };
 }
 
-const Tags: React.SFC<Props> = props => {
+const AuthorTemplate: React.SFC<Props> = props => {
   const { pageContext, data } = props;
-  const { tag, slug } = pageContext;
-  const { edges, totalCount } = data.allMarkdownRemark;
-  const tagText = getTagText(tag);
+  const { user, slug } = pageContext;
+  const edges = data.allMarkdownRemark && data.allMarkdownRemark.edges 
+    ? data.allMarkdownRemark.edges 
+    : [];
   return (
     <Layout>
-      <SEO title={`${tagText}`} pathname={slug} />
+      <SEO title={user.name} pathname={slug} />
       <Grid>
         <Row>
           <Col>
-            <SiteTitle>{tagText}</SiteTitle>
-            <SiteContent>
-              총 {totalCount}개의 글이 있습니다. <br />
-              <br />
-              <ViewAllTagLink to="/tags">모든 태그 보기</ViewAllTagLink>
-            </SiteContent>
+            <Bio user={user} />
           </Col>
         </Row>
         <Row>
@@ -53,14 +49,14 @@ const Tags: React.SFC<Props> = props => {
   );
 };
 
-export default Tags;
+export default AuthorTemplate;
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query($author: String) {
     allMarkdownRemark(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+      filter: { frontmatter: { author: { eq: $author } } }
     ) {
       totalCount
       edges {
@@ -83,21 +79,3 @@ export const pageQuery = graphql`
   }
 `;
 
-const SiteTitle = styled(Headline1)`
-  font-size: 36px;
-  margin-bottom: 16px;
-`;
-
-const SiteContent = styled(Body2)`
-  font-size: 17px;
-  margin-bottom: 62px;
-  color: ${Colors.gray700};
-`;
-
-const ViewAllTagLink = styled(Link)`
-  color: ${Colors.gray800};
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
