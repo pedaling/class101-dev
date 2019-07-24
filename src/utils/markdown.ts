@@ -394,6 +394,10 @@ export default css`
     margin-top: 0;
   }
 
+  .markdown-body .footnotes p {
+    display: inline;
+  }
+
   .markdown-body input::-webkit-inner-spin-button,
   .markdown-body input::-webkit-outer-spin-button {
     -webkit-appearance: none;

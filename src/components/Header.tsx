@@ -1,13 +1,16 @@
-import { Colors, Grid, Row, Col, Icon } from '@class101/ui';
+import { Col, Colors, Grid, Icon, Row } from '@class101/ui';
 import { Link } from 'gatsby';
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+
 import SearchInput from './SearchInput';
 
 const Header: React.SFC = () => {
-
   const [menu, openMenu] = useState(false);
-  const logo = typeof window !== 'undefined' && window.innerWidth > 425 ? '/images/logotype-black.png' : '/images/symbol-black.png';
+  const logo =
+    typeof window !== 'undefined' && window.innerWidth > 425
+      ? '/images/logotype-black.png'
+      : '/images/symbol-black.png';
 
   const toggleMenu = () => openMenu(!menu);
 
@@ -22,9 +25,8 @@ const Header: React.SFC = () => {
               </NoHoverLink>
               <SearchInput />
               <MenuContainer onClick={toggleMenu}>
-                <Icon.Menu fillColor={Colors.gray600}/>
-                {
-                  menu &&
+                <Icon.Menu fillColor={Colors.gray600} />
+                {menu && (
                   <NavLinkList>
                     <NavLink to="/tags/recruiting">채용</NavLink>
                     <NavLink to="/authors/">구성원</NavLink>
@@ -32,7 +34,7 @@ const Header: React.SFC = () => {
                       깃허브
                     </ExternalNavLink>
                   </NavLinkList>
-                }
+                )}
               </MenuContainer>
             </NavInnerContainer>
           </Col>
@@ -40,7 +42,7 @@ const Header: React.SFC = () => {
       </Grid>
     </NavConatiner>
   );
-}
+};
 
 export default Header;
 

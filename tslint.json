@@ -4,6 +4,7 @@
     "max-classes-per-file": false,
     "variable-name": [true, "allow-leading-underscore", "allow-pascal-case"],
     "interface-name": false,
-    "member-access": false
+    "member-access": false,
+    "import-name": false
   }
 }
