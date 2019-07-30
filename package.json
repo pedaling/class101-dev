@@ -79,7 +79,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,css,scss,md}": [
+    "*.{js,jsx,ts,tsx,css,scss}": [
       "prettier --write --loglevel warn",
       "tslint --fix",
       "git add"

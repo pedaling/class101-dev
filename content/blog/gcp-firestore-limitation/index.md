@@ -27,5 +27,5 @@ Firestore는 key-value store로 NoSQL 데이터 모델을 가지지만 위와 �
 
 **참고문헌**
 
-[^1]: [Firebase 사용량 및 한도, Firebase](https:// firebase.google.com/docs/firestore/quotas#writes_and_transactions) (2019.07.23)
-[^2]: [Cloud Firestore에서 간단한 쿼리 및 복합 쿼리 실행, Firebase](https:// firebase.google.com/docs/firestore/query-data/queries?hl=ko) (2019.07.23)
+[^1]: [Firebase 사용량 및 한도, Firebase](https://firebase.google.com/docs/firestore/quotas#writes_and_transactions) (2019.07.23)
+[^2]: [Cloud Firestore에서 간단한 쿼리 및 복합 쿼리 실행, Firebase](https://firebase.google.com/docs/firestore/query-data/queries?hl=ko) (2019.07.23)
