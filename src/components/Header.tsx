@@ -5,7 +5,12 @@ import styled, { css } from 'styled-components';
 
 import SearchInput from './SearchInput';
 
-const Header: React.SFC = () => {
+interface Props {
+  language: string;
+}
+
+const Header: React.SFC<Props> = props => {
+  const { language } = props;
   const [menu, openMenu] = useState(false);
   const logo =
     typeof window !== 'undefined' && window.innerWidth > 425
@@ -20,7 +25,7 @@ const Header: React.SFC = () => {
         <Row>
           <Col>
             <NavInnerContainer>
-              <NoHoverLink to="/">
+              <NoHoverLink to={`/${language}`}>
                 <LogoIcon src={logo} alt="class101" />
               </NoHoverLink>
               <SearchInput />
@@ -28,8 +33,8 @@ const Header: React.SFC = () => {
                 <Icon.Menu fillColor={Colors.gray600} />
                 {menu && (
                   <NavLinkList>
-                    <NavLink to="/tags/recruiting">채용</NavLink>
-                    <NavLink to="/authors/">구성원</NavLink>
+                    <NavLink to={`/${language}/tags/recruiting`}>채용</NavLink>
+                    <NavLink to={`/${language}/authors`}>구성원</NavLink>
                     <ExternalNavLink href="https://github.com/pedaling" target="_blank">
                       깃허브
                     </ExternalNavLink>

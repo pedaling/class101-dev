@@ -6,21 +6,19 @@ import Header from './Header';
 
 interface Props {
   children: JSX.Element[];
+  language: string;
 }
 
-class Layout extends React.Component<Props> {
-  render() {
-    const { children } = this.props;
-
-    return (
-      <Root className="root">
-        <Header />
-        <Main>{children}</Main>
-        <Footer />
-      </Root>
-    );
-  }
-}
+const Layout: React.SFC<Props> = props => {
+  const { children, language } = props;
+  return (
+    <Root className="root">
+      <Header language={language} />
+      <Main>{children}</Main>
+      <Footer />
+    </Root>
+  );
+};
 
 const Root = styled.div``;
 const Main = styled.main`

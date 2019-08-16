@@ -1,7 +1,11 @@
 const path = require(`path`);
 const _ = require('lodash');
 const { users } = require(`./src/data/users`);
-// const { createFilePath } = require(`gatsby-source-filesystem`);
+const { createFilePath } = require(`gatsby-source-filesystem`);
+
+const POSTS_PER_PAGE = 6;
+const AVAILABLE_LANGUAGES = ['ko', 'en'];
+const FALLBACK_LANGUAGE = 'ko';
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -9,7 +13,9 @@ exports.createPages = ({ graphql, actions }) => {
   const postTemplate = path.resolve(`./src/templates/post.tsx`);
   const postsTemplate = path.resolve(`./src/templates/posts.tsx`);
   const tagTemplate = path.resolve('src/templates/tag.tsx');
+  const tagsTemplate = path.resolve('src/templates/tags.tsx');
   const authorTemplate = path.resolve('src/templates/author.tsx');
+  const authorsTemplate = path.resolve('src/templates/authors.tsx');
 
   return graphql(
     `
@@ -19,6 +25,7 @@ exports.createPages = ({ graphql, actions }) => {
             node {
               fields {
                 slug
+                language
               }
               frontmatter {
                 title
@@ -39,74 +46,119 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     // Create blog edges pages.
-    const edges = result.data.allMarkdownRemark.edges;
+    const allEdges = result.data.allMarkdownRemark.edges;
 
-    edges.forEach((edge, index) => {
-      const previous = index === edges.length - 1 ? null : edges[index + 1].node;
-      const next = index === 0 ? null : edges[index - 1].node;
+    AVAILABLE_LANGUAGES.forEach(lang => {
+      const firstPathSegment = `/${lang}`;
 
-      createPage({
-        path: edge.node.fields.slug,
-        component: postTemplate,
-        context: {
-          slug: edge.node.fields.slug,
-          user: users.find(users => users.name === edge.node.frontmatter.author),
-          previous,
-          next,
-        },
+      const language = lang || FALLBACK_LANGUAGE;
+
+      const edges = allEdges.filter(edge => edge.node.fields.language === language);
+
+      edges.forEach((edge, index) => {
+        const previous = index === edges.length - 1 ? null : edges[index + 1].node;
+        const next = index === 0 ? null : edges[index - 1].node;
+
+        createPage({
+          path: `${firstPathSegment}/${edge.node.fields.slug}/`,
+          component: postTemplate,
+          context: {
+            slug: edge.node.fields.slug,
+            user: users.find(users => users.name === edge.node.frontmatter.author),
+            language,
+            previous,
+            next,
+          },
+        });
       });
-    });
 
-    const postsPerPage = 6;
-    const numPages = Math.ceil(edges.length / postsPerPage);
+      const numPages = Math.ceil(edges.length / POSTS_PER_PAGE);
 
-    Array.from({ length: numPages }).forEach((_, i) => {
-      createPage({
-        path: i === 0 ? `/` : `/blog/${i + 1}`,
-        component: postsTemplate,
-        context: {
-          limit: postsPerPage,
-          skip: i * postsPerPage,
-          numPages,
-          currentPage: i + 1,
-        },
-      });
-    });
+      Array.from({ length: numPages }).forEach((_, i) => {
+        createPage({
+          path: i === 0 ? `${firstPathSegment}/` : `${firstPathSegment}/blog/${i + 1}/`,
+          component: postsTemplate,
+          context: {
+            limit: POSTS_PER_PAGE,
+            skip: i * POSTS_PER_PAGE,
+            language,
+            numPages,
+            currentPage: i + 1,
+          },
+        });
 
-    const tags = Object.keys(
-      edges.reduce((result, edge) => {
-        for (const tag of edge.node.frontmatter.tags) {
-          result[tag] = true;
+        if (language === FALLBACK_LANGUAGE && i === 0) {
+          createPage({
+            path: '/',
+            component: postsTemplate,
+            context: {
+              limit: POSTS_PER_PAGE,
+              skip: i * POSTS_PER_PAGE,
+              language,
+              numPages,
+              currentPage: i + 1,
+            },
+          });
         }
-        return result;
-      }, {})
-    );
+      });
 
-    for (const tag of tags) {
-      const tagPath = `/tags/${_.kebabCase(tag)}/`;
+      const tags = Object.keys(
+        edges.reduce((result, edge) => {
+          for (const tag of edge.node.frontmatter.tags) {
+            result[tag] = true;
+          }
+          return result;
+        }, {})
+      );
+
+      for (const tag of tags) {
+        const tagPath = `${firstPathSegment}/tags/${_.kebabCase(tag)}/`;
+        createPage({
+          path: tagPath,
+          component: tagTemplate,
+          context: {
+            tag,
+            language,
+            slug: tagPath,
+          },
+        });
+      }
+
+      for (const user of users) {
+        const authorPath = `${firstPathSegment}/authors/${_.kebabCase(user.name)}/`;
+
+        createPage({
+          path: authorPath,
+          component: authorTemplate,
+          context: {
+            user,
+            language,
+            author: user.name,
+            slug: authorPath,
+          },
+        });
+      }
+
+      const authorsPath = `${firstPathSegment}/authors/`;
       createPage({
-        path: tagPath,
-        component: tagTemplate,
+        path: authorsPath,
+        component: authorsTemplate,
         context: {
-          tag,
-          slug: tagPath,
+          language,
+          slug: authorsPath,
         },
       });
-    }
 
-    for (const user of users) {
-      const authorPath = `/authors/${_.kebabCase(user.name)}/`;
-
+      const tagsPath = `${firstPathSegment}/tags/`;
       createPage({
-        path: authorPath,
-        component: authorTemplate,
+        path: tagsPath,
+        component: tagsTemplate,
         context: {
-          user,
-          author: user.name,
-          slug: authorPath,
+          language,
+          slug: tagsPath,
         },
       });
-    }
+    });
 
     return null;
   });
@@ -114,24 +166,32 @@ exports.createPages = ({ graphql, actions }) => {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
-
+  console.log(node.internal.type);
   if (node.internal.type === `MarkdownRemark`) {
     /**
-     * blog post의 path를 년/월/일/지은이 로 고정합니다.
+     * blog post의 path를 blog/YYYY/MM/DD/author/ 로 고정합니다.
      */
-
-    // const value = createFilePath({ node, getNode });
+    const path = createFilePath({ node, getNode });
+    const segement = path.split('/');
+    const language = segement[segement.length - 2];
 
     const date = new Date(node.frontmatter.date);
-    const slug = `/blog/${date
+
+    const slug = `blog/${date
       .toISOString()
       .slice(0, 10)
-      .replace(/-/gi, '/')}/${_.kebabCase(node.frontmatter.author)}/`;
+      .replace(/-/gi, '/')}/${_.kebabCase(node.frontmatter.author)}`;
 
     createNodeField({
       node,
       name: `slug`,
       value: slug,
+    });
+
+    createNodeField({
+      node,
+      name: `language`,
+      value: language,
     });
   }
 };

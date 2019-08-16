@@ -19,20 +19,21 @@ interface Props {
   pageContext: {
     user: User;
     slug: string;
+    language: string;
   };
 }
 
 const AuthorTemplate: React.SFC<Props> = props => {
   const { pageContext, data } = props;
-  const { user, slug } = pageContext;
+  const { user, slug, language } = pageContext;
   const edges = data.allMarkdownRemark && data.allMarkdownRemark.edges ? data.allMarkdownRemark.edges : [];
   return (
-    <Layout>
+    <Layout language={language}>
       <SEO title={user.name} pathname={slug} />
       <Grid>
         <Row>
           <Col>
-            <Bio user={user} />
+            <Bio user={user} language={language} />
           </Col>
         </Row>
         <Row>
@@ -50,11 +51,11 @@ const AuthorTemplate: React.SFC<Props> = props => {
 export default AuthorTemplate;
 
 export const pageQuery = graphql`
-  query($author: String) {
+  query($author: String!, $language: String!) {
     allMarkdownRemark(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { author: { eq: $author } } }
+      filter: { frontmatter: { author: { eq: $author } }, fields: { language: { eq: $language } } }
     ) {
       totalCount
       edges {
@@ -62,6 +63,7 @@ export const pageQuery = graphql`
           excerpt(pruneLength: 300, truncate: true)
           fields {
             slug
+            language
           }
           frontmatter {
             date(formatString: "YYYY-MM-DD")

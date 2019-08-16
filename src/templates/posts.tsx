@@ -1,4 +1,4 @@
-import { Col, Grid, Headline1, Row, Headline2, TextStyles } from '@class101/ui';
+import { Col, Grid, Row, TextStyles } from '@class101/ui';
 import { graphql } from 'gatsby';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
@@ -23,6 +23,7 @@ interface Props {
     currentPage: number;
     limit: number;
     skip: number;
+    language: string;
   };
 }
 
@@ -44,11 +45,11 @@ const PostsTemplate: React.SFC<RouteComponentProps & Props> = props => {
         siteMetadata: { description },
       },
     },
-    pageContext: { numPages, currentPage },
+    pageContext: { numPages, currentPage, language },
   } = props;
 
   return (
-    <Layout>
+    <Layout language={language}>
       <SEO title="class101.dev" />
       <Grid>
         <Row>
@@ -63,7 +64,7 @@ const PostsTemplate: React.SFC<RouteComponentProps & Props> = props => {
             </Col>
           ))}
           <Col md={12}>
-            <Paginator numPages={numPages} currentPage={currentPage} />
+            <Paginator numPages={numPages} currentPage={currentPage} language={language} />
           </Col>
         </Row>
       </Grid>
@@ -74,19 +75,25 @@ const PostsTemplate: React.SFC<RouteComponentProps & Props> = props => {
 export default PostsTemplate;
 
 export const pageQuery = graphql`
-  query PostsTemplateQuery($skip: Int!, $limit: Int!) {
+  query PostsTemplateQuery($skip: Int!, $limit: Int!, $language: String!) {
     site {
       siteMetadata {
         title
         description
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: $limit, skip: $skip) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: $limit
+      skip: $skip
+      filter: { fields: { language: { eq: $language } } }
+    ) {
       edges {
         node {
           excerpt(pruneLength: 300, truncate: true)
           fields {
             slug
+            language
           }
           frontmatter {
             date(formatString: "YYYY-MM-DD")

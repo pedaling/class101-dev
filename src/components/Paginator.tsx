@@ -6,13 +6,14 @@ import styled from 'styled-components';
 interface Props {
   numPages: number;
   currentPage: number;
+  language: string;
 }
 
-const Paginator: React.SFC<Props> = ({ numPages }) => {
+const Paginator: React.SFC<Props> = ({ numPages, language }) => {
   const links = [];
-  for (let i = 0; i < numPages; i += 1) {
+  for (const i = 0; i < numPages; i += 1) {
     links.push(
-      <PaginationLink key={i} to={`/${i === 0 ? '/' : `/blog/${i + 1}`}`} activeClassName="active">
+      <PaginationLink key={i} to={`/${language}/${i === 0 ? '/' : `/blog/${i + 1}`}`} activeClassName="active">
         {i + 1}
       </PaginationLink>
     );

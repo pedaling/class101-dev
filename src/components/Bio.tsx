@@ -8,6 +8,7 @@ import kebabCase from 'lodash/kebabCase';
 
 interface Props {
   user: User;
+  language: string;
 }
 
 const Bio: React.SFC<Props> = props => {
@@ -17,7 +18,7 @@ const Bio: React.SFC<Props> = props => {
     <BioContainer>
       <BioImage src={profileImage} />
       <BioBody>
-        <Username to={`/authors/${kebabCase(name)}`}>{name}</Username>
+        <Username to={`/${props.language}/authors/${kebabCase(name)}`}>{name}</Username>
         <Body2>{description}</Body2>
         {blog && blog !== '' && (
           <SocialIcon href={blog} target="_blank">

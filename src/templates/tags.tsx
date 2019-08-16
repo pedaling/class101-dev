@@ -19,22 +19,28 @@ interface Props {
     };
     site: Site;
   };
+  pageContext: { 
+    language: string;
+  };
 }
 
 const TagsPage: React.SFC<Props> = ({
   data: {
     allMarkdownRemark: { group },
   },
+  pageContext: {
+    language
+  }
 }) => (
-  <Layout>
-    <SEO title={`모든 태그`} pathname={'/tags'} />
+  <Layout language={language}>
+    <SEO title={`모든 태그`} pathname={`/${language}/tags`} />
     <Grid>
       <Row>
         <SiteTitle>모든 태그</SiteTitle>
       </Row>
       <Row>
         {group.map(tag => (
-          <LinkTag key={tag.fieldValue} {...tag} />
+          <LinkTag key={tag.fieldValue} {...tag} language={language}/>
         ))}
       </Row>
     </Grid>

@@ -39,6 +39,7 @@ const PostsQuery = graphql`
         node {
           fields {
             slug
+            language
           }
           frontmatter {
             title

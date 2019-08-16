@@ -26,6 +26,7 @@ interface Props {
     user: User;
     previous: MarkdownRemark;
     next: MarkdownRemark;
+    language: string;
   };
 }
 
@@ -56,7 +57,7 @@ const options: HTMLReactParserOptions = {
 
 const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
   const {
-    pageContext: { previous, next, user },
+    pageContext: { previous, next, user, language },
     data: {
       site: {
         siteMetadata: { siteUrl },
@@ -71,9 +72,10 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
     },
     location: { href, pathname },
   } = props;
+  console.log(props);
 
   return (
-    <Layout>
+    <Layout language={language}>
       <SEO
         title={title}
         description={`${description} ${excerpt}`}
@@ -89,7 +91,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
                 <ShareButtons url={href} />
 
                 {tags.map((tag: string) => (
-                  <LinkTag fieldValue={tag} key={tag} />
+                  <LinkTag fieldValue={tag} key={tag} language={language} />
                 ))}
                 <PostTitle>{title}</PostTitle>
 
@@ -104,7 +106,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
 
               <PostFooter>
                 {previous && (
-                  <PostNavigator to={previous.fields.slug} rel="prev">
+                  <PostNavigator to={`/${language}/${previous.fields.slug}`} rel="prev">
                     <PostNavigatorTitle>
                       <span>이전 글</span>
                       <br />
@@ -114,7 +116,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
                   </PostNavigator>
                 )}
                 {next && (
-                  <PostNavigator to={next.fields.slug} rel="next">
+                  <PostNavigator to={`/${language}/${next.fields.slug}`} rel="next">
                     <PostNavigatorTitle>
                       <span>다음 글</span>
                       <br />
@@ -129,7 +131,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
         </Row>
         <Row>
           <Col>
-            <Bio user={user} />
+            <Bio user={user} language={language} />
           </Col>
         </Row>
         <Row>
@@ -160,6 +162,7 @@ export const pageQuery = graphql`
       html
       fields {
         slug
+        language
       }
       frontmatter {
         title

@@ -13,14 +13,14 @@ interface Props {
 const PostCard: React.SFC<Props> = props => {
   const {
     node: {
-      fields: { slug },
+      fields: { slug, language },
       frontmatter: { title, description, thumbnail, date, author },
       excerpt,
     },
   } = props;
 
   return (
-    <Card to={slug}>
+    <Card to={`/${language}/${slug}`}>
       <CardThumbnail src={thumbnail} />
       <CardBody>
         <CardCaption>{date}</CardCaption>

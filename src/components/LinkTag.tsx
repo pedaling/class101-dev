@@ -7,12 +7,13 @@ import getTagText from '../utils/getTagText';
 
 interface Props {
   fieldValue: string;
+  language: string;
   totalCount?: number;
 }
 
-const LinkTag: React.SFC<Props> = ({ fieldValue, totalCount }) => {
+const LinkTag: React.SFC<Props> = ({ fieldValue, totalCount, language }) => {
   return (
-    <StyledLink to={`/tags/${kebabCase(fieldValue)}/`} key={fieldValue}>
+    <StyledLink to={`/${language}/tags/${kebabCase(fieldValue)}/`} key={fieldValue}>
       {getTagText(fieldValue)} {totalCount > 0 && `(${totalCount})`}
     </StyledLink>
   );

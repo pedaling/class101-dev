@@ -19,16 +19,17 @@ interface Props {
   pageContext: {
     tag: string;
     slug: string;
+    language: string;
   };
 }
 
 const TagTemplate: React.SFC<Props> = props => {
   const { pageContext, data } = props;
-  const { tag, slug } = pageContext;
+  const { tag, slug, language } = pageContext;
   const { edges, totalCount } = data.allMarkdownRemark;
   const tagText = getTagText(tag);
   return (
-    <Layout>
+    <Layout language={language}>
       <SEO title={`${tagText}`} pathname={slug} />
       <Grid>
         <Row>
@@ -37,7 +38,7 @@ const TagTemplate: React.SFC<Props> = props => {
             <SiteContent>
               총 {totalCount}개의 글이 있습니다. <br />
               <br />
-              <ViewAllTagLink to="/tags">모든 태그 보기</ViewAllTagLink>
+              <ViewAllTagLink to={`/${language}/tags`}>모든 태그 보기</ViewAllTagLink>
             </SiteContent>
           </Col>
         </Row>
@@ -56,11 +57,11 @@ const TagTemplate: React.SFC<Props> = props => {
 export default TagTemplate;
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query($tag: String, $language: String!) {
     allMarkdownRemark(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } } }
+      filter: { frontmatter: { tags: { in: [$tag] } }, fields: { language: { eq: $language } } }
     ) {
       totalCount
       edges {
@@ -68,6 +69,7 @@ export const pageQuery = graphql`
           excerpt(pruneLength: 300, truncate: true)
           fields {
             slug
+            language
           }
           frontmatter {
             date(formatString: "YYYY-MM-DD")

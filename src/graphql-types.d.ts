@@ -34,6 +34,7 @@ export interface Site {
 
 export interface Fields {
   slug: string;
+  language: string;
 }
 
 export interface SiteMetadata {
