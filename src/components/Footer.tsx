@@ -1,9 +1,11 @@
 import { Col, Colors, Grid, Row, TextStyles } from '@class101/ui';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import i18n from '../utils/i18n';
 
 const Footer: React.SFC = () => {
+  const { t } = useTranslation();
+
   return (
     <Container>
       <Grid>
@@ -12,8 +14,8 @@ const Footer: React.SFC = () => {
             <LogoIcon src="/images/logotype-black.png" alt="class101" />
             <ContactSection>
               <ContactArticle>
-                <b>{i18n.t('title')}</b>
-                <p>{i18n.t('address')}</p>
+                <b>{t('title')}</b>
+                <p>{t('address')}</p>
                 <p>457-81-00277</p>
                 <p>
                   <a href="mailto:helloworld@class101.net">helloworld@class101.net</a>

@@ -1,13 +1,12 @@
-import { Grid, Headline2, Row, Tag } from '@class101/ui';
-import { graphql, Link } from 'gatsby';
-import kebabCase from 'lodash/kebabCase';
+import { Grid, Headline2, Row } from '@class101/ui';
+import { graphql } from 'gatsby';
 import React from 'react';
+import styled from 'styled-components';
 
 import Layout from '../components/Layout';
 import LinkTag from '../components/LinkTag';
 import SEO from '../components/SEO';
 import { Group, Site } from '../graphql-types';
-import styled from 'styled-components';
 
 // Utilities
 // Components
@@ -19,28 +18,22 @@ interface Props {
     };
     site: Site;
   };
-  pageContext: { 
-    language: string;
-  };
 }
 
 const TagsPage: React.SFC<Props> = ({
   data: {
     allMarkdownRemark: { group },
   },
-  pageContext: {
-    language
-  }
 }) => (
-  <Layout language={language}>
-    <SEO title={`모든 태그`} pathname={`/${language}/tags`} />
+  <Layout>
+    <SEO title={`모든 태그`} pathname={`/tags`} />
     <Grid>
       <Row>
         <SiteTitle>모든 태그</SiteTitle>
       </Row>
       <Row>
         {group.map(tag => (
-          <LinkTag key={tag.fieldValue} {...tag} language={language}/>
+          <LinkTag key={tag.fieldValue} {...tag} />
         ))}
       </Row>
     </Grid>

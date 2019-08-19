@@ -6,19 +6,13 @@ import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { users } from '../data/users';
 
-interface Props {
-  pageContext: { 
-    language: string;
-  };
-}
 
-const AuthorsPage: React.SFC<Props> = props => {
-  const {language} = props.pageContext; 
+const AuthorsPage: React.SFC = () => {
   
   return (
 
-  <Layout language={language}>
-    <SEO title={`클래스101 구성원`} pathname={`/${language}/tags`} />
+  <Layout>
+    <SEO title={`클래스101 구성원`} pathname={`/tags`} />
     <Grid>
       <Row>
         <Col lgOffset={2}>
@@ -28,7 +22,7 @@ const AuthorsPage: React.SFC<Props> = props => {
       <Row>
         {users.map(user => (
           <Col key={user.name} lgOffset={2}>
-            <Bio user={user} language={language} />
+            <Bio user={user} />
           </Col>
         ))}
       </Row>

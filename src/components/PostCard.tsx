@@ -1,11 +1,11 @@
 import { Body2, Colors, TextStyles } from '@class101/ui';
-import { Link } from 'gatsby';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import Img from '../components/Img';
 import { Node } from '../graphql-types';
-import i18n from '../utils/i18n';
+import LinkWithLang from './LinkWithLang';
 
 interface Props {
   node: Node;
@@ -14,21 +14,23 @@ interface Props {
 const PostCard: React.SFC<Props> = props => {
   const {
     node: {
-      fields: { slug, language },
+      fields: { slug },
       frontmatter: { title, description, thumbnail, date, author },
       excerpt,
     },
   } = props;
 
+  const { t } = useTranslation();
+
   return (
-    <Card to={`/${language}/${slug}`}>
+    <Card to={`/${slug}`}>
       <CardThumbnail src={thumbnail} />
       <CardBody>
         <CardCaption>{date}</CardCaption>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description || excerpt}</CardDescription>
         <CardCaption>
-          Written By <b>{i18n.t(`profile.name.${author}`)}</b>
+          Written By <b>{t(`profile.name.${author}`)}</b>
         </CardCaption>
       </CardBody>
     </Card>
@@ -37,7 +39,7 @@ const PostCard: React.SFC<Props> = props => {
 
 export default PostCard;
 
-const Card = styled(Link)`
+const Card = styled(LinkWithLang)`
   display: block;
   border-radius: 3px;
   box-sizing: border-box;

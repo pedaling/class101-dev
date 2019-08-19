@@ -1,19 +1,19 @@
 import { Colors } from '@class101/ui';
-import { Link } from 'gatsby';
 import kebabCase from 'lodash/kebabCase';
 import React from 'react';
 import styled from 'styled-components';
+
 import getTagText from '../utils/getTagText';
+import LinkWithLang from './LinkWithLang';
 
 interface Props {
   fieldValue: string;
-  language: string;
   totalCount?: number;
 }
 
-const LinkTag: React.SFC<Props> = ({ fieldValue, totalCount, language }) => {
+const LinkTag: React.SFC<Props> = ({ fieldValue, totalCount }) => {
   return (
-    <StyledLink to={`/${language}/tags/${kebabCase(fieldValue)}/`} key={fieldValue}>
+    <StyledLink to={`/tags/${kebabCase(fieldValue)}/`} key={fieldValue}>
       {getTagText(fieldValue)} {totalCount > 0 && `(${totalCount})`}
     </StyledLink>
   );
@@ -21,7 +21,7 @@ const LinkTag: React.SFC<Props> = ({ fieldValue, totalCount, language }) => {
 
 export default LinkTag;
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(LinkWithLang)`
   text-decoration: none;
   color: ${Colors.gray800};
   background: ${Colors.gray100};

@@ -20,7 +20,10 @@ exports.createPages = ({ graphql, actions }) => {
   return graphql(
     `
       {
-        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
+        allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }
+          limit: 1000
+        ) {
           edges {
             node {
               fields {
@@ -53,10 +56,13 @@ exports.createPages = ({ graphql, actions }) => {
 
       const language = lang || FALLBACK_LANGUAGE;
 
-      const edges = allEdges.filter(edge => edge.node.fields.language === language);
+      const edges = allEdges.filter(
+        edge => edge.node.fields.language === language
+      );
 
       edges.forEach((edge, index) => {
-        const previous = index === edges.length - 1 ? null : edges[index + 1].node;
+        const previous =
+          index === edges.length - 1 ? null : edges[index + 1].node;
         const next = index === 0 ? null : edges[index - 1].node;
 
         createPage({
@@ -64,11 +70,13 @@ exports.createPages = ({ graphql, actions }) => {
           component: postTemplate,
           context: {
             slug: edge.node.fields.slug,
-            user: users.find(users => users.name === edge.node.frontmatter.author),
+            user: users.find(
+              users => users.name === edge.node.frontmatter.author
+            ),
             language,
             previous,
-            next,
-          },
+            next
+          }
         });
       });
 
@@ -76,15 +84,18 @@ exports.createPages = ({ graphql, actions }) => {
 
       Array.from({ length: numPages }).forEach((_, i) => {
         createPage({
-          path: i === 0 ? `${firstPathSegment}/` : `${firstPathSegment}/blog/${i + 1}/`,
+          path:
+            i === 0
+              ? `${firstPathSegment}/`
+              : `${firstPathSegment}/blog/${i + 1}/`,
           component: postsTemplate,
           context: {
             limit: POSTS_PER_PAGE,
             skip: i * POSTS_PER_PAGE,
             language,
             numPages,
-            currentPage: i + 1,
-          },
+            currentPage: i + 1
+          }
         });
 
         if (language === FALLBACK_LANGUAGE && i === 0) {
@@ -96,8 +107,8 @@ exports.createPages = ({ graphql, actions }) => {
               skip: i * POSTS_PER_PAGE,
               language,
               numPages,
-              currentPage: i + 1,
-            },
+              currentPage: i + 1
+            }
           });
         }
       });
@@ -119,13 +130,15 @@ exports.createPages = ({ graphql, actions }) => {
           context: {
             tag,
             language,
-            slug: tagPath,
-          },
+            slug: tagPath
+          }
         });
       }
 
       for (const user of users) {
-        const authorPath = `${firstPathSegment}/authors/${_.kebabCase(user.name)}/`;
+        const authorPath = `${firstPathSegment}/authors/${_.kebabCase(
+          user.name
+        )}/`;
 
         createPage({
           path: authorPath,
@@ -134,8 +147,8 @@ exports.createPages = ({ graphql, actions }) => {
             user,
             language,
             author: user.name,
-            slug: authorPath,
-          },
+            slug: authorPath
+          }
         });
       }
 
@@ -145,8 +158,8 @@ exports.createPages = ({ graphql, actions }) => {
         component: authorsTemplate,
         context: {
           language,
-          slug: authorsPath,
-        },
+          slug: authorsPath
+        }
       });
 
       const tagsPath = `${firstPathSegment}/tags/`;
@@ -155,8 +168,8 @@ exports.createPages = ({ graphql, actions }) => {
         component: tagsTemplate,
         context: {
           language,
-          slug: tagsPath,
-        },
+          slug: tagsPath
+        }
       });
     });
 
@@ -185,13 +198,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       node,
       name: `slug`,
-      value: slug,
+      value: slug
     });
 
     createNodeField({
       node,
       name: `language`,
-      value: language,
+      value: language
     });
   }
 };

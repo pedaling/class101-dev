@@ -1,6 +1,6 @@
 import { Body2, Col, Colors, Grid, Row, TextStyles } from '@class101/ui';
 import { RouteComponentProps } from '@reach/router';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import parse, { HTMLReactParserOptions } from 'html-react-parser';
 import _ from 'lodash';
 import React from 'react';
@@ -11,6 +11,7 @@ import Comments from '../components/Comments';
 import Img from '../components/Img';
 import Layout from '../components/Layout';
 import LinkTag from '../components/LinkTag';
+import LinkWithLang from '../components/LinkWithLang';
 import RecruitingCard from '../components/RecruitingCard';
 import SEO from '../components/SEO';
 import ShareButtons from '../components/ShareButtons';
@@ -26,7 +27,6 @@ interface Props {
     user: User;
     previous: MarkdownRemark;
     next: MarkdownRemark;
-    language: string;
   };
 }
 
@@ -57,7 +57,7 @@ const options: HTMLReactParserOptions = {
 
 const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
   const {
-    pageContext: { previous, next, user, language },
+    pageContext: { previous, next, user },
     data: {
       site: {
         siteMetadata: { siteUrl },
@@ -72,10 +72,10 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
     },
     location: { href, pathname },
   } = props;
-  console.log(props);
+
 
   return (
-    <Layout language={language}>
+    <Layout>
       <SEO
         title={title}
         description={`${description} ${excerpt}`}
@@ -91,7 +91,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
                 <ShareButtons url={href} />
 
                 {tags.map((tag: string) => (
-                  <LinkTag fieldValue={tag} key={tag} language={language} />
+                  <LinkTag fieldValue={tag} key={tag} />
                 ))}
                 <PostTitle>{title}</PostTitle>
 
@@ -106,7 +106,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
 
               <PostFooter>
                 {previous && (
-                  <PostNavigator to={`/${language}/${previous.fields.slug}`} rel="prev">
+                  <PostNavigator to={`/${previous.fields.slug}`}>
                     <PostNavigatorTitle>
                       <span>이전 글</span>
                       <br />
@@ -116,7 +116,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
                   </PostNavigator>
                 )}
                 {next && (
-                  <PostNavigator to={`/${language}/${next.fields.slug}`} rel="next">
+                  <PostNavigator to={`/${next.fields.slug}`}>
                     <PostNavigatorTitle>
                       <span>다음 글</span>
                       <br />
@@ -131,7 +131,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
         </Row>
         <Row>
           <Col>
-            <Bio user={user} language={language} />
+            <Bio user={user} />
           </Col>
         </Row>
         <Row>
@@ -231,7 +231,7 @@ const PostFooter = styled.div`
   }
 `;
 
-const PostNavigator = styled(Link)`
+const PostNavigator = styled(LinkWithLang)`
   display: block;
   position: relative;
   flex: 1;

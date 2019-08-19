@@ -1,8 +1,8 @@
 import { Colors, TextStyles } from '@class101/ui';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
-import i18n from '../utils/i18n';
 
 const SearchInput: React.SFC = () => {
   const [text, setText] = useState('');
@@ -11,13 +11,15 @@ const SearchInput: React.SFC = () => {
     allMarkdownRemark: { edges },
   } = useStaticQuery(PostsQuery);
 
+  const { t } = useTranslation();
+
   const onChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value);
   };
 
   return (
     <AutoCompleteContainer>
-      <StyledInput placeholder={i18n.t('searchPlaceholder')} onChange={onChangeText} />
+      <StyledInput placeholder={t('searchPlaceholder')} onChange={onChangeText} />
       {text && (
         <AutoCompleteList>
           {edges

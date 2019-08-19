@@ -1,25 +1,24 @@
-import { Body2, Headline3, Colors, TextStyles } from '@class101/ui';
-import { Link } from 'gatsby';
+import { Body2, TextStyles } from '@class101/ui';
+import kebabCase from 'lodash/kebabCase';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
 import { User } from '../graphql-types';
-import kebabCase from 'lodash/kebabCase';
-import i18n from '../utils/i18n';
+import LinkWithLang from './LinkWithLang';
 
 interface Props {
   user: User;
-  language: string;
 }
 
 const Bio: React.SFC<Props> = props => {
   const { name, profileImage, description, blog, github, linkedin } = props.user;
-
+  const { t } = useTranslation();
   return (
     <BioContainer>
       <BioImage src={profileImage} />
       <BioBody>
-        <Username to={`/${props.language}/authors/${kebabCase(name)}`}>{i18n.t(`profile.name.${name}`)}</Username>
+        <Username to={`/authors/${kebabCase(name)}`}>{t(`profile.name.${name}`)}</Username>
         <Body2>{description}</Body2>
         {blog && blog !== '' && (
           <SocialIcon href={blog} target="_blank">
@@ -68,7 +67,7 @@ const BioImage = styled.img`
 
 const BioBody = styled.div``;
 
-const Username = styled(Link)`
+const Username = styled(LinkWithLang)`
   ${TextStyles.subtitle1};
   display: block;
   text-decoration: none;

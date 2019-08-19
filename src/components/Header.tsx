@@ -1,17 +1,16 @@
 import { Col, Colors, Grid, Icon, Row } from '@class101/ui';
 import { Link } from 'gatsby';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components';
 
+import LinkWithLang from './LinkWithLang';
 import SearchInput from './SearchInput';
-import i18n from '../utils/i18n';
 
-interface Props {
-  language: string;
-}
 
-const Header: React.SFC<Props> = props => {
-  const { language } = props;
+const Header: React.SFC = () => {
+  const translation = useTranslation();
+
   const [menu, openMenu] = useState(false);
   const logo =
     typeof window !== 'undefined' && window.innerWidth > 425
@@ -26,7 +25,7 @@ const Header: React.SFC<Props> = props => {
         <Row>
           <Col>
             <NavInnerContainer>
-              <NoHoverLink to={`/${language}`}>
+              <NoHoverLink to={`/`}>
                 <LogoIcon src={logo} alt="class101" />
               </NoHoverLink>
               <SearchInput />
@@ -34,13 +33,13 @@ const Header: React.SFC<Props> = props => {
                 <Icon.Menu fillColor={Colors.gray600} />
                 {menu && (
                   <NavLinkList>
-                    <NavLink to={`/${language}/tags/recruiting`}>{i18n.t('recruiting')}</NavLink>
-                    <NavLink to={`/${language}/authors`}>{i18n.t('members')}</NavLink>
+                    <NavLinkWithLang to={`/tags/recruiting`}>{translation.t('recruiting')}</NavLinkWithLang>
+                    <NavLink to={`/authors`}>{translation.t('members')}</NavLink>
                     <ExternalNavLink href="https://github.com/pedaling" target="_blank">
                       Github
                     </ExternalNavLink>
-                    <NavLink to={`/en/`}>English</NavLink>
-                    <NavLink to={`/ko/`}>한글</NavLink>
+                    <ExternalNavLink href={`/en/`}>English</ExternalNavLink>
+                    <ExternalNavLink href={`/ko/`}>한글</ExternalNavLink>
                   </NavLinkList>
                 )}
               </MenuContainer>
@@ -70,7 +69,7 @@ const LogoIcon = styled.img`
   margin: 0;
 `;
 
-const NoHoverLink = styled(Link)`
+const NoHoverLink = styled(LinkWithLang)`
   box-shadow: none;
   &:hover {
     box-shadow: none;
@@ -107,6 +106,10 @@ const navLinkCss = css`
     color: ${Colors.gray500};
     text-decoration: underline;
   }
+`;
+
+const NavLinkWithLang = styled(LinkWithLang)`
+  ${navLinkCss};
 `;
 
 const NavLink = styled(Link)`

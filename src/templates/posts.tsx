@@ -1,6 +1,7 @@
 import { Col, Grid, Row, TextStyles } from '@class101/ui';
 import { graphql } from 'gatsby';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
 
@@ -9,7 +10,6 @@ import Paginator from '../components/Paginator';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
 import { Edge, Site } from '../graphql-types';
-import i18n from '../utils/i18n';
 
 interface Props {
   data: {
@@ -42,21 +42,20 @@ const PostsTemplate: React.SFC<RouteComponentProps & Props> = props => {
   const {
     data: {
       allMarkdownRemark: { edges },
-      site: {
-        siteMetadata: { description },
-      },
     },
-    pageContext: { numPages, currentPage, language },
+    pageContext: { numPages, currentPage },
   } = props;
+
+  const { t } = useTranslation();
 
   return (
 
-    <Layout language={language}>
+    <Layout>
       <SEO title="class101.dev" />
       <Grid>
         <Row>
           <Col>
-            <SiteTitle>{i18n.t('description')}</SiteTitle>
+            <SiteTitle>{t('description')}</SiteTitle>
           </Col>
         </Row>
         <Row>
@@ -66,7 +65,7 @@ const PostsTemplate: React.SFC<RouteComponentProps & Props> = props => {
             </Col>
           ))}
           <Col md={12}>
-            <Paginator numPages={numPages} currentPage={currentPage} language={language} />
+            <Paginator numPages={numPages} currentPage={currentPage} />
           </Col>
         </Row>
       </Grid>

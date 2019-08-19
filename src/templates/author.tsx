@@ -19,21 +19,20 @@ interface Props {
   pageContext: {
     user: User;
     slug: string;
-    language: string;
   };
 }
 
 const AuthorTemplate: React.SFC<Props> = props => {
   const { pageContext, data } = props;
-  const { user, slug, language } = pageContext;
+  const { user, slug, } = pageContext;
   const edges = data.allMarkdownRemark && data.allMarkdownRemark.edges ? data.allMarkdownRemark.edges : [];
   return (
-    <Layout language={language}>
+    <Layout>
       <SEO title={user.name} pathname={slug} />
       <Grid>
         <Row>
           <Col>
-            <Bio user={user} language={language} />
+            <Bio user={user}/>
           </Col>
         </Row>
         <Row>

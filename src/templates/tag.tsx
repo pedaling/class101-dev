@@ -1,13 +1,15 @@
 import { Body2, Col, Colors, Grid, Headline1, Row } from '@class101/ui';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 
 import Layout from '../components/Layout';
+import LinkWithLang from '../components/LinkWithLang';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
 import { Edge } from '../graphql-types';
 import getTagText from '../utils/getTagText';
+
 // Components
 interface Props {
   data: {
@@ -19,17 +21,16 @@ interface Props {
   pageContext: {
     tag: string;
     slug: string;
-    language: string;
   };
 }
 
 const TagTemplate: React.SFC<Props> = props => {
   const { pageContext, data } = props;
-  const { tag, slug, language } = pageContext;
+  const { tag, slug } = pageContext;
   const { edges, totalCount } = data.allMarkdownRemark;
   const tagText = getTagText(tag);
   return (
-    <Layout language={language}>
+    <Layout>
       <SEO title={`${tagText}`} pathname={slug} />
       <Grid>
         <Row>
@@ -38,7 +39,7 @@ const TagTemplate: React.SFC<Props> = props => {
             <SiteContent>
               총 {totalCount}개의 글이 있습니다. <br />
               <br />
-              <ViewAllTagLink to={`/${language}/tags`}>모든 태그 보기</ViewAllTagLink>
+              <ViewAllTagLink to={`/tags`}>모든 태그 보기</ViewAllTagLink>
             </SiteContent>
           </Col>
         </Row>
@@ -96,7 +97,7 @@ const SiteContent = styled(Body2)`
   color: ${Colors.gray700};
 `;
 
-const ViewAllTagLink = styled(Link)`
+const ViewAllTagLink = styled(LinkWithLang)`
   color: ${Colors.gray800};
   text-decoration: none;
   &:hover {
