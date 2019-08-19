@@ -1,6 +1,7 @@
 import { Col, Colors, Grid, Row, TextStyles } from '@class101/ui';
 import React from 'react';
 import styled from 'styled-components';
+import i18n from '../utils/i18n';
 
 const Footer: React.SFC = () => {
   return (
@@ -11,8 +12,8 @@ const Footer: React.SFC = () => {
             <LogoIcon src="/images/logotype-black.png" alt="class101" />
             <ContactSection>
               <ContactArticle>
-                <b>(주)클래스101</b>
-                <p>서울특별시 중구 한강대로 416 서울스퀘어 위워크 13층</p>
+                <b>{i18n.t('title')}</b>
+                <p>{i18n.t('address')}</p>
                 <p>457-81-00277</p>
                 <p>
                   <a href="mailto:helloworld@class101.net">helloworld@class101.net</a>

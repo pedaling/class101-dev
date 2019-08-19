@@ -3,7 +3,7 @@ title: '기술 블로그를 왜 운영해야 할까?'
 date: '2019-07-18T22:12:03.284Z'
 thumbnail: '/images/thumbnails/tech-blog.png'
 description: ''
-author: 'Geunwoo Jang'
+author: 'john'
 tags: ['tech blog']
 ---
 

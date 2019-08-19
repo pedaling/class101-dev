@@ -3,7 +3,7 @@ title: '클래스101 소프트웨어 개발자 채용'
 date: '2099-07-17T22:12:03.284Z'
 thumbnail: '/images/default.jpg'
 description: ''
-author: 'Geunwoo Jang'
+author: 'john'
 tags: ['recruiting', 'developer', 'web developer', 'software engineer']
 ---
 

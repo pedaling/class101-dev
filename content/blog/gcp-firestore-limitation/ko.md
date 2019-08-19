@@ -3,7 +3,7 @@ title: Google Cloud Platform's Firestore의 특징과 한계
 date: '2019-07-24T04:35:23.448Z'
 thumbnail: '/images/thumbnails/firestore.jpg'
 description: ''
-author: 'Youngchan Je'
+author: 'donut'
 tags: ['gcp', 'firestore', 'firebase']
 ---
 

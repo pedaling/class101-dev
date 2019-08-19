@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import { User } from '../graphql-types';
 import kebabCase from 'lodash/kebabCase';
+import i18n from '../utils/i18n';
 
 interface Props {
   user: User;
@@ -18,7 +19,7 @@ const Bio: React.SFC<Props> = props => {
     <BioContainer>
       <BioImage src={profileImage} />
       <BioBody>
-        <Username to={`/${props.language}/authors/${kebabCase(name)}`}>{name}</Username>
+        <Username to={`/${props.language}/authors/${kebabCase(name)}`}>{i18n.t(`profile.name.${name}`)}</Username>
         <Body2>{description}</Body2>
         {blog && blog !== '' && (
           <SocialIcon href={blog} target="_blank">

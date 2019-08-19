@@ -3,7 +3,7 @@ title: TF-IDF를 활용한 클래스 유사도 분석과 추천 서버 구축 1�
 date: '2019-07-16T22:12:03.284Z'
 thumbnail: '/images/thumbnails/tf-idf.png'
 description: ''
-author: 'Jeongyeon Jo'
+author: 'esmond'
 tags: ['typescript', 'monorepo']
 ---
 

@@ -9,11 +9,11 @@ interface Props {
   language: string;
 }
 
-const Paginator: React.SFC<Props> = ({ numPages, language }) => {
+const Paginator: React.SFC<Props> = ({ numPages, language, currentPage }) => {
   const links = [];
-  for (const i = 0; i < numPages; i += 1) {
+  for (let i = 0; i < numPages; i += 1) {
     links.push(
-      <PaginationLink key={i} to={`/${language}/${i === 0 ? '/' : `/blog/${i + 1}`}`} activeClassName="active">
+      <PaginationLink key={i} className={i === currentPage - 1 ? 'active' : ''} to={`/${language}/${i === 0 ? '/' : `/blog/${i + 1}`}`}>
         {i + 1}
       </PaginationLink>
     );

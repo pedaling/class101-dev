@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import SearchInput from './SearchInput';
+import i18n from '../utils/i18n';
 
 interface Props {
   language: string;
@@ -33,11 +34,13 @@ const Header: React.SFC<Props> = props => {
                 <Icon.Menu fillColor={Colors.gray600} />
                 {menu && (
                   <NavLinkList>
-                    <NavLink to={`/${language}/tags/recruiting`}>채용</NavLink>
-                    <NavLink to={`/${language}/authors`}>구성원</NavLink>
+                    <NavLink to={`/${language}/tags/recruiting`}>{i18n.t('recruiting')}</NavLink>
+                    <NavLink to={`/${language}/authors`}>{i18n.t('members')}</NavLink>
                     <ExternalNavLink href="https://github.com/pedaling" target="_blank">
-                      깃허브
+                      Github
                     </ExternalNavLink>
+                    <NavLink to={`/en/`}>English</NavLink>
+                    <NavLink to={`/ko/`}>한글</NavLink>
                   </NavLinkList>
                 )}
               </MenuContainer>

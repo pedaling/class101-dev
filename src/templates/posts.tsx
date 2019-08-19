@@ -9,6 +9,7 @@ import Paginator from '../components/Paginator';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
 import { Edge, Site } from '../graphql-types';
+import i18n from '../utils/i18n';
 
 interface Props {
   data: {
@@ -49,12 +50,13 @@ const PostsTemplate: React.SFC<RouteComponentProps & Props> = props => {
   } = props;
 
   return (
+
     <Layout language={language}>
       <SEO title="class101.dev" />
       <Grid>
         <Row>
           <Col>
-            <SiteTitle>{description}</SiteTitle>
+            <SiteTitle>{i18n.t('description')}</SiteTitle>
           </Col>
         </Row>
         <Row>

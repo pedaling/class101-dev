@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@class101/ui": "7.0.0-rc13",
+    "animate.css": "^3.7.2",
     "babel-plugin-styled-components": "^1.10.0",
     "disqus-react": "^1.0.6",
     "gatsby": "^2.4.2",
@@ -72,11 +73,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,scss}": [

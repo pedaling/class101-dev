@@ -2,6 +2,7 @@ import { Colors, TextStyles } from '@class101/ui';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import i18n from '../utils/i18n';
 
 const SearchInput: React.SFC = () => {
   const [text, setText] = useState('');
@@ -16,7 +17,7 @@ const SearchInput: React.SFC = () => {
 
   return (
     <AutoCompleteContainer>
-      <StyledInput placeholder="제목 및 내용을 입력하세요." onChange={onChangeText} />
+      <StyledInput placeholder={i18n.t('searchPlaceholder')} onChange={onChangeText} />
       {text && (
         <AutoCompleteList>
           {edges

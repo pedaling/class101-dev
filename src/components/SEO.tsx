@@ -9,6 +9,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 import { SiteMetadata } from '../graphql-types';
+import i18n from '../utils/i18n';
 interface Props {
   title?: string;
   description?: string;
@@ -39,8 +40,6 @@ const SEO: React.SFC<Props> = props => {
     `
   );
 
-  const appleIcons = [57, 60, 72, 76, 114, 120, 144, 180, 180];
-
   const siteMetadata: SiteMetadata = queryResult.site.siteMetadata;
 
   const { lang = 'ko', title, description, thumbnail, author, pathname } = props;
@@ -53,7 +52,7 @@ const SEO: React.SFC<Props> = props => {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${siteMetadata.title}`}
+      titleTemplate={`%s | ${i18n.t('title')}`}
       link={[
         { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/icons/favicon-16x26.png' },
         { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/icons/favicon-32x32.png' },
@@ -74,11 +73,11 @@ const SEO: React.SFC<Props> = props => {
       meta={[
         {
           name: `description`,
-          content: description || siteMetadata.description,
+          content: description || i18n.t('description'),
         },
         {
           name: 'author',
-          content: author || siteMetadata.author,
+          content: i18n.t(`profile.name.${author || siteMetadata.author}`),
         },
         {
           property: `og:title`,
@@ -102,7 +101,7 @@ const SEO: React.SFC<Props> = props => {
         },
         {
           property: `og:description`,
-          content: description || siteMetadata.description,
+          content: description || i18n.t('description'),
         },
         {
           property: `og:type`,
@@ -110,7 +109,7 @@ const SEO: React.SFC<Props> = props => {
         },
         {
           property: 'og:site_name',
-          content: siteMetadata.title,
+          content: i18n.t('title'),
         },
 
         {
@@ -119,7 +118,7 @@ const SEO: React.SFC<Props> = props => {
         },
         {
           name: `twitter:creator`,
-          content: author || siteMetadata.author,
+          content: i18n.t(`profile.name.${author || siteMetadata.author}`),
         },
         {
           name: `twitter:title`,
@@ -127,7 +126,7 @@ const SEO: React.SFC<Props> = props => {
         },
         {
           name: `twitter:description`,
-          content: description || siteMetadata.description,
+          content: description || i18n.t('description'),
         },
         {
           name: 'twitter:label1',
@@ -135,7 +134,7 @@ const SEO: React.SFC<Props> = props => {
         },
         {
           name: 'twiiter:data1',
-          content: author || siteMetadata.author,
+          content: i18n.t(`profile.name.${author || siteMetadata.author}`),
         },
         {
           name: 'keywords',
