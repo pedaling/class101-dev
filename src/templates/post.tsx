@@ -147,7 +147,7 @@ const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
 export default PostTemplate;
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query BlogPostBySlug($slug: String!, $language: String!) {
     site {
       siteMetadata {
         title
@@ -155,7 +155,7 @@ export const pageQuery = graphql`
         siteUrl
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    markdownRemark(fields: { slug: { eq: $slug }, language: { eq: $language } }) {
       id
       tableOfContents
       excerpt(pruneLength: 300, truncate: true)

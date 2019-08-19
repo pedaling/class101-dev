@@ -92,7 +92,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          excerpt(pruneLength: 300, truncate: true)
+          excerpt(pruneLength: 500, truncate: true)
           fields {
             slug
             language

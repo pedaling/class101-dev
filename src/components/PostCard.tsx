@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import Img from '../components/Img';
 import { Node } from '../graphql-types';
+import i18n from '../utils/i18n';
 
 interface Props {
   node: Node;
@@ -27,7 +28,7 @@ const PostCard: React.SFC<Props> = props => {
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description || excerpt}</CardDescription>
         <CardCaption>
-          Written By <b>{author}</b>
+          Written By <b>{i18n.t(`profile.name.${author}`)}</b>
         </CardCaption>
       </CardBody>
     </Card>
