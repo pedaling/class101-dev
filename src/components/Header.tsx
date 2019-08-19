@@ -34,7 +34,7 @@ const Header: React.SFC = () => {
                 {menu && (
                   <NavLinkList>
                     <NavLinkWithLang to={`/tags/recruiting`}>{translation.t('recruiting')}</NavLinkWithLang>
-                    <NavLink to={`/authors`}>{translation.t('members')}</NavLink>
+                    <NavLinkWithLang to={`/authors`}>{translation.t('members')}</NavLinkWithLang>
                     <ExternalNavLink href="https://github.com/pedaling" target="_blank">
                       Github
                     </ExternalNavLink>

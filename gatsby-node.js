@@ -179,7 +179,6 @@ exports.createPages = ({ graphql, actions }) => {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
-  console.log(node.internal.type);
   if (node.internal.type === `MarkdownRemark`) {
     /**
      * blog post의 path를 blog/YYYY/MM/DD/author/ 로 고정합니다.
