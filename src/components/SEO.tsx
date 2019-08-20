@@ -86,7 +86,7 @@ const SEO: React.SFC<Props> = props => {
         },
         {
           property: `og:url`,
-          content: `${siteMetadata.siteUrl}/${language}${pathname || '/'}`,
+          content: `${siteMetadata.siteUrl}/`,
         },
         {
           property: `og:image`,
