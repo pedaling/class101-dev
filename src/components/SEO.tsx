@@ -19,7 +19,7 @@ interface Props {
   pathname?: string;
 }
 
-const SEO: React.SFC<Props> = props => {
+const SEO: React.FC<Props> = props => {
   const queryResult = useStaticQuery(
     graphql`
       query {

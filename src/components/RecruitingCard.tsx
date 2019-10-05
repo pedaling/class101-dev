@@ -2,7 +2,7 @@ import { Colors, TextStyles } from '@class101/ui';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const RecruitingCard: React.SFC = () => {
+const RecruitingCard: React.FC = () => {
   const copyToClipboard = (val: string) => {
     const t = document.createElement('textarea');
     document.body.appendChild(t);

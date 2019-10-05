@@ -38,7 +38,7 @@ const getColLg = (index: number) => {
   return 6;
 };
 
-const PostsTemplate: React.SFC<RouteComponentProps & Props> = props => {
+const PostsTemplate: React.FC<RouteComponentProps & Props> = props => {
   const {
     data: {
       allMarkdownRemark: { edges },

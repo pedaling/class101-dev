@@ -794,10 +794,17 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@class101/tslint-config@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@class101/tslint-config/-/tslint-config-1.3.0.tgz#26038c3793503323344e47ddf9ee5af0fdc84401"
-  integrity sha512-fn5EJFcdHccHHgaK5n4xZezAbNaiPJduaIx539zmPLOwL6vK47PxAX9NcIVTf9lX0l8jiQ+kjNGqikcTnkwn0g==
+"@class101/swiper@2.3.2-test12":
+  version "2.3.2-test12"
+  resolved "https://registry.yarnpkg.com/@class101/swiper/-/swiper-2.3.2-test12.tgz#6101aba87401aabf43790d423847253c055d7f61"
+  integrity sha512-9q7C5LqAPCgReog9LvB5Z8RrVORwYeZiowXT+3Y6Bo18hydeusaDJb/1vLHPNyANJLiUxCYWebW3FNBZx6bzfw==
+  dependencies:
+    object-assign "^4.1.1"
+
+"@class101/tslint-config@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@class101/tslint-config/-/tslint-config-1.5.0.tgz#c49ca55a05d0de526d55e1f07af1d39205320d97"
+  integrity sha512-3JzkO7W7VUuoThBB0DkW2b3f3AciRVq1c/qZE/QZ/IaqCESYHGRauk1dKJv44pg7QR8h2GXD7DTACANd6n3ZKA==
   dependencies:
     tslint "^5.11.0"
     tslint-config-airbnb "^5.11.1"
@@ -805,14 +812,16 @@
     tslint-react "^3.6.0"
     typescript "3.1.6"
 
-"@class101/ui@7.0.0-rc13":
-  version "7.0.0-rc13"
-  resolved "https://registry.yarnpkg.com/@class101/ui/-/ui-7.0.0-rc13.tgz#f27c5de1290b00ea17b2a0e39479749335e2ea1b"
-  integrity sha512-1n0Wz5JHjAARxTGGCj4HRLWIAc8xyN2Oi7lElzFUAeNk7mGdoY9Sy3u64lM30+CxmVFp/5yw73GB4/+gHTrPQg==
+"@class101/ui@7.0.0-rc38":
+  version "7.0.0-rc38"
+  resolved "https://registry.yarnpkg.com/@class101/ui/-/ui-7.0.0-rc38.tgz#fb307d8495e50093335bec8281b3ab1bcb3196b9"
+  integrity sha512-N9eSd1kg4PRZnLSHfKQx+pUvwcai4xDz0Kiny/0IATM1s9Dt7aRO5bCD8cQ6DQGaql+VbENlo2qH/V5ijKiSOw==
   dependencies:
-    lodash-es "^4.17.11"
+    "@class101/swiper" "2.3.2-test12"
+    classnames "^2.2.6"
     path-to-regexp "^3.0.0"
-    typescript "3.1.6"
+    polished "^3.4.1"
+    swiper "4.4.6"
 
 "@emotion/is-prop-valid@^0.8.1":
   version "0.8.2"
@@ -2899,7 +2908,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5:
+classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -4075,7 +4084,7 @@ dom-walk@^0.1.0:
   resolved "https://registry.yarnpkg.com/dom-walk/-/dom-walk-0.1.1.tgz#672226dc74c8f799ad35307df936aba11acd6018"
   integrity sha1-ZyIm3HTI95mtNTB9+TaroRrNYBg=
 
-dom7@^2.1.3:
+dom7@^2.1.2, dom7@^2.1.3:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/dom7/-/dom7-2.1.3.tgz#a736f9c3bfbc4ca039a81cd095f97d1d7f3de19c"
   integrity sha512-QTxHHDox+M6ZFz1zHPAHZKI3JOHY5iY4i9BK2uctlggxKQwRhO3q3HHFq1BKsT25Bm/ySSj70K6Wk/G4bs9rMQ==
@@ -7974,11 +7983,6 @@ lockfile@^1.0.4:
   dependencies:
     signal-exit "^3.0.2"
 
-lodash-es@^4.17.11:
-  version "4.17.14"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.14.tgz#12a95a963cc5955683cee3b74e85458954f37ecc"
-  integrity sha512-7zchRrGa8UZXjD/4ivUWP1867jDkhzTG2c/uj739utSd7O/pFFdxspCemIFKEEjErbcqRzn8nKnGsi7mvTgRPA==
-
 lodash._reinterpolate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
@@ -9858,6 +9862,13 @@ pnp-webpack-plugin@^1.4.1:
   integrity sha512-jd9olUr9D7do+RN8Wspzhpxhgp1n6Vd0NtQ4SFkmIACZoEL1nkyAdW9Ygrinjec0vgDcWjscFQQ1gDW8rsfKTg==
   dependencies:
     ts-pnp "^1.1.2"
+
+polished@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-3.4.1.tgz#1eb5597ec1792206365635811d465751f5cbf71c"
+  integrity sha512-GflTnlP5rrpDoigjczEkS6Ye7NDA4sFvAnlr5hSDrEvjiVj97Xzev3hZlLi3UB27fpxyTS9rWU64VzVLWkG+mg==
+  dependencies:
+    "@babel/runtime" "^7.4.5"
 
 portfinder@^1.0.20:
   version "1.0.21"
@@ -12346,6 +12357,14 @@ svgo@^1.0.0, svgo@^1.2.0:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+swiper@4.4.6:
+  version "4.4.6"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-4.4.6.tgz#0dfa9d66e39811c73e96ea55cea61047a4091667"
+  integrity sha512-F9NDtijQt+etiOe6JAEH+Cb+QKzwwFpi08FlOIQv8ALdoQ8tvAX/38a/28E5XxalAkChsHCutwkBCzDxDXTGiA==
+  dependencies:
+    dom7 "^2.1.2"
+    ssr-window "^1.0.1"
 
 swiper@^4.5.0:
   version "4.5.0"

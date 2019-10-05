@@ -8,7 +8,7 @@ import LinkWithLang from './LinkWithLang';
 import SearchInput from './SearchInput';
 
 
-const Header: React.SFC = () => {
+const Header: React.FC = () => {
   const translation = useTranslation();
 
   const [menu, openMenu] = useState(false);

@@ -24,7 +24,7 @@ interface Props {
   };
 }
 
-const TagTemplate: React.SFC<Props> = props => {
+const TagTemplate: React.FC<Props> = props => {
   const { pageContext, data } = props;
   const { tag, slug } = pageContext;
   const { edges, totalCount } = data.allMarkdownRemark;

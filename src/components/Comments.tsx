@@ -14,7 +14,7 @@ interface Props {
   siteUrl: string;
 }
 
-const Comments: React.SFC<Props> = props => {
+const Comments: React.FC<Props> = props => {
   const { slug, title, siteUrl } = props;
   const disqusShortname = 'class101-dev';
   const disqusConfig = {

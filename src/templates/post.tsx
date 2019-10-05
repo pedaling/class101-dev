@@ -55,7 +55,7 @@ const options: HTMLReactParserOptions = {
   },
 };
 
-const PostTemplate: React.SFC<Props & RouteComponentProps> = props => {
+const PostTemplate: React.FC<Props & RouteComponentProps> = props => {
   const {
     pageContext: { previous, next, user },
     data: {

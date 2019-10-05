@@ -22,7 +22,7 @@ interface Props {
   };
 }
 
-const AuthorTemplate: React.SFC<Props> = props => {
+const AuthorTemplate: React.FC<Props> = props => {
   const { pageContext, data } = props;
   const { user, slug, } = pageContext;
   const edges = data.allMarkdownRemark && data.allMarkdownRemark.edges ? data.allMarkdownRemark.edges : [];

@@ -9,7 +9,7 @@ interface Props {
   currentPage: number;
 }
 
-const Paginator: React.SFC<Props> = ({ numPages, language, currentPage }) => {
+const Paginator: React.FC<Props> = ({ numPages, language, currentPage }) => {
   const links = [];
   for (let i = 0; i < numPages; i += 1) {
     links.push(

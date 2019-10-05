@@ -11,7 +11,7 @@ interface Props {
   user: User;
 }
 
-const Bio: React.SFC<Props> = props => {
+const Bio: React.FC<Props> = props => {
   const { name, profileImage, description, blog, github, linkedin } = props.user;
   const { t } = useTranslation();
   return (

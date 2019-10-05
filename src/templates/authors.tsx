@@ -7,7 +7,7 @@ import SEO from '../components/SEO';
 import { users } from '../data/users';
 
 
-const AuthorsPage: React.SFC = () => {
+const AuthorsPage: React.FC = () => {
   
   return (
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-const Footer: React.SFC = () => {
+const Footer: React.FC = () => {
   const { t } = useTranslation();
 
   return (

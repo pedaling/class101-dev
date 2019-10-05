@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-const SearchInput: React.SFC = () => {
+const SearchInput: React.FC = () => {
   const [text, setText] = useState('');
 
   const {

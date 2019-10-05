@@ -11,7 +11,7 @@ interface Props {
   totalCount?: number;
 }
 
-const LinkTag: React.SFC<Props> = ({ fieldValue, totalCount }) => {
+const LinkTag: React.FC<Props> = ({ fieldValue, totalCount }) => {
   return (
     <StyledLink to={`/tags/${kebabCase(fieldValue)}/`} key={fieldValue}>
       {getTagText(fieldValue)} {totalCount > 0 && `(${totalCount})`}

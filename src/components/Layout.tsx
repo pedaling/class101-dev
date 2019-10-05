@@ -12,7 +12,7 @@ interface Props {
   children: JSX.Element[];
 }
 
-const Layout: React.SFC<Props> = props => {
+const Layout: React.FC<Props> = props => {
   const { children } = props;
 
   return (

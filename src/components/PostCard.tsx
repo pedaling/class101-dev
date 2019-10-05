@@ -11,7 +11,7 @@ interface Props {
   node: Node;
 }
 
-const PostCard: React.SFC<Props> = props => {
+const PostCard: React.FC<Props> = props => {
   const {
     node: {
       fields: { slug },

@@ -20,7 +20,7 @@ interface Props {
   };
 }
 
-const TagsPage: React.SFC<Props> = ({
+const TagsPage: React.FC<Props> = ({
   data: {
     allMarkdownRemark: { group },
   },

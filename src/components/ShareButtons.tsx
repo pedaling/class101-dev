@@ -15,7 +15,7 @@ interface Props {
   url: string;
 }
 
-const ShareButtons: React.SFC<Props> = props => {
+const ShareButtons: React.FC<Props> = props => {
   const { url } = props;
   const title = 'class101';
 
