@@ -1,4 +1,13 @@
-import { Colors, TextStyles } from '@class101/ui';
+import {
+  Colors,
+  TextStyles,
+  Callout,
+  Button,
+  ButtonColor,
+  Icon,
+  IconButton,
+  CalloutStatus
+} from '@class101/ui';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
@@ -12,7 +21,7 @@ const RecruitingCard: React.FC = () => {
     document.body.removeChild(t);
   };
 
-  const [copied, setCopied] = useState(false);
+  const [_, setCopied] = useState(false);
 
   const handleClickCopy = () => {
     copyToClipboard('helloworld@class101.net');
@@ -20,26 +29,31 @@ const RecruitingCard: React.FC = () => {
   };
 
   return (
-    <RecruitingCardWrapper>
-      <h5>지원방법</h5>
+    <RecruitingCardWrapper title="지원방법" status={CalloutStatus.SUGGEST}>
       <p>
-        자유 형식의 이력서와 포트폴리오를 아래 메일로 제출합니다. <br />
-        (제목 예: [개발자] 프론트엔드 개발자에 지원합니다.)
+        자유 형식의 이력서, 포트폴리오와 GitHub 계정을 아래 메일로 제출합니다.
+        <br />
+        이력서에 나이, 사진을 첨부하지 않습니다. 평가와 관련이 없습니다.
       </p>
-      <p>
-        <b>helloworld@class101.net</b> <button onClick={handleClickCopy}>복사하기</button>
-      </p>
-      {copied && <p>복사되었습니다!</p>}
+      <Flex>
+        <b>helloworld@class101.net</b>
+        <IconButton
+          color={ButtonColor.DEFAULT}
+          icon={<Icon.Clip />}
+          size="xs"
+          onClick={handleClickCopy}
+        ></IconButton>
+      </Flex>
     </RecruitingCardWrapper>
   );
 };
 
 export default RecruitingCard;
 
-const RecruitingCardWrapper = styled.div`
+const RecruitingCardWrapper = styled(Callout)`
   margin: 16px 0;
   padding: 16px;
-  border: ${Colors.gray800} solid 1px;
+
   h5 {
     ${TextStyles.subtitle1};
     font-weight: 600;
@@ -49,14 +63,19 @@ const RecruitingCardWrapper = styled.div`
     ${TextStyles.body2};
     margin-bottom: 8px;
   }
-  button {
-    outline: none;
-    background: none;
-    border: ${Colors.gray800} solid 1px;
-    margin-left: 8px;
-    &:hover {
-      cursor: pointer;
-      background: ${Colors.gray100};
-    }
+`;
+
+const Flex = styled.div`
+  display: flex;
+  flex: 1;
+
+  flex-direction: row;
+  align-items: center;
+
+  b {
+    ${TextStyles.body1};
+    font-weight: 600;
+
+    margin-right: 8px;
   }
 `;

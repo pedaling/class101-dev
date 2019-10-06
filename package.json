@@ -3,7 +3,7 @@
   "private": true,
   "description": "Class101 Tech Blog",
   "version": "0.1.0",
-  "author": "Yozzing <ddalpange@gmail.com>",
+  "author": "Class101 Co. LTD",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
@@ -79,7 +79,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/pedaling/class101-dev.git"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,scss}": [

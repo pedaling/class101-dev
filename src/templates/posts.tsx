@@ -10,6 +10,7 @@ import Paginator from '../components/Paginator';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
 import { Edge, Site } from '../graphql-types';
+import HeroSection from '../components/HeroSection';
 
 interface Props {
   data: {
@@ -41,23 +42,18 @@ const getColLg = (index: number) => {
 const PostsTemplate: React.FC<RouteComponentProps & Props> = props => {
   const {
     data: {
-      allMarkdownRemark: { edges },
+      allMarkdownRemark: { edges }
     },
-    pageContext: { numPages, currentPage },
+    pageContext: { numPages, currentPage }
   } = props;
 
   const { t } = useTranslation();
 
   return (
-
     <Layout>
-      <SEO title="class101.dev" />
+      <SEO title="Home" />
+      <HeroSection />
       <Grid>
-        <Row>
-          <Col>
-            <SiteTitle>{t('description')}</SiteTitle>
-          </Col>
-        </Row>
         <Row>
           {edges.map(({ node }, i) => (
             <Col key={node.fields.slug} md={12} lg={getColLg(i)}>
