@@ -9,7 +9,7 @@ tags: ['typescript', 'monorepo']
 
 ## Overview
 
-Hello! I am Esmond who is responsible for operating recommendation server in CLASS101. Recently, we analyzed a similarity between classes using TF-IDF (Term Frequency – Inverse Document Frequency) and uploaded it as a form of API. Over two contents, I will write about the process of development and further plans. 
+Hello! I am Esmond who is responsible for operating recommendation server in CLASS101. Recently, we analyzed a similarity between classes using TF-IDF (Term Frequency – Inverse Document Frequency) and uploaded it as a form of API. Over two contents, I will write about the process of development and further plans.
 
 ## Background and Object of Development
 
@@ -21,7 +21,7 @@ Second, classify the class by its collection, which is categorized by its title 
 Lately, as CLASS101 is experiencing rapid growth, it seems inadequate to provide a simple recommendation such as category or collection. Since we need logic for a specific recommendation system, the development team decided to analyze an index, which is called ‘a similarity between classes’, and utilize the result. Our team aimed to realize three functions through this project.
 
 - Store N unit of classes that show high similarity with all the classes
-- Whenever a new class is added, automatically update the data 
+- Whenever a new class is added, automatically update the data
 - Open the service as API to easily asses at the application layer
 
 ## Assessing a measure of similarity for object quantifying
@@ -33,7 +33,6 @@ To assess the similarity between classes, we should know about various ways to m
 This is the most famous and simple way by measuring the distance between two vectors. In two dimension, it is so-called as ‘Pythagorean theorem’. Regarding two points p=(p1,p2,…,pn),q=(q1,q2,…,qn), the distance between two is calculated as below.
 
 ![](Untitled-d230bf87-2140-4196-8e40-871c0ac265de.png)
-
 
 ### Manhattan Distance
 
@@ -47,7 +46,7 @@ Regarding two points, p=(p1,p2,…,pn),q=(q1,q2,…,qn), the distance between tw
 
 ### Cosine Similarity
 
-The purpose of this measurement is to calculate the similarity of vector direction instead of its size between two vectors in dot product space. A similarity increases as a direction between two vectors are similar. If two vectors have an entirely different direction (180’ angle), it will get cosine value of -1. Otherwise, if two vectors are in the same line (0’ angle), it will get a cosine value of 1. 
+The purpose of this measurement is to calculate the similarity of vector direction instead of its size between two vectors in dot product space. A similarity increases as a direction between two vectors are similar. If two vectors have an entirely different direction (180’ angle), it will get cosine value of -1. Otherwise, if two vectors are in the same line (0’ angle), it will get a cosine value of 1.
 
 ![](Untitled-477f1d55-4962-4ce0-a5b4-2ec9751bc69c.png)
 
@@ -63,7 +62,7 @@ The object named ‘class’ has several attributes such as a class title, class
 pip install scikit-learn==0.21.1
 ```
 
-About the sample sentence, let us do vectorization using TF-IDF, and measure the distance. 
+About the sample sentence, let us do vectorization using TF-IDF, and measure the similarity.
 
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -77,9 +76,9 @@ doc_list = [
 
 tfidf_vectorizer = TfidfVectorizer(min_df=1)
 tfidf_matrix = tfidf_vectorizer.fit_transform(doc_list)
-doc_distances = (tfidf_matrix * tfidf_matrix.T)
+doc_similarities = (tfidf_matrix * tfidf_matrix.T)
 
-print(doc_distances.toarray())
+print(doc_similarities.toarray())
 ```
 
 ```
@@ -103,9 +102,9 @@ print(doc_nouns_list)
 
 tfidf_vectorizer = TfidfVectorizer(min_df=1)
 tfidf_matrix = tfidf_vectorizer.fit_transform(doc_nouns_list)
-doc_nouns_distances = (tfidf_matrix * tfidf_matrix.T)
+doc_nouns_similarities = (tfidf_matrix * tfidf_matrix.T)
 
-print(doc_nouns_distances.toarray())
+print(doc_nouns_similarities.toarray())
 ```
 
 ```
@@ -121,7 +120,7 @@ print(doc_nouns_distances.toarray())
     [0.04435806 0.12859167 1.        ]]
 ```
 
-According to the result, the similarity is measured more delicately than before. 
+According to the result, the similarity is measured more delicately than before.
 On this step, we will calculate the similarity between real class data. By selecting 10 classes in every 10 categories, a total of 100 sample classes are collected. After measuring the similarity between each class, we will look out for the category accordance ratio using the top 10 similar classes. From now on, we mention the class as ‘product’.
 
 ```python
@@ -134,12 +133,11 @@ On this step, we will calculate the similarity between real class data. By selec
 ```
 
 **TODO-LIST**
-1. Make a new product dictionary by extracting nouns from ‘title’ and ‘description’.
-2. Regarding ‘title’ and ‘description’, store the top 10 product id and distance value after vectorizing each attribute by TfidVectorizer and calculating the similarity.
-3. Measure a similarity ratio between target class and category.
-4. Using 100 sample data, measure a mean value of similarity ratio between target class and category.  
-  
 
+1. Make a new product dictionary by extracting nouns from ‘title’ and ‘description’.
+2. Regarding ‘title’ and ‘description’, store the top 10 product id and similarity value after vectorizing each attribute by TfidVectorizer and calculating the similarity.
+3. Measure a similarity ratio between target class and category.
+4. Using 100 sample data, measure a mean value of similarity ratio between target class and category.
 
 ### Make a new product dictionary by extracting nouns from ‘title’ and ‘description’.
 
@@ -164,9 +162,9 @@ product_noun_list = get_product_noun_list(product_list)
 
 ![](Screen_Shot_2019-07-12_at_7-751cae5a-ea27-494e-b280-8c20842038b0.56.48_PM.png)
 
-We look for the iteration by tdqm during the code is implemented in jupyter notebook environment. About 13.46 iterations per sec were recorded, and 7 seconds were spent for 100 data. Probably, it seems to take some time by implementing Java through Jpype since the core of konlpy is composed of Java. 
+We look for the iteration by tdqm during the code is implemented in jupyter notebook environment. About 13.46 iterations per sec were recorded, and 7 seconds were spent for 100 data. Probably, it seems to take some time by implementing Java through Jpype since the core of konlpy is composed of Java.
 
-### Regarding ‘title’ and ‘description’, store the top 10 product id and distance value after vectorizing each attribute by TfidVectorizer and calculating the similarity.
+### Regarding ‘title’ and ‘description’, store the top 10 product id and similarity value after vectorizing each attribute by TfidVectorizer and calculating the similarity.
 
 ```python
 tfidf_vectorizer = TfidfVectorizer(min_df=1)
@@ -175,15 +173,15 @@ def get_similar_products(product_noun_list=None, field=None, top_n=None):
     output = []
 
     tfidf_matrix = tfidf_vectorizer.fit_transform([product[field] for product in product_noun_list])
-    doc_distances = (tfidf_matrix * tfidf_matrix.T)
+    doc_similarities = (tfidf_matrix * tfidf_matrix.T)
 
-    for idx, distances in enumerate(doc_distances.toarray()):
-        top_similar_product_indices = distances.argsort()[-(top_n+1):][::-1][1:]
+    for idx, similarities in enumerate(doc_similarities.toarray()):
+        top_similar_product_indices = similarities.argsort()[-(top_n+1):][::-1][1:]
         output.append({
             "product_id": product_noun_list[idx]['product_id'],
             "top_similar_products": [{
                     "product_id": product_noun_list[similar_idx]['product_id'],
-                    "distance": round(distances[similar_idx], 6)
+                    "similarity": round(similarities[similar_idx], 6)
             } for similar_idx in top_similar_product_indices]
         })
     return output
@@ -198,17 +196,17 @@ print(title_similar_products[0])
 {
     'product_id': 'xxxxx',
     'top_similar_products': [
-        {'product_id': 'xxxx', 'distance': 0.280641},
-        {'product_id': 'xxxx', 'distance': 0.182949},
-        {'product_id': 'xxxx', 'distance': 0.180826},
-        {'product_id': 'xxxx', 'distance': 0.156225},
-        {'product_id': 'xxxx', 'distance': 0.137592}
+        {'product_id': 'xxxx', 'similarity': 0.280641},
+        {'product_id': 'xxxx', 'similarity': 0.182949},
+        {'product_id': 'xxxx', 'similarity': 0.180826},
+        {'product_id': 'xxxx', 'similarity': 0.156225},
+        {'product_id': 'xxxx', 'similarity': 0.137592}
     ]
 }
 ```
 
 The entire product id is marked as xxxx.
- 
+
 ### Measure a similarity ratio between target class and category.
 
 ```python
@@ -246,7 +244,7 @@ print(title_ratio_list_of_same_category[0])
 ]
 ```
 
-### Using 100 sample data, measure a mean value of similarity ratio between target class and category.  
+### Using 100 sample data, measure a mean value of similarity ratio between target class and category.
 
 ```python
 def get_avaerage_of_ratio(ratio_list_of_same_category=None):
@@ -264,7 +262,6 @@ print(f"description 기준 타겟 클래스와 카테고리가 일치하는 비�
 The mean value of accordance ratio between a target class and category using its ‘title’: 0.224
 The mean value of accordance ratio between a target class and category using its ‘description’: 0.425
 ```
-
 
 ## Conclusion
 

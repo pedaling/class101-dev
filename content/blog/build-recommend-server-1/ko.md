@@ -67,7 +67,7 @@ Taxicab geometry라고도 합니다. 다음과 같이 정사각형으로 나뉜 
 pip install scikit-learn==0.21.1
 ```
 
-예제 문장에 대하여 TF-IDF를 활용해 Vectorization을 하고, 유사도(distance)를 구해보겠습니다.
+예제 문장에 대하여 TF-IDF를 활용해 Vectorization을 하고, 유사도(similarity)를 구해보겠습니다.
 
 ```python
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -81,9 +81,9 @@ doc_list = [
 
 tfidf_vectorizer = TfidfVectorizer(min_df=1)
 tfidf_matrix = tfidf_vectorizer.fit_transform(doc_list)
-doc_distances = (tfidf_matrix * tfidf_matrix.T)
+doc_similarities = (tfidf_matrix * tfidf_matrix.T)
 
-print(doc_distances.toarray())
+print(doc_similarities.toarray())
 ```
 
 ```
@@ -107,9 +107,9 @@ print(doc_nouns_list)
 
 tfidf_vectorizer = TfidfVectorizer(min_df=1)
 tfidf_matrix = tfidf_vectorizer.fit_transform(doc_nouns_list)
-doc_nouns_distances = (tfidf_matrix * tfidf_matrix.T)
+doc_nouns_similarities = (tfidf_matrix * tfidf_matrix.T)
 
-print(doc_nouns_distances.toarray())
+print(doc_nouns_similarities.toarray())
 ```
 
 ```
@@ -144,7 +144,7 @@ print(doc_nouns_distances.toarray())
 
 1. title과 description의 명사들을 추출하여 새로운 product dictionary 목록을 만든다.
 
-2. title과 description에 대하여 각각 TfidfVectorizer로 vectorizing한 뒤 유사도를 계산하여 top 10개의 product id와 distance 값을 저장한다.
+2. title과 description에 대하여 각각 TfidfVectorizer로 vectorizing한 뒤 유사도를 계산하여 top 10개의 product id와 similarity 값을 저장한다.
 
 3. 타겟 클래스와 카테고리가 일치하는 비율을 구한다.
 
@@ -186,15 +186,15 @@ def get_similar_products(product_noun_list=None, field=None, top_n=None):
     output = []
 
     tfidf_matrix = tfidf_vectorizer.fit_transform([product[field] for product in product_noun_list])
-    doc_distances = (tfidf_matrix * tfidf_matrix.T)
+    doc_similarities = (tfidf_matrix * tfidf_matrix.T)
 
-    for idx, distances in enumerate(doc_distances.toarray()):
-        top_similar_product_indices = distances.argsort()[-(top_n+1):][::-1][1:]
+    for idx, similarities in enumerate(doc_similarities.toarray()):
+        top_similar_product_indices = similarities.argsort()[-(top_n+1):][::-1][1:]
         output.append({
             "product_id": product_noun_list[idx]['product_id'],
             "top_similar_products": [{
                     "product_id": product_noun_list[similar_idx]['product_id'],
-                    "distance": round(distances[similar_idx], 6)
+                    "similarity": round(similarities[similar_idx], 6)
             } for similar_idx in top_similar_product_indices]
         })
     return output
@@ -209,11 +209,11 @@ print(title_similar_products[0])
 {
     'product_id': 'xxxxx',
     'top_similar_products': [
-        {'product_id': 'xxxx', 'distance': 0.280641},
-        {'product_id': 'xxxx', 'distance': 0.182949},
-        {'product_id': 'xxxx', 'distance': 0.180826},
-        {'product_id': 'xxxx', 'distance': 0.156225},
-        {'product_id': 'xxxx', 'distance': 0.137592}
+        {'product_id': 'xxxx', 'similarity': 0.280641},
+        {'product_id': 'xxxx', 'similarity': 0.182949},
+        {'product_id': 'xxxx', 'similarity': 0.180826},
+        {'product_id': 'xxxx', 'similarity': 0.156225},
+        {'product_id': 'xxxx', 'similarity': 0.137592}
     ]
 }
 ```
