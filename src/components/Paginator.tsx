@@ -1,7 +1,7 @@
-import { Colors } from '@class101/ui';
-import { Link } from 'gatsby';
+import { Button, ButtonColor, ButtonSize } from '@class101/ui';
 import React from 'react';
 import styled from 'styled-components';
+
 import LinkWithLang from './LinkWithLang';
 
 interface Props {
@@ -9,13 +9,24 @@ interface Props {
   currentPage: number;
 }
 
-const Paginator: React.FC<Props> = ({ numPages, language, currentPage }) => {
+const Paginator: React.FC<Props> = ({ numPages, currentPage }) => {
   const links = [];
   for (let i = 0; i < numPages; i += 1) {
     links.push(
-      <PaginationLink key={i} className={i === currentPage - 1 ? 'active' : ''} to={`/${i === 0 ? '/' : `/blog/${i + 1}`}`}>
-        {i + 1}
-      </PaginationLink>
+      <Anchor
+        key={i}
+        className={i === currentPage - 1 ? 'active' : ''}
+        to={`/${i === 0 ? '/' : `/blog/${i + 1}`}`}
+      >
+        <Button
+          color={
+            i === currentPage - 1 ? ButtonColor.ORANGE : ButtonColor.DEFAULT
+          }
+          size={ButtonSize.XSMALL}
+        >
+          {i + 1}
+        </Button>
+      </Anchor>
     );
   }
 
@@ -28,18 +39,11 @@ const PaginationWrapper = styled.div`
   text-align: center;
 `;
 
-const PaginationLink = styled(LinkWithLang)`
+const Anchor = styled(LinkWithLang)`
   padding: 8px 14px;
   margin: 4px;
   text-decoration: none;
-  color: ${Colors.orange500};
-  background: white;
-  border-radius: 4px;
-  &.active {
-    color: white;
-    background: ${Colors.orange500};
-  }
   &:hover {
-    background: ${Colors.orange200};
+    color: inherit;
   }
 `;
