@@ -1,14 +1,16 @@
-import { Colors, TextStyles } from '@class101/ui';
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { Button, ButtonColor, Colors, Icon, Input, ModalBottomSheet, TextStyles } from '@class101/ui';
+import { graphql, useStaticQuery } from 'gatsby';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
+
+import LinkWithLang from './LinkWithLang';
 
 const SearchInput: React.FC = () => {
   const [text, setText] = useState('');
 
   const {
-    allMarkdownRemark: { edges },
+    allMarkdownRemark: { edges }
   } = useStaticQuery(PostsQuery);
 
   const { t } = useTranslation();
@@ -18,26 +20,36 @@ const SearchInput: React.FC = () => {
   };
 
   return (
-    <AutoCompleteContainer>
-      <StyledInput placeholder={t('searchPlaceholder')} onChange={onChangeText} />
+    <ModalBottomSheet
+      title="검색하기"
+      opener={
+        <SearchButton rightIcon={<Icon.Search />} color={ButtonColor.WHITE}>
+          {t('searchPlaceholder')}&nbsp;&nbsp;
+        </SearchButton>
+      }
+    >
+      <Input placeholder={t('searchPlaceholder')} onChange={onChangeText} />
       {text && (
         <AutoCompleteList>
           {edges
             .filter(({ node }: any) => node.frontmatter.title.includes(text))
             .map(({ node }: any) => (
-              <AutoCompleteItem key={node.fields.slug} to={node.fields.slug}>
-                <b>{node.frontmatter.title}</b>
-              </AutoCompleteItem>
+              <Anchor key={node.fields.slug} to={node.fields.slug}>
+                {node.frontmatter.title}
+              </Anchor>
             ))}
         </AutoCompleteList>
       )}
-    </AutoCompleteContainer>
+    </ModalBottomSheet>
   );
 };
 
 const PostsQuery = graphql`
   query {
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1000) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 1000
+    ) {
       edges {
         node {
           fields {
@@ -59,40 +71,25 @@ const PostsQuery = graphql`
 
 export default SearchInput;
 
-const AutoCompleteContainer = styled.div`
-  border: 1px solid ${Colors.gray200};
-  box-sizing: border-box;
-  margin: 0 16px;
-  padding: 8px 0;
-  position: relative;
-  background: white;
-  flex: 1 1 auto;
+const SearchButton = styled(Button)`
+  border: ${Colors.gray100} solid 1px;
+  color: ${Colors.gray400};
+`;
+
+const Anchor = styled(LinkWithLang)`
+  ${TextStyles.body2};
+  border-bottom: 1px solid ${Colors.gray100};
+  padding: 16px 12px;
+  display: block;
+  text-decoration: none;
+  &:hover {
+    color: inherit;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 const AutoCompleteList = styled.div`
-  position: absolute;
   width: 100%;
-  bottom: 1px;
-  top: 100%;
-  z-index: 100;
-`;
-
-const AutoCompleteItem = styled(Link)`
-  ${TextStyles.body2}
-  border: 1px solid ${Colors.gray200};
-  box-sizing: border-box;
-  display: block;
-  background: white;
-  padding: 16px 12px;
-  color: inherit;
-  text-decoration: none;
-  margin: -1px;
-`;
-
-const StyledInput = styled.input`
-  ${TextStyles.body2};
-  width: 100%;
-  padding: 0 16px;
-  outline: none;
-  border: none;
 `;

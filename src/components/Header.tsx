@@ -1,5 +1,4 @@
-import { BreakPoints, Colors, ElevationStyles, Icon } from '@class101/ui';
-import { Link } from 'gatsby';
+import { BreakPoints, ElevationStyles, TextStyles } from '@class101/ui';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components';
@@ -9,38 +8,21 @@ import SearchInput from './SearchInput';
 
 const Header: React.FC = () => {
   const translation = useTranslation();
-
-  const [menu, openMenu] = useState(false);
-  const toggleMenu = () => openMenu(!menu);
-
   return (
     <NavConatiner>
       <NavInnerContainer>
         <NoHoverLink to={`/`}>
           <LogoIcon src="/images/logotype-black.png" alt="class101" />
         </NoHoverLink>
+        <NavLinkWithLang to={`/tags/recruiting`}>
+          {translation.t('recruiting')}
+        </NavLinkWithLang>
+        <NavLinkWithLang to={`/authors`}>
+          {translation.t('members')}
+        </NavLinkWithLang>
+        <ExternalNavLink href={`/ko/`}>한글</ExternalNavLink>
+        <ExternalNavLink href={`/en/`}>English</ExternalNavLink>
         <SearchInput />
-        <MenuContainer onClick={toggleMenu}>
-          <Icon.Menu fillColor={Colors.gray600} />
-          {menu && (
-            <NavLinkList>
-              <NavLinkWithLang to={`/tags/recruiting`}>
-                {translation.t('recruiting')}
-              </NavLinkWithLang>
-              <NavLinkWithLang to={`/authors`}>
-                {translation.t('members')}
-              </NavLinkWithLang>
-              <ExternalNavLink
-                href="https://github.com/pedaling"
-                target="_blank"
-              >
-                Github
-              </ExternalNavLink>
-              <ExternalNavLink href={`/en/`}>English</ExternalNavLink>
-              <ExternalNavLink href={`/ko/`}>한글</ExternalNavLink>
-            </NavLinkList>
-          )}
-        </MenuContainer>
       </NavInnerContainer>
     </NavConatiner>
   );
@@ -62,6 +44,7 @@ const NavInnerContainer = styled.div`
   margin: 0 auto;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
 
 const LogoIcon = styled.img`
@@ -94,27 +77,16 @@ const NavLinkList = styled.div`
 `;
 
 const navLinkCss = css`
+  ${TextStyles.body2};
   display: block;
-  color: ${Colors.gray900};
-  border: ${Colors.gray200} 1px solid;
-  background: white;
-  font-size: 16px;
-  padding: 8px;
-  margin: -1px;
-  width: 100px;
-  text-align: center;
   text-decoration: none;
   &:hover {
-    color: ${Colors.gray500};
+    color: inherit;
     text-decoration: underline;
   }
 `;
 
 const NavLinkWithLang = styled(LinkWithLang)`
-  ${navLinkCss};
-`;
-
-const NavLink = styled(Link)`
   ${navLinkCss};
 `;
 
