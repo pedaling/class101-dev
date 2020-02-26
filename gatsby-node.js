@@ -59,7 +59,7 @@ exports.createPages = ({ graphql, actions }) => {
     const allEdges = result.data.allMarkdownRemark.edges;
     // resolves from the query from 👆
     const authorSet = new Set();
-    allEdges.edges.forEach(edge => {
+    allEdges.forEach(edge => {
       if (edge.node.fields.authorId) {
         authorSet.add(edge.node.fields.authorId);
       }
@@ -156,7 +156,6 @@ exports.createPages = ({ graphql, actions }) => {
           path: authorPath,
           component: authorTemplate,
           context: {
-            user,
             language,
             authorId: author,
             slug: authorPath
