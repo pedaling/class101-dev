@@ -1,16 +1,15 @@
 import { Col, Grid, Row, TextStyles } from '@class101/ui';
 import { graphql } from 'gatsby';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { RouteComponentProps } from 'react-router';
 import styled from 'styled-components';
 
+import HeroSection from '../components/HeroSection';
 import Layout from '../components/Layout';
 import Paginator from '../components/Paginator';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
 import { Edge, Site } from '../graphql-types';
-import HeroSection from '../components/HeroSection';
 
 interface Props {
   data: {
@@ -29,16 +28,6 @@ interface Props {
   };
 }
 
-const getColLg = (index: number) => {
-  if (index === 0) {
-    return 12;
-  }
-  if (index <= 3) {
-    return 4;
-  }
-  return 6;
-};
-
 const PostsTemplate: React.FC<RouteComponentProps & Props> = props => {
   const {
     data: {
@@ -47,16 +36,14 @@ const PostsTemplate: React.FC<RouteComponentProps & Props> = props => {
     pageContext: { numPages, currentPage }
   } = props;
 
-  const { t } = useTranslation();
-
   return (
     <Layout>
       <SEO title="Home" />
       <HeroSection />
       <Grid>
         <Row>
-          {edges.map(({ node }, i) => (
-            <Col key={node.fields.slug} md={12} lg={getColLg(i)}>
+          {edges.map(({ node }) => (
+            <Col key={node.fields.slug} md={6} lg={3}>
               <PostCard node={node} />
             </Col>
           ))}

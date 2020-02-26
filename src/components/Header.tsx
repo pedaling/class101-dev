@@ -7,16 +7,10 @@ import styled, { css } from 'styled-components';
 import LinkWithLang from './LinkWithLang';
 import SearchInput from './SearchInput';
 
-
 const Header: React.FC = () => {
   const translation = useTranslation();
 
   const [menu, openMenu] = useState(false);
-  const logo =
-    typeof window !== 'undefined' && window.innerWidth > 425
-      ? '/images/logotype-black.png'
-      : '/images/symbol-black.png';
-
   const toggleMenu = () => openMenu(!menu);
 
   return (
@@ -26,16 +20,23 @@ const Header: React.FC = () => {
           <Col>
             <NavInnerContainer>
               <NoHoverLink to={`/`}>
-                <LogoIcon src={logo} alt="class101" />
+                <LogoIcon src="/images/logotype-black.png" alt="class101" />
               </NoHoverLink>
               <SearchInput />
               <MenuContainer onClick={toggleMenu}>
                 <Icon.Menu fillColor={Colors.gray600} />
                 {menu && (
                   <NavLinkList>
-                    <NavLinkWithLang to={`/tags/recruiting`}>{translation.t('recruiting')}</NavLinkWithLang>
-                    <NavLinkWithLang to={`/authors`}>{translation.t('members')}</NavLinkWithLang>
-                    <ExternalNavLink href="https://github.com/pedaling" target="_blank">
+                    <NavLinkWithLang to={`/tags/recruiting`}>
+                      {translation.t('recruiting')}
+                    </NavLinkWithLang>
+                    <NavLinkWithLang to={`/authors`}>
+                      {translation.t('members')}
+                    </NavLinkWithLang>
+                    <ExternalNavLink
+                      href="https://github.com/pedaling"
+                      target="_blank"
+                    >
                       Github
                     </ExternalNavLink>
                     <ExternalNavLink href={`/en/`}>English</ExternalNavLink>

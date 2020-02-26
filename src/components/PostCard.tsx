@@ -1,9 +1,8 @@
-import { Body2, Colors, TextStyles } from '@class101/ui';
+import { Avatar, Caption1, Card, Colors, CoverRatio, TextStyles } from '@class101/ui';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import Img from '../components/Img';
 import { Node } from '../graphql-types';
 import LinkWithLang from './LinkWithLang';
 
@@ -16,66 +15,51 @@ const PostCard: React.FC<Props> = props => {
     node: {
       fields: { slug },
       frontmatter: { title, description, thumbnail, date, author },
-      excerpt,
-    },
+      excerpt
+    }
   } = props;
 
   const { t } = useTranslation();
 
   return (
-    <Card to={`/${slug}`}>
-      <CardThumbnail src={thumbnail} />
-      <CardBody>
-        <CardCaption>{date}</CardCaption>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description || excerpt}</CardDescription>
-        <CardCaption>
-          Written By <b>{t(`profile.name.${author}`)}</b>
-        </CardCaption>
-      </CardBody>
-    </Card>
+    <Anchor to={`/${slug}`}>
+      <Card
+        coverImage={thumbnail}
+        coverImageRatio={CoverRatio.RATIO_4X3}
+        title={title}
+        extraTop={<CardCaption>{date}</CardCaption>}
+        extraBottom={
+          <div>
+            <CardDescription>{description || excerpt}</CardDescription>
+            <Avatar src="invaild_url" text={t(`profile.name.${author}`)} />
+          </div>
+        }
+      />
+    </Anchor>
   );
 };
 
 export default PostCard;
 
-const Card = styled(LinkWithLang)`
+const Anchor = styled(LinkWithLang)`
   display: block;
-  border-radius: 3px;
-  box-sizing: border-box;
-  background: white;
+  text-decoration: none;
   text-decoration: none;
   margin-bottom: 16px;
   &:hover {
     color: inherit;
-    img {
-      transition: transform 0.3s ease-in;
-      transform: scale(1.025);
-    }
   }
 `;
 
-const CardBody = styled.div`
-  padding: 8px 0;
-`;
-
-const CardThumbnail = styled(Img)`
-  object-fit: cover;
-`;
-
-const CardTitle = styled.h2`
-  ${TextStyles.subtitle1};
-  margin-bottom: 4px;
-`;
-
-const CardCaption = styled(Body2)`
-  color: ${Colors.gray700};
-  margin-bottom: 4px;
+const CardCaption = styled(Caption1)`
+  color: ${Colors.gray900};
+  font-weight: 600;
 `;
 
 const CardDescription = styled.div`
-  ${TextStyles.body2}
-  color: ${Colors.gray900};
+  ${TextStyles.caption1}
+  color: ${Colors.gray800};
+  margin-bottom: 8px;
   overflow: hidden;
   text-overflow: ellipsis;
   letter-spacing: none;
@@ -83,7 +67,4 @@ const CardDescription = styled.div`
   -webkit-line-clamp: 3; /* 라인수 */
   -webkit-box-orient: vertical;
   word-wrap: break-word;
-  line-height: 1.5em;
-  height: 4.5em;
-  margin-bottom: 4px;
 `;
