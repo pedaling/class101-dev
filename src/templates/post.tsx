@@ -1,4 +1,4 @@
-import { Body2, Col, Colors, Grid, Row, TextStyles } from '@class101/ui';
+import { Body2, BreakPoints, Colors, TextStyles } from '@class101/ui';
 import { RouteComponentProps } from '@reach/router';
 import { graphql } from 'gatsby';
 import parse, { HTMLReactParserOptions } from 'html-react-parser';
@@ -48,11 +48,15 @@ const options: HTMLReactParserOptions = {
     ) {
       const innerText = domEl.data as string;
 
-      return React.createElement('span', { id: encodeURI(_.kebabCase(innerText)) }, innerText);
+      return React.createElement(
+        'span',
+        { id: encodeURI(_.kebabCase(innerText)) },
+        innerText
+      );
     }
 
     return;
-  },
+  }
 };
 
 const PostTemplate: React.FC<Props & RouteComponentProps> = props => {
@@ -60,19 +64,18 @@ const PostTemplate: React.FC<Props & RouteComponentProps> = props => {
     pageContext: { previous, next, user },
     data: {
       site: {
-        siteMetadata: { siteUrl },
+        siteMetadata: { siteUrl }
       },
       markdownRemark: {
         tableOfContents,
         excerpt,
         html,
         fields: { slug },
-        frontmatter: { title, date, description, thumbnail, author, tags },
-      },
+        frontmatter: { title, date, description, thumbnail, author, tags }
+      }
     },
-    location: { href, pathname },
+    location: { href, pathname }
   } = props;
-
 
   return (
     <Layout>
@@ -83,63 +86,55 @@ const PostTemplate: React.FC<Props & RouteComponentProps> = props => {
         author={author}
         pathname={pathname}
       />
-      <Grid>
-        <Row>
-          <Col>
-            <PostContainer>
-              <PostHeader>
-                <ShareButtons url={href} />
+      <Container>
+        <PostContainer>
+          <PostHeader>
+            <ShareButtons url={href} />
 
-                {tags.map((tag: string) => (
-                  <LinkTag fieldValue={tag} key={tag} />
-                ))}
-                <PostTitle>{title}</PostTitle>
+            {tags.map((tag: string) => (
+              <LinkTag fieldValue={tag} key={tag} />
+            ))}
+            <PostTitle>{title}</PostTitle>
 
-                <PostDate>{date}</PostDate>
-              </PostHeader>
+            <PostDate>{date}</PostDate>
+          </PostHeader>
 
-              {tableOfContents && <PostTOC>{parse(tableOfContents.split(slug).join(''), options)}</PostTOC>}
+          {tableOfContents && (
+            <PostTOC>
+              {parse(tableOfContents.split(slug).join(''), options)}
+            </PostTOC>
+          )}
 
-              <PostBody className="markdown-body">{parse(html, options)}</PostBody>
+          <PostBody className="markdown-body">{parse(html, options)}</PostBody>
 
-              {tags.includes('recruiting') && <RecruitingCard />}
+          {tags.includes('recruiting') && <RecruitingCard />}
 
-              <PostFooter>
-                {previous && (
-                  <PostNavigator to={`/${previous.fields.slug}`}>
-                    <PostNavigatorTitle>
-                      <span>이전 글</span>
-                      <br />
-                      <b>{previous.frontmatter.title}</b>
-                    </PostNavigatorTitle>
-                    <Img src={previous.frontmatter.thumbnail} />
-                  </PostNavigator>
-                )}
-                {next && (
-                  <PostNavigator to={`/${next.fields.slug}`}>
-                    <PostNavigatorTitle>
-                      <span>다음 글</span>
-                      <br />
-                      <b>{next.frontmatter.title}</b>
-                    </PostNavigatorTitle>
-                    <Img src={next.frontmatter.thumbnail} />
-                  </PostNavigator>
-                )}
-              </PostFooter>
-            </PostContainer>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Bio user={user} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Comments title={title} siteUrl={siteUrl} slug={pathname} />
-          </Col>
-        </Row>
-      </Grid>
+          <PostFooter>
+            {previous && (
+              <PostNavigator to={`/${previous.fields.slug}`}>
+                <PostNavigatorTitle>
+                  <span>이전 글</span>
+                  <br />
+                  <b>{previous.frontmatter.title}</b>
+                </PostNavigatorTitle>
+                <Img src={previous.frontmatter.thumbnail} />
+              </PostNavigator>
+            )}
+            {next && (
+              <PostNavigator to={`/${next.fields.slug}`}>
+                <PostNavigatorTitle>
+                  <span>다음 글</span>
+                  <br />
+                  <b>{next.frontmatter.title}</b>
+                </PostNavigatorTitle>
+                <Img src={next.frontmatter.thumbnail} />
+              </PostNavigator>
+            )}
+          </PostFooter>
+          <Bio user={user} />
+          <Comments title={title} siteUrl={siteUrl} slug={pathname} />
+        </PostContainer>
+      </Container>
     </Layout>
   );
 };
@@ -155,7 +150,9 @@ export const pageQuery = graphql`
         siteUrl
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug }, language: { eq: $language } }) {
+    markdownRemark(
+      fields: { slug: { eq: $slug }, language: { eq: $language } }
+    ) {
       id
       tableOfContents
       excerpt(pruneLength: 300, truncate: true)
@@ -176,11 +173,17 @@ export const pageQuery = graphql`
   }
 `;
 
+const Container = styled.div`
+  background-color: ${Colors.gray100};
+`;
+
 const PostContainer = styled.div`
-  background: white;
-  border-radius: 3px;
-  margin: 0 auto;
   ${markdown};
+  background: white;
+  display: block;
+  margin: 0 auto;
+  padding: 0 32px;
+  max-width: ${BreakPoints.SIZES.lg.minWidth}px;
 `;
 
 const PostHeader = styled.div`

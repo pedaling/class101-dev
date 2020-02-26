@@ -52,6 +52,7 @@ const PostsTemplate: React.FC<RouteComponentProps & Props> = props => {
           </Col>
         </Row>
       </Grid>
+      <br />
     </Layout>
   );
 };

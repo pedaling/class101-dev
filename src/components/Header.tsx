@@ -1,4 +1,4 @@
-import { Col, Colors, Grid, Icon, Row } from '@class101/ui';
+import { BreakPoints, Colors, ElevationStyles, Icon } from '@class101/ui';
 import { Link } from 'gatsby';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,39 +15,33 @@ const Header: React.FC = () => {
 
   return (
     <NavConatiner>
-      <Grid>
-        <Row>
-          <Col>
-            <NavInnerContainer>
-              <NoHoverLink to={`/`}>
-                <LogoIcon src="/images/logotype-black.png" alt="class101" />
-              </NoHoverLink>
-              <SearchInput />
-              <MenuContainer onClick={toggleMenu}>
-                <Icon.Menu fillColor={Colors.gray600} />
-                {menu && (
-                  <NavLinkList>
-                    <NavLinkWithLang to={`/tags/recruiting`}>
-                      {translation.t('recruiting')}
-                    </NavLinkWithLang>
-                    <NavLinkWithLang to={`/authors`}>
-                      {translation.t('members')}
-                    </NavLinkWithLang>
-                    <ExternalNavLink
-                      href="https://github.com/pedaling"
-                      target="_blank"
-                    >
-                      Github
-                    </ExternalNavLink>
-                    <ExternalNavLink href={`/en/`}>English</ExternalNavLink>
-                    <ExternalNavLink href={`/ko/`}>한글</ExternalNavLink>
-                  </NavLinkList>
-                )}
-              </MenuContainer>
-            </NavInnerContainer>
-          </Col>
-        </Row>
-      </Grid>
+      <NavInnerContainer>
+        <NoHoverLink to={`/`}>
+          <LogoIcon src="/images/logotype-black.png" alt="class101" />
+        </NoHoverLink>
+        <SearchInput />
+        <MenuContainer onClick={toggleMenu}>
+          <Icon.Menu fillColor={Colors.gray600} />
+          {menu && (
+            <NavLinkList>
+              <NavLinkWithLang to={`/tags/recruiting`}>
+                {translation.t('recruiting')}
+              </NavLinkWithLang>
+              <NavLinkWithLang to={`/authors`}>
+                {translation.t('members')}
+              </NavLinkWithLang>
+              <ExternalNavLink
+                href="https://github.com/pedaling"
+                target="_blank"
+              >
+                Github
+              </ExternalNavLink>
+              <ExternalNavLink href={`/en/`}>English</ExternalNavLink>
+              <ExternalNavLink href={`/ko/`}>한글</ExternalNavLink>
+            </NavLinkList>
+          )}
+        </MenuContainer>
+      </NavInnerContainer>
     </NavConatiner>
   );
 };
@@ -55,10 +49,17 @@ const Header: React.FC = () => {
 export default Header;
 
 const NavConatiner = styled.nav`
-  padding: 16px 0px;
+  position: fixed;
+  width: 100%;
+  padding: 8px 0px;
+  background-color: white;
+  z-index: 1000;
+  ${ElevationStyles.elevation2};
 `;
 
 const NavInnerContainer = styled.div`
+  max-width: ${BreakPoints.SIZES.lg.minWidth}px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
 `;

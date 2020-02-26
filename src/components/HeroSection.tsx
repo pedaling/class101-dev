@@ -1,6 +1,6 @@
+import { Button, ButtonColor, Grid, Icon, TextStyles } from '@class101/ui';
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, TextStyles, Button, ButtonColor, Icon } from '@class101/ui';
 
 export default class HeroSection extends React.PureComponent {
   public render() {
@@ -36,7 +36,7 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 45vh;
-  margin: -32px 0 64px;
+  margin: 0 0 64px;
 `;
 
 const HeroImage = styled.img`
