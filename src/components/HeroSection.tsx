@@ -6,13 +6,12 @@ export default class HeroSection extends React.PureComponent {
   public render() {
     return (
       <Container>
-        <HeroImage src="/images/hero-image-lg.png"></HeroImage>
+        <HeroImage src="/images/hero-image-lg.png" />
         <InnerHeroContainer>
           <Grid>
             <h1>신나는 코딩세상</h1>
             <h3>
-              모든 사람들이 사랑하는 일을 하며 살 수 있는 세상을 꿈꿉니다.{' '}
-              <br />
+              모든 사람이 사랑하는 일을 하며 살 수 있는 세상을 꿈꿉니다. <br />
               당신이 만약 이 꿈에 관심이 있다면,
             </h3>
             <Button

@@ -1,4 +1,4 @@
-import { Body2, Colors, TextStyles } from '@class101/ui';
+import { Body2, BreakPoints, Colors, ElevationStyles, TextStyles } from '@class101/ui';
 import { RouteComponentProps } from '@reach/router';
 import { graphql } from 'gatsby';
 import parse, { HTMLReactParserOptions } from 'html-react-parser';
@@ -183,18 +183,24 @@ export const pageQuery = graphql`
 
 const Container = styled.div`
   background-color: ${Colors.gray100};
+  padding: 64px 0;
 `;
 
 const PostContainer = styled.div`
   ${markdown};
+  ${ElevationStyles.elevation2}
   background: white;
   display: block;
+  max-width: 720px;
   margin: 0 auto;
   padding: 0 32px;
-  max-width: 720px;
+  ${BreakPoints.media.sm`
+    padding: 0 16px;
+  `}
 `;
 
 const PostHeader = styled.div`
+  ${TextStyles.headline2};
   padding: 32px 8px;
   text-align: center;
 `;

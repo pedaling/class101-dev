@@ -33,7 +33,7 @@ const Header: React.FC = () => {
 
 export default Header;
 
-const NavConatiner = styled.nav`
+const NavConatiner = styled.header`
   position: fixed;
   width: 100%;
   padding: 8px 0px;
@@ -42,12 +42,15 @@ const NavConatiner = styled.nav`
   ${ElevationStyles.elevation2};
 `;
 
-const NavInnerContainer = styled.div`
+const NavInnerContainer = styled.nav`
   max-width: ${BreakPoints.SIZES.lg.minWidth}px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  ${BreakPoints.media.sm`
+    padding: 0 16px;
+  `}
 `;
 
 const LogoIcon = styled.img`

@@ -61,17 +61,7 @@ const CardDescription = styled.div`
   text-overflow: ellipsis;
   letter-spacing: none;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* 라인수 */
+  -webkit-line-clamp: 3; 
   -webkit-box-orient: vertical;
   word-wrap: break-word;
-`;
-
-const AvatarWrapper = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const AvatarText = styled.div`
-  ${TextStyles.caption1};
-  margin-left: 6px;
 `;
