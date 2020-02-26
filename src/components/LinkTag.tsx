@@ -1,4 +1,4 @@
-import { Button } from '@class101/ui';
+import { Button, ButtonSize } from '@class101/ui';
 import kebabCase from 'lodash/kebabCase';
 import React from 'react';
 import styled from 'styled-components';
@@ -14,8 +14,8 @@ interface Props {
 const LinkTag: React.FC<Props> = ({ fieldValue, totalCount }) => {
   return (
     <Anchor to={`/tags/${kebabCase(fieldValue)}/`} key={fieldValue}>
-      <Button>
-        {getTagText(fieldValue)} {totalCount > 0 && `(${totalCount})`}
+      <Button size={ButtonSize.SMALL}>
+        # {getTagText(fieldValue)} {totalCount > 0 && `(${totalCount})`}
       </Button>
     </Anchor>
   );
@@ -24,8 +24,9 @@ const LinkTag: React.FC<Props> = ({ fieldValue, totalCount }) => {
 export default LinkTag;
 
 const Anchor = styled(LinkWithLang)`
+  display: inline-block;
   text-decoration: none;
-  margin: 4px;
+  margin: 16px 8px 16px 0px;
   &:hover {
     color: inherit;
   }

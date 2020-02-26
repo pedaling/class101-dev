@@ -45,7 +45,7 @@ const TagTemplate: React.FC<Props> = props => {
         </Row>
         <Row>
           {edges.map(({ node }) => (
-            <Col key={node.fields.slug} md={12} lg={6}>
+            <Col key={node.fields.slug} md={12} lg={4}>
               <PostCard node={node} />
             </Col>
           ))}
@@ -62,7 +62,10 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { tags: { in: [$tag] } }, fields: { language: { eq: $language } } }
+      filter: {
+        frontmatter: { tags: { in: [$tag] } }
+        fields: { language: { eq: $language } }
+      }
     ) {
       totalCount
       edges {
@@ -77,7 +80,14 @@ export const pageQuery = graphql`
             title
             description
             thumbnail
-            author
+            author {
+              id
+              profileImage
+              description
+              github
+              blog
+              linkedin
+            }
             tags
           }
         }

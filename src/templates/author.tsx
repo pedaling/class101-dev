@@ -2,11 +2,9 @@ import { Col, Grid, Row } from '@class101/ui';
 import { graphql } from 'gatsby';
 import React from 'react';
 
-import Bio from '../components/Bio';
 import Layout from '../components/Layout';
 import PostCard from '../components/PostCard';
-import SEO from '../components/SEO';
-import { Edge, User } from '../graphql-types';
+import { Edge } from '../graphql-types';
 
 // Components
 interface Props {
@@ -17,27 +15,27 @@ interface Props {
     };
   };
   pageContext: {
-    user: User;
     slug: string;
   };
 }
 
 const AuthorTemplate: React.FC<Props> = props => {
   const { pageContext, data } = props;
-  const { user, slug, } = pageContext;
-  const edges = data.allMarkdownRemark && data.allMarkdownRemark.edges ? data.allMarkdownRemark.edges : [];
+  const { slug } = pageContext;
+  const edges =
+    data.allMarkdownRemark && data.allMarkdownRemark.edges
+      ? data.allMarkdownRemark.edges
+      : [];
   return (
     <Layout>
-      <SEO title={user.name} pathname={slug} />
+      {/* <SEO title={user.name} pathname={slug} /> */}
       <Grid>
         <Row>
-          <Col>
-            <Bio user={user}/>
-          </Col>
+          <Col>{/* <Bio user={user} /> */}</Col>
         </Row>
         <Row>
           {edges.map(({ node }) => (
-            <Col key={node.fields.slug} md={12} lg={6}>
+            <Col key={node.fields.slug} md={12} lg={4}>
               <PostCard node={node} />
             </Col>
           ))}
@@ -50,11 +48,13 @@ const AuthorTemplate: React.FC<Props> = props => {
 export default AuthorTemplate;
 
 export const pageQuery = graphql`
-  query($author: String!, $language: String!) {
+  query($authorId: String!, $language: String!) {
     allMarkdownRemark(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
-      filter: { frontmatter: { author: { eq: $author } }, fields: { language: { eq: $language } } }
+      filter: {
+        fields: { language: { eq: $language }, authorId: { eq: $authorId } }
+      }
     ) {
       totalCount
       edges {
@@ -69,7 +69,14 @@ export const pageQuery = graphql`
             title
             description
             thumbnail
-            author
+            author {
+              id
+              profileImage
+              description
+              github
+              blog
+              linkedin
+            }
             tags
           }
         }

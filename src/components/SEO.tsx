@@ -9,13 +9,13 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { useTranslation } from 'react-i18next';
 
-import { SiteMetadata } from '../graphql-types';
+import { Author, SiteMetadata } from '../graphql-types';
 
 interface Props {
   title?: string;
   description?: string;
   thumbnail?: string;
-  author?: string;
+  author?: Author;
   pathname?: string;
 }
 
@@ -152,7 +152,7 @@ const SEO: React.FC<Props> = props => {
         },
         {
           name: 'author',
-          content: t(`profile.name.${author || siteMetadata.author}`)
+          content: t(`profile.name.${author?.id || siteMetadata.author}`)
         },
         {
           property: `og:title`,

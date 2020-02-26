@@ -60,7 +60,14 @@ const PostsQuery = graphql`
             title
             tags
             description
-            author
+            author {
+              id
+              profileImage
+              description
+              github
+              blog
+              linkedin
+            }
             date
           }
         }

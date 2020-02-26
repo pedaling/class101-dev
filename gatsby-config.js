@@ -3,36 +3,47 @@ module.exports = {
     title: `클래스101 기술 블로그`,
     author: `class101`,
     description: `신나는 코딩 세상`,
-    keywords: ['class101', 'typescript', 'monorepo', 'react', 'graphql', 'apllo', 'aws'],
+    keywords: [
+      'class101',
+      'typescript',
+      'monorepo',
+      'react',
+      'graphql',
+      'apllo',
+      'aws'
+    ],
     siteUrl: `https://class101.dev`,
     facebookAppId: '2582489538450547',
     social: {
-      twitter: `class101`,
-    },
+      twitter: `class101`
+    }
+  },
+  mapping: {
+    'MarkdownRemark.frontmatter.author': `AuthorYaml`
   },
   plugins: [
+    `gatsby-transformer-yaml`,
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
         fonts: [
           {
             family: `Noto Sans KR`,
-            variants: [`300`, `400`, `600`, `700`, `800`],
+            variants: [`300`, `400`, `600`, `700`, `800`]
           },
           {
             family: `Source Code Pro`,
-            variants: [`400`, `600`],
-          },
-        ],
-      },
+            variants: [`400`, `600`]
+          }
+        ]
+      }
     },
-
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/blog`,
-        name: `blog`,
-      },
+        name: `blog`
+      }
     },
     // {
     //   resolve: `gatsby-source-filesystem`,
@@ -65,20 +76,20 @@ module.exports = {
             resolve: 'gatsby-remark-external-links',
             options: {
               target: '_blank',
-              rel: 'nofollow',
-            },
+              rel: 'nofollow'
+            }
           },
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 590,
-            },
+              maxWidth: 590
+            }
           },
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
+              wrapperStyle: `margin-bottom: 1.0725rem`
+            }
           },
           {
             resolve: `gatsby-remark-prismjs`,
@@ -113,21 +124,21 @@ module.exports = {
               showLineNumbers: false,
               // If setting this to true, the parser won't handle and highlight inline
               // code used in markdown i.e. single backtick code like `this`.
-              noInlineHighlight: false,
-            },
+              noInlineHighlight: false
+            }
           },
           `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
-        ],
-      },
+          `gatsby-remark-smartypants`
+        ]
+      }
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: `UA-64561335-30`,
-      },
+        trackingId: `UA-64561335-30`
+      }
     },
     {
       resolve: `gatsby-plugin-facebook-analytics`,
@@ -153,8 +164,8 @@ module.exports = {
         debug: false,
 
         // Select your language.
-        language: `ko`,
-      },
+        language: `ko`
+      }
     },
     `gatsby-plugin-feed`,
     {
@@ -174,45 +185,45 @@ module.exports = {
           {
             src: 'static/icons/android-icon-48x48.png',
             sizes: '48x48',
-            type: 'image/png',
+            type: 'image/png'
           },
           {
             src: 'static/icons/android-icon-72x72.png',
             sizes: '72x72',
-            type: 'image/png',
+            type: 'image/png'
           },
           {
             src: 'static/icons/android-icon-96x96.png',
             sizes: '96x96',
-            type: 'image/png',
+            type: 'image/png'
           },
           {
             src: 'static/icons/android-icon-144x144.png',
             sizes: '144x144',
-            type: 'image/png',
+            type: 'image/png'
           },
           {
             src: 'static/icons/android-icon-192x192.png',
             sizes: '192x192',
-            type: 'image/png',
+            type: 'image/png'
           },
           {
             src: 'static/icons/android-icon-256x256.png',
             sizes: '256x256',
-            type: 'image/png',
+            type: 'image/png'
           },
           {
             src: 'static/icons/android-icon-384x384.png',
             sizes: '384x384',
-            type: 'image/png',
+            type: 'image/png'
           },
           {
             src: 'static/icons/android-icon-512x512.png',
             sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
-      },
+            type: 'image/png'
+          }
+        ]
+      }
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
@@ -220,10 +231,10 @@ module.exports = {
       resolve: `gatsby-plugin-styled-components`,
       options: {
         // Add any options here
-      },
+      }
     },
     {
-      resolve: `gatsby-plugin-typescript`,
-    },
-  ],
+      resolve: `gatsby-plugin-typescript`
+    }
+  ]
 };

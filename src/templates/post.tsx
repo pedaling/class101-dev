@@ -6,8 +6,8 @@ import _ from 'lodash';
 import React from 'react';
 import styled from 'styled-components';
 
-import Bio from '../components/Bio';
 import Comments from '../components/Comments';
+import FullAnchorAuthor from '../components/FullAnchorAuthor';
 import Img from '../components/Img';
 import Layout from '../components/Layout';
 import LinkTag from '../components/LinkTag';
@@ -15,7 +15,7 @@ import LinkWithLang from '../components/LinkWithLang';
 import RecruitingCard from '../components/RecruitingCard';
 import SEO from '../components/SEO';
 import ShareButtons from '../components/ShareButtons';
-import { MarkdownRemark, Site, User } from '../graphql-types';
+import { MarkdownRemark, Site } from '../graphql-types';
 import markdown from '../utils/markdown';
 
 interface Props {
@@ -24,7 +24,6 @@ interface Props {
     markdownRemark: MarkdownRemark;
   };
   pageContext: {
-    user: User;
     previous: MarkdownRemark;
     next: MarkdownRemark;
   };
@@ -61,7 +60,7 @@ const options: HTMLReactParserOptions = {
 
 const PostTemplate: React.FC<Props & RouteComponentProps> = props => {
   const {
-    pageContext: { previous, next, user },
+    pageContext: { previous, next },
     data: {
       site: {
         siteMetadata: { siteUrl }
@@ -76,6 +75,7 @@ const PostTemplate: React.FC<Props & RouteComponentProps> = props => {
     },
     location: { href, pathname }
   } = props;
+  console.log(author);
 
   return (
     <Layout>
@@ -89,11 +89,6 @@ const PostTemplate: React.FC<Props & RouteComponentProps> = props => {
       <Container>
         <PostContainer>
           <PostHeader>
-            <ShareButtons url={href} />
-
-            {tags.map((tag: string) => (
-              <LinkTag fieldValue={tag} key={tag} />
-            ))}
             <PostTitle>{title}</PostTitle>
 
             <PostDate>{date}</PostDate>
@@ -131,7 +126,13 @@ const PostTemplate: React.FC<Props & RouteComponentProps> = props => {
               </PostNavigator>
             )}
           </PostFooter>
-          <Bio user={user} />
+          {tags.map((tag: string) => (
+            <LinkTag fieldValue={tag} key={tag} />
+          ))}
+          <ShareButtons url={href} />
+
+          <FullAnchorAuthor author={author} />
+
           <Comments title={title} siteUrl={siteUrl} slug={pathname} />
         </PostContainer>
       </Container>
@@ -166,7 +167,14 @@ export const pageQuery = graphql`
         thumbnail
         date(formatString: "YYYY-MM-DD")
         description
-        author
+        author {
+          id
+          profileImage
+          description
+          github
+          blog
+          linkedin
+        }
         tags
       }
     }

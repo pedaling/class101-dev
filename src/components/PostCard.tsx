@@ -1,13 +1,12 @@
-import { Avatar, Caption1, Card, Colors, CoverRatio, TextStyles } from '@class101/ui';
+import { Caption1, Card, Colors, CoverRatio, TextStyles } from '@class101/ui';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 
-import { Node } from '../graphql-types';
+import AnchorAuthor from './AnchorAuthor';
 import LinkWithLang from './LinkWithLang';
 
 interface Props {
-  node: Node;
+  node: any;
 }
 
 const PostCard: React.FC<Props> = props => {
@@ -19,8 +18,6 @@ const PostCard: React.FC<Props> = props => {
     }
   } = props;
 
-  const { t } = useTranslation();
-
   return (
     <Anchor to={`/${slug}`}>
       <Card
@@ -29,10 +26,10 @@ const PostCard: React.FC<Props> = props => {
         title={title}
         extraTop={<CardCaption>{date}</CardCaption>}
         extraBottom={
-          <div>
+          <React.Fragment>
             <CardDescription>{description || excerpt}</CardDescription>
-            <Avatar src="invaild_url" text={t(`profile.name.${author}`)} />
-          </div>
+            <AnchorAuthor author={author} />
+          </React.Fragment>
         }
       />
     </Anchor>
@@ -59,7 +56,7 @@ const CardCaption = styled(Caption1)`
 const CardDescription = styled.div`
   ${TextStyles.caption1}
   color: ${Colors.gray800};
-  margin-bottom: 8px;
+  margin-bottom: 16px;
   overflow: hidden;
   text-overflow: ellipsis;
   letter-spacing: none;
@@ -67,4 +64,14 @@ const CardDescription = styled.div`
   -webkit-line-clamp: 3; /* 라인수 */
   -webkit-box-orient: vertical;
   word-wrap: break-word;
+`;
+
+const AvatarWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const AvatarText = styled.div`
+  ${TextStyles.caption1};
+  margin-left: 6px;
 `;

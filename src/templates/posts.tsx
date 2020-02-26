@@ -1,8 +1,7 @@
-import { Col, Grid, Row, TextStyles } from '@class101/ui';
+import { Col, Grid, Row } from '@class101/ui';
 import { graphql } from 'gatsby';
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
-import styled from 'styled-components';
 
 import HeroSection from '../components/HeroSection';
 import Layout from '../components/Layout';
@@ -85,16 +84,14 @@ export const pageQuery = graphql`
             title
             description
             thumbnail
-            author
+            author {
+              id
+              profileImage
+            }
             tags
           }
         }
       }
     }
   }
-`;
-
-const SiteTitle = styled.h1`
-  ${TextStyles.headline2};
-  margin-bottom: 24px;
 `;

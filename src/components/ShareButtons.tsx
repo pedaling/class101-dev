@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  EmailIcon,
-  EmailShareButton,
-  FacebookIcon,
-  FacebookShareButton,
-  LinkedinIcon,
-  LinkedinShareButton,
-  TwitterIcon,
-  TwitterShareButton,
-} from 'react-share';
+import { EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
 import styled from 'styled-components';
 
 interface Props {
@@ -47,7 +38,6 @@ const ShareButtons: React.FC<Props> = props => {
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
 `;
 
 const ButtonWrapper = styled.div`

@@ -13,7 +13,7 @@ export interface Frontmatter {
   title: string;
   date: string;
   thumbnail: string;
-  author: string;
+  author: Author;
   tags: string[];
   description?: string;
 }
@@ -39,7 +39,7 @@ export interface Fields {
 
 export interface SiteMetadata {
   title: string;
-  author: string;
+  author: Author;
   description: string;
   siteUrl: string;
   keywords: string[];
@@ -59,9 +59,9 @@ export interface GroupEl {
   totalCount: number;
 }
 
-export interface User {
+export interface Author {
   profileImage: string;
-  name: string;
+  id: string;
   description: string;
   github: string;
   linkedin: string;

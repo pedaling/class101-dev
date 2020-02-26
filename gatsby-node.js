@@ -1,6 +1,5 @@
 const path = require(`path`);
 const _ = require('lodash');
-const { users } = require(`./src/data/users`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 const POSTS_PER_PAGE = 8;
@@ -28,12 +27,20 @@ exports.createPages = ({ graphql, actions }) => {
             node {
               fields {
                 slug
+                authorId
                 language
               }
               frontmatter {
                 title
                 thumbnail
-                author
+                author {
+                  id
+                  profileImage
+                  description
+                  github
+                  blog
+                  linkedin
+                }
                 tags
                 description
                 date
@@ -50,6 +57,14 @@ exports.createPages = ({ graphql, actions }) => {
 
     // Create blog edges pages.
     const allEdges = result.data.allMarkdownRemark.edges;
+    // resolves from the query from 👆
+    const authorSet = new Set();
+    allEdges.edges.forEach(edge => {
+      if (edge.node.fields.authorId) {
+        authorSet.add(edge.node.fields.authorId);
+      }
+    });
+    const authorList = Array.from(authorSet);
 
     AVAILABLE_LANGUAGES.forEach(lang => {
       const firstPathSegment = `/${lang}`;
@@ -70,9 +85,6 @@ exports.createPages = ({ graphql, actions }) => {
           component: postTemplate,
           context: {
             slug: edge.node.fields.slug,
-            user: users.find(
-              users => users.name === edge.node.frontmatter.author
-            ),
             language,
             previous,
             next
@@ -135,9 +147,9 @@ exports.createPages = ({ graphql, actions }) => {
         });
       }
 
-      for (const user of users) {
+      for (const author of authorList) {
         const authorPath = `${firstPathSegment}/authors/${_.kebabCase(
-          user.name
+          author
         )}/`;
 
         createPage({
@@ -146,7 +158,7 @@ exports.createPages = ({ graphql, actions }) => {
           context: {
             user,
             language,
-            author: user.name,
+            authorId: author,
             slug: authorPath
           }
         });
@@ -193,6 +205,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       .toISOString()
       .slice(0, 10)
       .replace(/-/gi, '/')}/${_.kebabCase(node.frontmatter.author)}`;
+
+    if (Object.prototype.hasOwnProperty.call(node.frontmatter, 'author')) {
+      createNodeField({
+        node,
+        name: 'authorId',
+        value: node.frontmatter.author
+      });
+    }
 
     createNodeField({
       node,
