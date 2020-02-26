@@ -1,4 +1,4 @@
-import { Body2, BreakPoints, Colors, TextStyles } from '@class101/ui';
+import { Body2, Colors, TextStyles } from '@class101/ui';
 import { RouteComponentProps } from '@reach/router';
 import { graphql } from 'gatsby';
 import parse, { HTMLReactParserOptions } from 'html-react-parser';
@@ -191,7 +191,7 @@ const PostContainer = styled.div`
   display: block;
   margin: 0 auto;
   padding: 0 32px;
-  max-width: ${BreakPoints.SIZES.lg.minWidth}px;
+  max-width: 720px;
 `;
 
 const PostHeader = styled.div`
