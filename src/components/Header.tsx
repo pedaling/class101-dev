@@ -1,5 +1,5 @@
 import { BreakPoints, ElevationStyles, TextStyles } from '@class101/ui';
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import styled, { css } from 'styled-components';
 
@@ -12,7 +12,10 @@ const Header: React.FC = () => {
     <NavConatiner>
       <NavInnerContainer>
         <NoHoverLink to={`/`}>
-          <LogoIcon src="/images/logotype-black.png" alt="class101" />
+          <LogoIcon
+            src="https://class101.net/images/class101-main-logo.svg"
+            alt="class101"
+          />
         </NoHoverLink>
         <NavLinkWithLang to={`/tags/recruiting`}>
           {translation.t('recruiting')}
@@ -49,7 +52,7 @@ const NavInnerContainer = styled.div`
 
 const LogoIcon = styled.img`
   display: block;
-  height: 40px;
+  height: 30px;
   width: auto;
   margin: 0;
 `;
@@ -62,20 +65,6 @@ const NoHoverLink = styled(LinkWithLang)`
   }
 `;
 
-const MenuContainer = styled.div`
-  position: relative;
-  cursor: pointer;
-`;
-
-const NavLinkList = styled.div`
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  z-index: 1;
-  top: 100%;
-  right: 0;
-`;
-
 const navLinkCss = css`
   ${TextStyles.body2};
   display: block;
@@ -84,6 +73,9 @@ const navLinkCss = css`
     color: inherit;
     text-decoration: underline;
   }
+  ${BreakPoints.media.sm`
+    display: none;
+  `}
 `;
 
 const NavLinkWithLang = styled(LinkWithLang)`

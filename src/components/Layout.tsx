@@ -24,7 +24,7 @@ const Layout: React.FC<Props> = props => {
 
 const Root = styled.div``;
 const Main = styled.main`
-  padding-top: 59px;
+  padding-top: 56px;
 `;
 
 export default Layout;
