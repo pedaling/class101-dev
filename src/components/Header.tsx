@@ -17,9 +17,9 @@ const Header: React.FC = () => {
             alt="class101"
           />
         </NoHoverLink>
-        <NavLinkWithLang to={`/tags/recruiting`}>
+        <ExternalNavLink href="https://www.rocketpunch.com/companies/class101/jobs">
           {translation.t('recruiting')}
-        </NavLinkWithLang>
+        </ExternalNavLink>
         <NavLinkWithLang to={`/authors`}>
           {translation.t('members')}
         </NavLinkWithLang>
