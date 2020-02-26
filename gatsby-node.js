@@ -3,7 +3,7 @@ const _ = require('lodash');
 const { users } = require(`./src/data/users`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
-const POSTS_PER_PAGE = 6;
+const POSTS_PER_PAGE = 8;
 const AVAILABLE_LANGUAGES = ['ko', 'en'];
 const FALLBACK_LANGUAGE = 'ko';
 
