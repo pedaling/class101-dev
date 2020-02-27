@@ -1,22 +1,14 @@
+const metaConfig = require('./gatsby-meta-config');
+
 module.exports = {
   siteMetadata: {
-    title: `클래스101 기술 블로그`,
-    author: `class101`,
-    description: `신나는 코딩 세상`,
-    keywords: [
-      'class101',
-      'typescript',
-      'monorepo',
-      'react',
-      'graphql',
-      'apllo',
-      'aws'
-    ],
-    siteUrl: `https://class101.dev`,
-    facebookAppId: '2582489538450547',
-    social: {
-      twitter: `class101`
-    }
+    title: metaConfig.title,
+    author: metaConfig.author,
+    description: metaConfig.description,
+    keywords: metaConfig.keywords,
+    siteUrl: metaConfig.siteUrl,
+    facebookAppId: metaConfig.facebookAppId,
+    social: metaConfig.social
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': `AuthorYaml`
@@ -49,15 +41,15 @@ module.exports = {
     //   resolve: `gatsby-source-filesystem`,
     //   options: {
     //     path: `${__dirname}/content/assets`,
-    //     name: `assets`,
-    //   },
+    //     name: `assets`
+    //   }
     // },
     // {
     //   resolve: `gatsby-source-filesystem`,
     //   options: {
     //     path: `${__dirname}/content/assets/images`,
-    //     name: `images`,
-    //   },
+    //     name: `images`
+    //   }
     // },
     {
       resolve: `gatsby-transformer-remark`,
@@ -137,14 +129,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: `UA-64561335-30`
+        trackingId: metaConfig.googleAnalyticsId
       }
     },
     {
       resolve: `gatsby-plugin-facebook-analytics`,
       options: {
         // Required - set this to the ID of your facebook app.
-        appId: `2582489538450547`,
+        appId: metaConfig.facebookAppId,
 
         // Which version of the SDK to load.
         version: `v3.3`,
@@ -171,9 +163,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `클래스101 기술 블로그`,
-        short_name: `class101.dev`,
-        description: `신나는 코딩 세상`,
+        name: metaConfig.title,
+        short_name: metaConfig.shortName,
+        description: metaConfig.description,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#ffffff`,
@@ -256,7 +248,7 @@ module.exports = {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
               return allMarkdownRemark.edges.map(edge => {
                 const url = `${site.siteMetadata.siteUrl}/${edge.node.fields.language}/${edge.node.fields.slug}`;
-                console.log(url);
+
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
                   date: edge.node.frontmatter.date,
@@ -289,7 +281,7 @@ module.exports = {
               }
             `,
             output: '/rss.xml',
-            title: "Your Site's RSS Feed",
+            title: `{metaConfig.title} RSS Feed`,
             // optional configuration to insert feed reference in pages:
             // if `string` is used, it will be used to create RegExp and then test if pathname of
             // current page satisfied this regular expression;
