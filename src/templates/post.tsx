@@ -75,7 +75,6 @@ const PostTemplate: React.FC<Props & RouteComponentProps> = props => {
     },
     location: { href, pathname }
   } = props;
-  console.log(author);
 
   return (
     <Layout>
