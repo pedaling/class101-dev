@@ -1,7 +1,9 @@
+import { GlobalStyle } from '@class101/ui';
 import React from 'react';
 import styled from 'styled-components';
 
 import { initI18n } from '../i18n';
+import GlobalPageStyle from '../utils/GlobalPageStyle';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -15,6 +17,8 @@ const Layout: React.FC<Props> = props => {
   const { children } = props;
   return (
     <Root className="root">
+      <GlobalPageStyle />
+      <GlobalStyle />
       <Header />
       <Main>{children}</Main>
       <Footer />
