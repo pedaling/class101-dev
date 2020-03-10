@@ -216,7 +216,7 @@ const PostDate = styled(Body2)`
 const PostTOC = styled.div`
   ${TextStyles.body2};
   margin: 16px 0;
-  padding: 16px 24px;
+  padding: 16px 0;
   line-height: 26px;
   border: ${Colors.gray400} solid 1px;
   a {
