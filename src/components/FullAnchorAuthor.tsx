@@ -16,30 +16,35 @@ interface Props {
 const FullAnchorAuthor: React.FC<Props> = ({ author, className }) => {
   const { t } = useTranslation();
 
+  const handleClickSocialIcon = (e: React.MouseEvent, url: string) => {
+    e.preventDefault();
+    window.open(url);
+  };
+
   return (
     <AvatarWrapper
-      to={`/authors/${kebabCase(author?.id)}`}
+      to={`/authors/${kebabCase(author ?.id)}`}
       className={className}
     >
       <Avatar
         size={64}
-        src={author?.profileImage}
-        text={t(`profile.name.${author?.id}`)}
+        src={author ?.profileImage}
+        text={t(`profile.name.${author ?.id}`)}
       />
-      <AvatarTitle>{t(`profile.name.${author?.id}`)}</AvatarTitle>
-      <Body2>{author?.description}</Body2>
+      <AvatarTitle>{t(`profile.name.${author ?.id}`)}</AvatarTitle>
+      <Body2>{author ?.description}</Body2>
       {author.blog && author.blog !== '' && (
-        <SocialIcon href={author.blog} target="_blank">
+        <SocialIcon onClick={(e) => handleClickSocialIcon(e, author.blog)}>
           <img src="/images/blog-64x64.png" alt="blog" />
         </SocialIcon>
       )}
       {author.github && author.github !== '' && (
-        <SocialIcon href={author.github} target="_blank">
+        <SocialIcon onClick={(e) => handleClickSocialIcon(e, author.github)}>
           <img src="/images/github-64x64.png" alt="github" />
         </SocialIcon>
       )}
       {author.linkedin && author.linkedin !== '' && (
-        <SocialIcon href={author.linkedin} target="_blank">
+        <SocialIcon onClick={(e) => handleClickSocialIcon(e, author.linkedin)}>
           <img src="/images/linkedin-64x64.png" alt="linkedin" />
         </SocialIcon>
       )}
