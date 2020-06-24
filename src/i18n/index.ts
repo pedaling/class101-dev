@@ -29,7 +29,8 @@ export const initI18n = () => {
                 zzung: '쩡',
                 tony: '토니',
                 lion: '라이언',
-                hun: '훈'
+                hun: '훈',
+                han: '한'
               }
             },
             title: '클래스101 기술 블로그',
@@ -59,7 +60,8 @@ export const initI18n = () => {
                 zzung: 'Zzung',
                 tony: 'Tony',
                 lion: 'Lion',
-                hun: 'Hun'
+                hun: 'Hun',
+                han: 'Han'
               }
             },
             title: 'Class101 Tech Blog',
