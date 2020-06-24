@@ -58,17 +58,17 @@ tags: ['e2e', 'test', 'cypress']
 
 **1. Installing Cypress**
 
-테스트의 목표가 되는 프로젝트 레파지토리에 Cypress를 설치하는 것을 권장히지만, 당시 팀의 상황으로 따로 분리해서 레파지토리를 생성했습니다. 우선 npm으로 설치합니다.
+테스트의 목표가 되는 프로젝트 레파지토리에 Cypress를 설치하는 것을 권장하지만, 당시 팀의 상황으로 따로 분리해서 레파지토리를 생성했습니다. 우선 npm 또는 yarn으로 Cypress를 설치합니다.
 
 ```bash
-npm install cypress --save-dev
+yarn add -D cypress
 
 ```
 
 설치가 끝난후, 기본 설정을 위해 Cypress를 오픈합니다.
 
 ```bash
-yarn run cypress open
+yarn cypress open
 
 ```
 
@@ -81,7 +81,7 @@ Cypress를 오픈하면, 친절하게도 예시 테스트 코드들이 생성됩
 @types/node를 설치합니다.
 
 ```bash
-npm i @types/node
+yarn add -D @types/node
 
 ```
 
@@ -105,7 +105,7 @@ tsconfig을 설정합니다.
 
 ```
 
-TS babelLoader를 설정합니다.
+TypeScript를 사용하기 위해 ts-loader를 설정합니다.
 
 ```jsx
 // cypress/plugins/index.js
@@ -133,7 +133,7 @@ module.exports = on => {
 };
 ```
 
-Xpath로 DOM을 셀렉트 할 수 있게 하는 라이브러리, Cypress-Xpath를 사용해야 하기 때문에 타이핑합니다.
+Xpath로 DOM을 셀렉트 할 수 있게 하는 라이브러리인 Cypress-Xpath를 Typescript 환경에서도 사용하기 위해 인터페이스를 타이핑합니다.
 
 ```tsx
 // cypress/support/index.d.ts
