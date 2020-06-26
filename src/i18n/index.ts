@@ -36,7 +36,7 @@ export const initI18n = () => {
             title: '클래스101 기술 블로그',
             description: '신나는 코딩세상',
             company: '(주)클래스101',
-            address: '서울특별시 중구 한강대로 416 서울스퀘어 13층',
+            address: '서울특별시 중구 통일로 10, 연세재단세브란스빌딩 18층',
             tel: '457-81-00277',
             searchPlaceholder: '제목 및 내용을 입력하세요',
             recruiting: '채용',

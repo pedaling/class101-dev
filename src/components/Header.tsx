@@ -51,7 +51,7 @@ const Header: React.FC = () => {
             ></path>
           </LogoIcon>
         </NoHoverLink>
-        <ExternalNavLink href="https://www.rocketpunch.com/companies/class101/jobs">
+        <ExternalNavLink href="https://101.gg/recruit-08">
           {translation.t('recruiting')}
         </ExternalNavLink>
         <NavLinkWithLang to={`/authors`}>

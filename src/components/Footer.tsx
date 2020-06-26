@@ -16,9 +16,7 @@ const Footer: React.FC = () => {
               <p>{t('address')}</p>
               <p>457-81-00277</p>
               <p>
-                <a href="mailto:helloworld@class101.net">
-                  helloworld@class101.net
-                </a>
+                <a href="mailto:helloworld@101.inc">helloworld@101.inc</a>
               </p>
             </ContactArticle>
             <ContactArticle>

@@ -18,7 +18,7 @@ export default class HeroSection extends React.PureComponent {
               color={ButtonColor.ORANGE}
               size="lg"
               rightIcon={<Icon.Arrow />}
-              href="https://www.rocketpunch.com/companies/class101/jobs"
+              href="https://101.gg/recruit-08"
             >
               <span style={{ marginBottom: 2, color: 'white' }}>
                 진행중인 채용 보기
