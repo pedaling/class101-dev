@@ -88,3 +88,10 @@
   github: 'https://github.com/sehwanforeal'
   blog: ''
   linkedin: 'https://www.linkedin.com/in/%EC%84%B8%ED%99%98-%EB%B0%95-693a20197/'
+
+- id: 'rogiry'
+  profileImage: '/images/profiles/rogiry.png'
+  description: '잡식 개발자 로기리입니다.'
+  github: 'https://github.com/rogiry'
+  blog: 'https://rogiry.github.io/'
+  linkedin: 'https://www.linkedin.com/in/%ED%98%B8%EA%B8%B8-%EA%B0%95-1688b5138/'
