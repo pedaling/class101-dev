@@ -24,7 +24,7 @@ const RecruitingCard: React.FC = () => {
   const [_, setCopied] = useState(false);
 
   const handleClickCopy = () => {
-    copyToClipboard('helloworld@101.inc');
+    copyToClipboard('recruit@101.inc');
     setCopied(true);
   };
 
@@ -36,7 +36,7 @@ const RecruitingCard: React.FC = () => {
         이력서에 나이, 사진을 첨부하지 않습니다. 평가와 관련이 없습니다.
       </p>
       <Flex>
-        <b> helloworld@101.inc</b>
+        <b> recruit@101.inc</b>
         <IconButton
           color={ButtonColor.DEFAULT}
           icon={<Icon.Clip />}
