@@ -7,7 +7,8 @@
     "target": "esnext",
     "jsx": "react",
     "lib": ["dom", "esnext"],
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   },
   "include": ["./src/**/*"]
 }
