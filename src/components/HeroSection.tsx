@@ -18,7 +18,7 @@ export default class HeroSection extends React.PureComponent {
               color={ButtonColor.ORANGE}
               size="lg"
               rightIcon={<Icon.Arrow />}
-              href="https://101.gg/recruit-08"
+              href="https://www.notion.so/class101/101-29162e4b76564bbe8329da95bf83447a"
             >
               <span style={{ marginBottom: 2, color: 'white' }}>
                 진행중인 채용 보기
