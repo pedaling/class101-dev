@@ -30,7 +30,8 @@ export const initI18n = () => {
                 tony: '토니',
                 lion: '라이언',
                 hun: '훈',
-                han: '한'
+                han: '한',
+                rogiry: '로기리'
               }
             },
             title: '클래스101 기술 블로그',
@@ -61,7 +62,8 @@ export const initI18n = () => {
                 tony: 'Tony',
                 lion: 'Lion',
                 hun: 'Hun',
-                han: 'Han'
+                han: 'Han',
+                rogiry: 'Rogiry'
               }
             },
             title: 'Class101 Tech Blog',
