@@ -82,13 +82,6 @@
   blog: ''
   linkedin: 'https://www.linkedin.com/in/%EC%84%B8%ED%99%98-%EB%B0%95-693a20197/'
 
-- id: 'han2'
-  profileImage: '/images/profiles/han.jpeg'
-  description: '안녕하세요. 박세환 입니다2.'
-  github: 'https://github.com/sehwanforeal'
-  blog: ''
-  linkedin: 'https://www.linkedin.com/in/%EC%84%B8%ED%99%98-%EB%B0%95-693a20197/'
-
 - id: 'rogiry'
   profileImage: '/images/profiles/rogiry.png'
   description: '잡식 개발자 로기리입니다.'
