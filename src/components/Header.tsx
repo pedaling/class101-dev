@@ -51,7 +51,7 @@ const Header: React.FC = () => {
             ></path>
           </LogoIcon>
         </NoHoverLink>
-        <ExternalNavLink href="https://101.gg/recruit-08">
+        <ExternalNavLink href="https://www.notion.so/class101/101-29162e4b76564bbe8329da95bf83447a">
           {translation.t('recruiting')}
         </ExternalNavLink>
         <NavLinkWithLang to={`/authors`}>
