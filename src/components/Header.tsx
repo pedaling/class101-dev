@@ -54,9 +54,6 @@ const Header: React.FC = () => {
         <ExternalNavLink href="https://www.notion.so/class101/101-29162e4b76564bbe8329da95bf83447a">
           {translation.t('recruiting')}
         </ExternalNavLink>
-        <NavLinkWithLang to={`/authors`}>
-          {translation.t('members')}
-        </NavLinkWithLang>
         <ExternalNavLink href={`/ko/`}>한글</ExternalNavLink>
         <ExternalNavLink href={`/en/`}>English</ExternalNavLink>
         <SearchInput />
